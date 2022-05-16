@@ -6,13 +6,23 @@ get:
     200:
       description: OK
       content:
-        text/plain:
+        application/json:
           schema:
-            type: string
-          example: https://q.trap.jp/api/v3/oauth2/authorize?response_type=code&client_id=abcde&code_challenge=abcde&code_challenge_method=S256
+            $ref: "#/components/schemas/oauthCallbackResponse"
     500:
       description: Internal Server Error
       content:
         application/json:
           schema:
             $ref: "../common/error.yaml"
+
+components:
+  schemas:
+    oauthCallbackResponse:
+      type: object
+      required:
+        - redirectUri
+      properties:
+        redirectUri:
+          type: string
+          example: https://q.trap.jp/api/v3/oauth2/authorize?response_type=code&client_id=abcde&code_challenge=abcde&code_challenge_method=S256

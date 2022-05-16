@@ -39,4 +39,4 @@ components:
       properties:
         code:
           type: string
-          example: "abcde"
+          example: abcde
