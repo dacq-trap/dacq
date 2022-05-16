@@ -1,0 +1,12 @@
+get:
+  description: pingを飛ばす
+  tags:
+    - General
+  responses:
+    200:
+      description: OK
+      content:
+        text/plain:
+          schema:
+            type: string
+          example: "pong"

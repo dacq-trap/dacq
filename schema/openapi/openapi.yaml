@@ -1,0 +1,14 @@
+openapi: 3.0.3
+info:
+  title: DacQ API
+  description: DacQ Score Server API
+  version: 1.0.0
+servers:
+  - url: http://localhost:7070/api
+    description: Local Dev Environment
+paths:
+  /ping:
+    $ref: ./ping/index.yaml
+tags:
+  - General
+  - OAuth
