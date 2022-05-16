@@ -1,0 +1,40 @@
+post:
+  description: OAuthコードを送信してログイン
+  tags:
+    - OAuth
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/request"
+  responses:
+    204:
+      description: No Content
+    400:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: "../common/error.yaml"
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../common/error.yaml"
+    500:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: "../common/error.yaml"
+
+components:
+  schemas:
+    request:
+      type: object
+      properties:
+        code:
+          type: string
+          example: "abcde"

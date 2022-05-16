@@ -11,6 +11,8 @@ paths:
     $ref: ./ping/index.yaml
   /oauth/callback:
     $ref: ./oauth/callback.yaml
+  /oauth/code:
+    $ref: ./oauth/code.yaml
 tags:
   - General
   - OAuth
