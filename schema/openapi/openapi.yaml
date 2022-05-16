@@ -9,6 +9,8 @@ servers:
 paths:
   /ping:
     $ref: ./ping/index.yaml
+  /oauth/callback:
+    $ref: ./oauth/callback.yaml
 tags:
   - General
   - OAuth

@@ -1,0 +1,18 @@
+get:
+  description: OAuthのコールバックURLを取得
+  tags:
+    - OAuth
+  responses:
+    200:
+      description: OK
+      content:
+        text/plain:
+          schema:
+            type: string
+          example: https://q.trap.jp/api/v3/oauth2/authorize?response_type=code&client_id=abcde&code_challenge=abcde&code_challenge_method=S256
+    500:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: "../common/error.yaml"
