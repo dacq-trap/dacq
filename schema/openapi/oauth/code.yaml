@@ -7,7 +7,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: "#/components/schemas/request"
+          $ref: "#/components/schemas/oauthCodeRequest"
   responses:
     204:
       description: No Content
@@ -32,7 +32,7 @@ post:
 
 components:
   schemas:
-    request:
+    oauthCodeRequest:
       type: object
       required:
         - code
