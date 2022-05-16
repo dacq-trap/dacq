@@ -34,6 +34,8 @@ components:
   schemas:
     request:
       type: object
+      required:
+        - code
       properties:
         code:
           type: string
