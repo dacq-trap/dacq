@@ -6,14 +6,19 @@ import (
 	"github.com/google/uuid"
 )
 
+// コンテストの基本情報
+type ContestCoreInfo struct {
+	ID   uuid.UUID // ID
+	Name string    // コンテスト名
+}
+
 // コンテスト
 type Contest struct {
-	ID      uuid.UUID
-	Name    string
-	Author  uuid.UUID
-	Problem Problem
-	Teams   []Team
-	HeldAt  time.Time
+	ContestCoreInfo
+	Author  User           // コンテスト作成者
+	Problem Problem        // 問題
+	Teams   []TeamCoreInfo // チーム
+	HeldAt  time.Time      // コンテスト開催日時
 }
 
 // スコアの順位決定順

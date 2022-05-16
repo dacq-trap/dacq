@@ -9,11 +9,13 @@ import (
 
 // サブミッション
 type Submission struct {
-	ID          uuid.UUID // ID
-	User        User      // 提出者
-	FileID      string    // 提出されたファイルのID
-	CodeURL     url.URL   // コードのURL
-	Comment     string    // コメント
-	Score       int       // スコア
-	SubmittedAt time.Time // 提出日時
+	ID          uuid.UUID       // ID
+	Contest     ContestCoreInfo // コンテスト
+	Team        TeamCoreInfo    // チーム
+	Submitter   User            // 提出者
+	FileID      string          // 提出されたファイルのID
+	CodeURL     url.URL         // コードのURL
+	Comment     string          // コメント
+	Score       int             // スコア
+	SubmittedAt time.Time       // 提出日時
 }
