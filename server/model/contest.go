@@ -31,8 +31,8 @@ var (
 
 // 問題
 type Problem struct {
-	Rule          string   // ルール
-	DataIDs       []string // 学習データファイルID
-	ScoreScriptID string   // スコア計算スクリプトファイルID
-	Order         Order    // スコアの順位決定順
+	Rule          string // ルール
+	DataID        string // 学習データファイルID
+	ScoreScriptID string // スコア計算スクリプトファイルID
+	Order         Order  // スコアの順位決定順
 }
