@@ -13,7 +13,6 @@ type Submission struct {
 	Contest     ContestCoreInfo // コンテスト
 	Team        TeamCoreInfo    // チーム
 	Submitter   User            // 提出者
-	FileID      string          // 提出されたファイルのID
 	CodeURL     url.URL         // コードのURL
 	Comment     string          // コメント
 	Score       int             // スコア
