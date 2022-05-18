@@ -15,6 +15,6 @@ type Submission struct {
 	Submitter   User            // 提出者
 	CodeURL     url.URL         // コードのURL
 	Comment     string          // コメント
-	Score       int             // スコア
+	Score       float64         // スコア
 	SubmittedAt time.Time       // 提出日時
 }
