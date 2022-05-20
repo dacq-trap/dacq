@@ -1,10 +1,11 @@
 package model
 
-import "github.com/google/uuid"
+import (
+	"net/url"
+)
 
 // ユーザー
 type User struct {
-	ID     uuid.UUID // ID
-	Name   string    // ユーザー名
-	IconID uuid.UUID // アイコンID
+	Name    string  // ユーザー名
+	IconURL url.URL // アイコンURL
 }
