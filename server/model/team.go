@@ -16,5 +16,4 @@ type Team struct {
 	ContestID    uuid.UUID // コンテストID
 	Users        []User    // 所属ユーザー
 	IsMerging    bool      // マージ中かどうか(マージ中はできない処理を設けるため)
-	HighestScore int       // チームの最高スコア
 }
