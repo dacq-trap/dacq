@@ -4,7 +4,6 @@ import { CssBaseline, ThemeProvider } from '@mui/material'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import createEmotionCache from '@/common/createEmotionCache'
-import '@/styles/globals.css'
 import theme from '@/styles/theme'
 
 const clientSiideEmotionCache = createEmotionCache()
