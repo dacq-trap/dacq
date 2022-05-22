@@ -1,7 +1,14 @@
-import { Box, ButtonGroup, Typography } from '@mui/material'
+import {
+  Box,
+  ButtonGroup,
+  List,
+  ListItemButton,
+  ListItemText,
+  Typography,
+} from '@mui/material'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import Header from '@/components/header'
-import LinkedButton from '@/components/linkedButton'
 
 // TODO: 追加する
 type ProblemPageOption = 'overview' | 'leaderboard'
@@ -23,6 +30,7 @@ const linkedButtonInfos: LinkedButtonInfo[] = [
 ]
 
 const ProblemPageBase = (props: Props) => {
+  const router = useRouter()
   return (
     <>
       <Header />
@@ -44,28 +52,24 @@ const ProblemPageBase = (props: Props) => {
           </Link>
         </Box>
         <Box paddingY={2}>
-          <ButtonGroup
-            variant='text'
-            color='inherit'
-            aria-label='inherit text button group'
-          >
+          <List style={{ display: 'flex', flexDirection: 'row' }}>
             {linkedButtonInfos.map(({ pageOption, text }) => (
-              <LinkedButton
-                href={
-                  pageOption === 'overview'
-                    ? `/problems/${props.problemId}`
-                    : `/problems/${props.problemId}/${pageOption}`
-                }
-                text={text}
+              <ListItemButton
                 key={pageOption}
-                buttonProps={
-                  pageOption === props.problemPageOption
-                    ? { color: 'primary' }
-                    : { color: 'inherit' }
-                }
-              />
+                sx={{ maxWidth: 200, textAlign: 'center' }}
+                selected={pageOption === props.problemPageOption}
+                onClick={(event) => {
+                  const href =
+                    pageOption === 'overview'
+                      ? `/problems/${props.problemId}`
+                      : `/problems/${props.problemId}/${pageOption}`
+                  router.push(href)
+                }}
+              >
+                <ListItemText primary={text} />
+              </ListItemButton>
             ))}
-          </ButtonGroup>
+          </List>
         </Box>
       </Box>
       <Box paddingX={4}>{props.children}</Box>
