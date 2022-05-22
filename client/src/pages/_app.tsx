@@ -1,5 +1,4 @@
-import { CacheProvider } from '@emotion/react'
-import type { EmotionCache } from '@emotion/react'
+import { CacheProvider, type EmotionCache } from '@emotion/react'
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
