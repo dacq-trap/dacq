@@ -1,5 +1,5 @@
 import { GetServerSideProps } from 'next'
-import ProblemPageBase from '@/components/ProblemPageBase'
+import ProblemPageBase from '@/components/problemPageBase'
 
 // 仮の構造
 type Props = {

@@ -1,7 +1,7 @@
 import { Box, ButtonGroup, Typography } from '@mui/material'
 import Link from 'next/link'
-import Header from './Header'
-import LinkedButton from './LinkedButton'
+import Header from '@/components/header'
+import LinkedButton from '@/components/linkedButton'
 
 // TODO: 追加する
 type ProblemPageOption = 'overview' | 'leaderboard'

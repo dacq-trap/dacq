@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
 import type { NextPage } from 'next'
 import Link from 'next/link'
-import Header from '@/components/Header'
+import Header from '@/components/header'
 
 const Home: NextPage = () => {
   return (
