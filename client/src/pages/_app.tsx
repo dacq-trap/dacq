@@ -18,6 +18,9 @@ function MyApp(props: MyAppProps) {
     <CacheProvider value={emotionCache}>
       <Head>
         <meta name='viewport' content='initial-scale=1, width=device-width' />
+
+        <title>DacQ</title>
+        <link rel='icon' href='/favicon.ico' />
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
