@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./client
+        working-directory: client
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -35,7 +35,7 @@ jobs:
     needs: [packages]
     defaults:
       run:
-        working-directory: ./client
+        working-directory: client
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -43,6 +43,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           cache: npm
+          cache-dependency-path: client/package-lock.json
       - name: Run npm ci
         run: npm ci
       - name: Run build
@@ -53,7 +54,7 @@ jobs:
     needs: [packages]
     defaults:
       run:
-        working-directory: ./client
+        working-directory: client
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -61,6 +62,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           cache: npm
+          cache-dependency-path: client/package-lock.json
       - name: Run npm ci
         run: npm ci
       - name: Run build
@@ -71,7 +73,7 @@ jobs:
     needs: [packages]
     defaults:
       run:
-        working-directory: ./client
+        working-directory: client
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -81,3 +83,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
           eslint_flags: 'src/'
+          workdir: client
