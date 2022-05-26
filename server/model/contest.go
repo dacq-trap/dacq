@@ -28,6 +28,7 @@ type Contest struct {
 	DataID          string         // 学習データファイルID
 	DataDescription string         // 学習データの説明
 	JudgementID     int            // スコア判定基準のID
+	AnswerDataID    string         // 正解データファイルID
 	Teams           []TeamCoreInfo // 参加チーム
 	HeldFrom        time.Time      // コンテスト開始日時
 	HeldUntil       time.Time      // コンテスト終了日時
