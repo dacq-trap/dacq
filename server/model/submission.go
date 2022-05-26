@@ -2,13 +2,11 @@ package model
 
 import (
 	"time"
-
-	"github.com/google/uuid"
 )
 
 // サブミッション
 type Submission struct {
-	ID          uuid.UUID       // ID
+	ID          int             // ID
 	Contest     ContestCoreInfo // コンテスト
 	Team        TeamCoreInfo    // チーム
 	Submitter   User            // 提出者
