@@ -2,6 +2,9 @@ openapi: 3.0.3
 info:
   title: DacQ API
   description: DacQ Score Server API
+  contact:
+    name: DacQ Project Repository
+    url: https://github.com/dacq-trap/dacq
   version: 1.0.0
 servers:
   - url: http://localhost:7070/api
@@ -14,5 +17,7 @@ paths:
   /oauth/code:
     $ref: ./oauth/code.yaml
 tags:
-  - General
-  - OAuth
+  - name: General
+    description: General API
+  - name: OAuth
+    description: OAuth API

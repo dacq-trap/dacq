@@ -1,15 +1,16 @@
 get:
   description: OAuthのコールバックURLを取得
+  operationId: getOauthCallback
   tags:
     - OAuth
   responses:
-    200:
+    "200":
       description: OK
       content:
         application/json:
           schema:
             $ref: "#/components/schemas/oauthCallbackResponse"
-    500:
+    "500":
       description: Internal Server Error
       content:
         application/json:

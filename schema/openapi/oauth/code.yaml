@@ -1,5 +1,6 @@
 post:
   description: OAuthコードを送信してログイン
+  operationId: postOauthCode
   tags:
     - OAuth
   requestBody:
@@ -9,21 +10,21 @@ post:
         schema:
           $ref: "#/components/schemas/oauthCodeRequest"
   responses:
-    204:
+    "204":
       description: No Content
-    400:
+    "400":
       description: Bad Request
       content:
         application/json:
           schema:
             $ref: "../common/error.yaml"
-    403:
+    "403":
       description: Forbidden
       content:
         application/json:
           schema:
             $ref: "../common/error.yaml"
-    500:
+    "500":
       description: Internal Server Error
       content:
         application/json:
