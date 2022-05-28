@@ -1,5 +1,8 @@
 post:
-  description: OAuthコードを送信してログイン
+  summary: OAuthコードを送信してログイン
+  description: |
+    入手したOAuthコードを送信してログインします。  
+    送信されたコードから入手したアクセストークンはサーバーに保存されます。
   operationId: postOauthCode
   tags:
     - OAuth

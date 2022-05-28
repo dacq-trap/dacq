@@ -1,5 +1,8 @@
 get:
-  description: OAuthのコールバックURLを取得
+  summary: OAuthのコールバックURLを取得
+  description: |
+    OAuth認可用のコールバックURLを取得します。  
+    ※ クッキーを利用してセッション管理を行います。
   operationId: getOauthCallback
   tags:
     - OAuth

@@ -1,5 +1,6 @@
 get:
-  description: pingを飛ばす
+  summary: pingを飛ばす
+  description: pingを飛ばします。
   operationId: getPing
   tags:
     - General
