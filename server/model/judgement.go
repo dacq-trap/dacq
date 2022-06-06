@@ -1,11 +1,11 @@
 package model
 
 // スコアの順位決定順
-type Order bool
+type Order string
 
 var (
-	Asc  Order = true  // スコアが高い順
-	Desc Order = false // スコアが低い順
+	Asc  Order = "asc"  // スコアが高い順
+	Desc Order = "desc" // スコアが低い順
 )
 
 // スコア判定基準
