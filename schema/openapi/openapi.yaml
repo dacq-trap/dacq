@@ -16,8 +16,12 @@ paths:
     $ref: ./oauth/callback.yaml
   /oauth/code:
     $ref: ./oauth/code.yaml
+  /users/me:
+    $ref: ./users/me.yaml
 tags:
   - name: General
     description: General API
   - name: OAuth
     description: OAuth API
+  - name: Users
+    description: Users API
