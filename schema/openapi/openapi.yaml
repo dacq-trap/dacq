@@ -11,13 +11,13 @@ servers:
     description: Local Dev Environment
 paths:
   /ping:
-    $ref: ./ping/index.yaml
+    $ref: ./paths/ping/index.yaml
   /oauth/callback:
-    $ref: ./oauth/callback.yaml
+    $ref: ./paths/oauth/callback.yaml
   /oauth/code:
-    $ref: ./oauth/code.yaml
+    $ref: ./paths/oauth/code.yaml
   /users/me:
-    $ref: ./users/me.yaml
+    $ref: ./paths/users/me.yaml
   /competitions:
     get:
   /competitions/{cid}:
