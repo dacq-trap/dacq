@@ -25,3 +25,209 @@ tags:
     description: OAuth API
   - name: Users
     description: Users API
+
+components:
+  schemas:
+    CompetitionCoreInfo:
+      type: object
+      description: コンペティションの基本情報
+      properties:
+        id:
+          type: string
+          description: コンペティションID
+        name:
+          type: string
+          description: コンペティション名
+          example: traQメッセージ分析コンペ
+      required:
+        - id
+        - name
+    Competition:
+      type: object
+      description: コンペティション
+      properties:
+        id:
+          type: string
+          description: コンペティションID
+        name:
+          type: string
+          description: コンペティション名
+        author:
+          $ref: ./common/user.yaml
+          description: コンペティション作成者
+        rule:
+          type: string
+          description:  ルール
+        dataId:
+          type: string
+          description: 学習データファイルID
+        dataDescription:
+          type: string
+          description: 学習データの説明
+        judgementId:
+          type: integer
+          description: スコア判定基準のID
+        publicSetting:
+          type: array
+          items:
+            type: object
+            properties:
+              answerDataSpecificId:
+                type: integer
+                # TODO: フィールド名を要検討
+              isPublic:
+                type: boolean
+          description: public/privateの区分
+        answerDataId:
+          type: string
+          description: 正解データファイルID
+        teams:
+          type: array
+          items:
+            $ref: "#/components/schemas/TeamCoreInfo"
+          description: 参加チーム
+        startAt:
+          type: string
+          format: date-time
+          description: コンペティション開始日時
+        endAt:
+          type: string
+          format: date-time
+          description: コンペティション終了日時
+      required:
+        - id
+        - name
+        - author
+        - rule
+        - dataId
+        - dataDescription
+        - judgementId
+        - publicSetting
+        - answerDataId
+        - teams
+        - startAt
+        - endAt
+    Judgement:
+      type: object
+      description: スコア判定基準
+      properties:
+        id:
+          type: string
+          description: ID
+        name:
+          type: string
+          description: 判定方法の名前
+        rawScoreScript:
+          type: string
+          description: スコア計算スクリプト
+        rawModuleFile:
+          type: string
+          description: 実行時に必要なモジュール管理ファイル
+        scoreOrder:
+          type: string
+          description: スコアの順位決定順
+          example:
+            - asc
+            - desc
+      required:
+        - id
+        - name
+        - rawScoreScript
+        - rawModuleFile
+        - scoreOrder
+    MergeRequest:
+      type: object
+      description: チームのマージリクエスト
+      properties:
+        from:
+          $ref: "#/components/schemas/TeamCoreInfo"
+          description: マージ元チーム
+        to:
+          $ref: "#/components/schemas/TeamCoreInfo"
+          description: マージ先チーム
+        acceptanceQueue:
+          type: array
+          items:
+            $ref: ./common/user.yaml
+          description: 承認待ちユーザー
+      required:
+        - from
+        - to
+        - acceptanceQueue 
+    Submission:
+      type: object
+      description: サブミッション
+      properties:
+        id:
+          type: string
+          description: ID
+        contest:
+          $ref: "#/components/schemas/CompetitionCoreInfo"
+          description: コンテスト
+        team:
+          $ref: "#/components/schemas/TeamCoreInfo"
+          description: チーム
+        submitter:
+          $ref: ./common/user.yaml
+          description: 提出者
+        comment:
+          type: string
+          description: コメント
+        fileId:
+          type: string
+          description: 提出されたCSVファイルのID
+        score:
+          type: number
+          description: スコア
+        submittedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - content
+        - team
+        - submitter
+        - comment
+        - fileId
+        - score
+        - submittedAt
+    TeamCoreInfo:
+      type: object
+      description: チームの基本情報
+      properties:
+        id:
+          type: string
+          description: ID
+        name:
+          type: string
+          description: チーム名
+      required:
+        - id
+        - name
+    Team:
+      type: object
+      description: チーム
+      properties:
+        id:
+          type: string
+          description: ID
+        name:
+          type: string
+          description: チーム名
+        contestsId:
+          type: string
+          description: コンテストID
+        users:
+          type: array
+          items:
+            $ref: ./common/user.yaml
+          description: 所属ユーザー
+        isMerging:
+          type: boolean
+          description: チームのマージ中かどうか
+      required:
+        - id
+        - name
+        - contestsId
+        - users
+        - isMerging
