@@ -18,6 +18,36 @@ paths:
     $ref: ./oauth/code.yaml
   /users/me:
     $ref: ./users/me.yaml
+  /competitions:
+    get:
+  /competitions/{cid}:
+    get:
+    post:
+      description: 参加登録
+  /competitions/{cid}/leaderbord:
+    get:
+  /competitions/{cid}/teams:
+    get:
+  /competitions/{cid}/submissions:
+    post:
+    get:
+      description: 自チームの提出一覧
+  /competitions/{cid}/data:
+    get:
+  /submissions/{sid}:
+    get:
+    patch:
+      description: コメントの変更
+  /teams/{tid}:
+    get:
+    put:
+  /teams/me:
+    get:
+  /teams/me/{cid}:
+    get:
+  /teams/me/merge:
+    post:
+    get:
 tags:
   - name: General
     description: General API
