@@ -1,0 +1,26 @@
+type: object
+description: チーム
+properties:
+  id:
+    type: string
+    description: ID
+  name:
+    type: string
+    description: チーム名
+  contestsId:
+    type: string
+    description: コンテストID
+  users:
+    type: array
+    items:
+      $ref: ./user.yaml
+    description: 所属ユーザー
+  isMerging:
+    type: boolean
+    description: チームのマージ中かどうか
+required:
+  - id
+  - name
+  - contestsId
+  - users
+  - isMerging

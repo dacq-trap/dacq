@@ -1,0 +1,36 @@
+type: object
+description: サブミッション
+properties:
+  id:
+    type: string
+    description: ID
+  contest:
+    $ref: ./competitionCoreInfo.yaml
+    description: コンテスト
+  team:
+    $ref: ./teamCoreInfo.yaml
+    description: チーム
+  submitter:
+    $ref: ./user.yaml
+    description: 提出者
+  comment:
+    type: string
+    description: コメント
+  fileId:
+    type: string
+    description: 提出されたCSVファイルのID
+  score:
+    type: number
+    description: スコア
+  submittedAt:
+    type: string
+    format: date-time
+required:
+  - id
+  - content
+  - team
+  - submitter
+  - comment
+  - fileId
+  - score
+  - submittedAt
