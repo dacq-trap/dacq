@@ -35,19 +35,24 @@ paths:
       - $ref: "#/components/parameters/cid"
     $ref: ./paths/competitions/cid.submissions.yaml
   /submissions/{sid}:
-    get:
-    patch:
-      description: コメントの変更
+    parameters:
+      - $ref: "#/components/parameters/sid"
+    $ref: ./paths/submissions/sid.yaml
   /teams/{tid}:
-    get:
-    put:
+    parameters:
+      - $ref: "#/components/parameters/tid"
+    $ref: ./paths/teams/tid.yaml
   /teams/me:
-    get:
+    $ref: ./paths/teams/me.yaml
   /teams/me/{cid}:
-    get:
-  /teams/me/merge:
-    post:
-    get:
+    parameters:
+      - $ref: "#/components/parameters/cid"
+    $ref: ./paths/teams/me.cid.yaml
+  /teams/merge:
+    $ref: ./paths/teams/merge.yaml
+  /teams/{tid}/merge:
+    $ref: ./paths/teams/tid.merge.yaml
+
 tags:
   - name: General
     description: General API

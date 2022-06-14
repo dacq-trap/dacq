@@ -1,0 +1,51 @@
+post:
+  summary: チームのマージをリクエストする
+  operationId: requestTeamMerging
+  tags:
+    - Teams
+  requestBody:
+    content:
+      application/json:
+        schema: 
+          type: object
+          properties:
+            from:
+              type: string
+              description: マージ元のチームID
+            to:
+              type: string
+              description: マージ先のチームID
+          required:
+            - from
+            - to
+  responses:
+    "201":
+      description: Created
+    "400":
+      description: |
+        Bad Request
+        マージが行えないチームです
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "401":
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "403":
+      description: |
+        Forbidden
+        マージリクエストが許可されていません
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "500":
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml

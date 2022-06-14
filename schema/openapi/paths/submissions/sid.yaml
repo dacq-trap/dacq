@@ -1,15 +1,15 @@
 get:
-  summary: コンペティションの詳細を取得
-  operationId: getCompetition
+  summary: 提出の詳細を取得
+  operationId: getSubmission
   tags:
-    - Competitions
+    - Submissions
   responses:
     "200":
       description: OK
       content:
         application/json:
           schema:
-            $ref: ../../common/competition.yaml
+            $ref: ../../common/submission.yaml
     "401":
       description: Unauthorized
       content:
@@ -22,22 +22,25 @@ get:
         application/json:
           schema:
             $ref: ../../common/error.yaml
-post:
-  summary: コンペティションへの参加登録
-  operationId: joinCompetition
+patch:
+  summary: 提出のコメントを変更
+  operationId: updateSubmission
   tags:
-    - Competitions
+    - Submissions
+  requestBody:
+    content:
+      application/json:
+        schema: 
+          type: object
+          properties:
+            comment:
+              type: string
+              description: コメント
+          required:
+            - comment
   responses:
-    "201":
-      description: Created
-    "400":
-      description: |
-        Bad Request
-        コンペティションに参加登録済みです
-      content:
-        application/json:
-          schema:
-            $ref: ../../common/error.yaml
+    "200":
+      description: OK
     "401":
       description: Unauthorized
       content:
@@ -47,7 +50,7 @@ post:
     "403":
       description: |
         Forbidden
-        コンペティションへの参加が許可されていません
+        編集を許可されていません
       content:
         application/json:
           schema:
