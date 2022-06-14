@@ -1,0 +1,27 @@
+get:
+  summary: コンペティションに参加しているチームの一覧を取得
+  operationId: getTeamsInCompetition
+  tags:
+    - Competitions
+    - Teams
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../../common/teamCoreInfo.yaml
+    "401":
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "500":
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml

@@ -19,21 +19,21 @@ paths:
   /users/me:
     $ref: ./paths/users/me.yaml
   /competitions:
-    get:
+    $ref: ./paths/competitions/index.yaml
   /competitions/{cid}:
-    get:
-    post:
-      description: 参加登録
-  /competitions/{cid}/leaderbord:
-    get:
+    parameters:
+      - $ref: "#/components/parameters/cid"
+    $ref: ./paths/competitions/cid.yaml
+  /competitions/{cid}/leaderboard:
+    $ref: ./paths/competitions/cid.leaderboard.yaml
   /competitions/{cid}/teams:
-    get:
+    parameters:
+      - $ref: "#/components/parameters/cid"
+    $ref: ./paths/competitions/cid.teams.yaml
   /competitions/{cid}/submissions:
-    post:
-    get:
-      description: 自チームの提出一覧
-  /competitions/{cid}/data:
-    get:
+    parameters:
+      - $ref: "#/components/parameters/cid"
+    $ref: ./paths/competitions/cid.submissions.yaml
   /submissions/{sid}:
     get:
     patch:
@@ -55,3 +55,33 @@ tags:
     description: OAuth API
   - name: Users
     description: Users API
+  - name: Competitions
+    description: Competitions API
+  - name: Teams
+    description: Teams API
+  - name: Submissions
+    description: Submissions API
+
+components:
+  parameters:
+    cid:
+      name: competitionId
+      in: path
+      required: true
+      description: コンペティションのID
+      schema:
+        type: string
+    sid:
+      name: submissionId
+      in: path
+      required: true
+      description: サブミッションのID
+      schema:
+        type: integer
+    tid:
+      name: teamId
+      in: path
+      required: true
+      description: チームのID
+      schema:
+        type: string

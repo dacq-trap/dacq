@@ -1,0 +1,59 @@
+get:
+  summary: コンペティションの詳細を取得
+  operationId: getCompetition
+  tags:
+    - Competitions
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/competition.yaml
+    "401":
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "500":
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+post:
+  summary: コンペティションへの参加登録
+  tags:
+    - Competitions
+  responses:
+    "201":
+      description: Created
+    "401":
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "400":
+      description: |
+        Bad Request
+        コンペティションに参加登録済みです
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "403":
+      description: |
+        Forbidden
+        コンペティションへの参加が許可されていません
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "500":
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
