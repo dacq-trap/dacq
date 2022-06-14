@@ -1,5 +1,5 @@
 get:
-  summary: チームのの詳細を取得
+  summary: チームの詳細を取得
   operationId: getTeam
   tags:
     - Teams

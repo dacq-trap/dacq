@@ -25,6 +25,8 @@ paths:
       - $ref: "#/components/parameters/cid"
     $ref: ./paths/competitions/cid.yaml
   /competitions/{cid}/leaderboard:
+    parameters:
+      - $ref: "#/components/parameters/cid"
     $ref: ./paths/competitions/cid.leaderboard.yaml
   /competitions/{cid}/teams:
     parameters:
