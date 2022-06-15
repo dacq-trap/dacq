@@ -21,34 +21,20 @@ paths:
   /competitions:
     $ref: ./paths/competitions/index.yaml
   /competitions/{cid}:
-    parameters:
-      - $ref: "#/components/parameters/cid"
     $ref: ./paths/competitions/cid.yaml
   /competitions/{cid}/leaderboard:
-    parameters:
-      - $ref: "#/components/parameters/cid"
     $ref: ./paths/competitions/cid.leaderboard.yaml
   /competitions/{cid}/teams:
-    parameters:
-      - $ref: "#/components/parameters/cid"
     $ref: ./paths/competitions/cid.teams.yaml
   /competitions/{cid}/submissions:
-    parameters:
-      - $ref: "#/components/parameters/cid"
     $ref: ./paths/competitions/cid.submissions.yaml
   /submissions/{sid}:
-    parameters:
-      - $ref: "#/components/parameters/sid"
     $ref: ./paths/submissions/sid.yaml
   /teams/{tid}:
-    parameters:
-      - $ref: "#/components/parameters/tid"
     $ref: ./paths/teams/tid.yaml
   /teams/me:
     $ref: ./paths/teams/me.yaml
   /teams/me/{cid}:
-    parameters:
-      - $ref: "#/components/parameters/cid"
     $ref: ./paths/teams/me.cid.yaml
   /teams/merge:
     $ref: ./paths/teams/merge.yaml
@@ -68,27 +54,3 @@ tags:
     description: Teams API
   - name: Submissions
     description: Submissions API
-
-components:
-  parameters:
-    cid:
-      name: competitionId
-      in: path
-      required: true
-      description: コンペティションのID
-      schema:
-        type: string
-    sid:
-      name: submissionId
-      in: path
-      required: true
-      description: サブミッションのID
-      schema:
-        type: integer
-    tid:
-      name: teamId
-      in: path
-      required: true
-      description: チームのID
-      schema:
-        type: string

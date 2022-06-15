@@ -1,3 +1,5 @@
+parameters:
+  - $ref: ../../parameters/cid.yaml
 get:
   summary: コンペティションへの自チームの提出一覧
   operationId: getSubmissionsByMyTeamInCompetition

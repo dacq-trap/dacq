@@ -1,3 +1,5 @@
+parameters:
+  - $ref: ../../parameters/cid.yaml
 get:
   summary: 指定のコンペティションでの自分の所属チームを取得
   operationId: getMyTeamInCompetition

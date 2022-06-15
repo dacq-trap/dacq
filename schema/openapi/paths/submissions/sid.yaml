@@ -1,3 +1,5 @@
+parameters:
+  - $ref: ../../parameters/sid.yaml
 get:
   summary: 提出の詳細を取得
   operationId: getSubmission

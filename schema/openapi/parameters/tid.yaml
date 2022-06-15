@@ -1,0 +1,6 @@
+name: teamId
+in: path
+required: true
+description: チームのID
+schema:
+  type: string

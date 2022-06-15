@@ -1,3 +1,5 @@
+parameters:
+  - $ref: ../../parameters/cid.yaml
 get:
   summary: コンペティションの詳細を取得
   operationId: getCompetition
