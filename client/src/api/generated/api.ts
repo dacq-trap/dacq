@@ -424,11 +424,15 @@ export const CompetitionsApiAxiosParamCreator = function (configuration?: Config
         /**
          * 
          * @summary コンペティションの詳細を取得
+         * @param {string} competitionId コンペティションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCompetition: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/competitions/{cid}`;
+        getCompetition: async (competitionId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'competitionId' is not null or undefined
+            assertParamExists('getCompetition', 'competitionId', competitionId)
+            const localVarPath = `/competitions/{cid}`
+                .replace(`{${"competitionId"}}`, encodeURIComponent(String(competitionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -484,11 +488,15 @@ export const CompetitionsApiAxiosParamCreator = function (configuration?: Config
         /**
          * 
          * @summary コンペティションのリーダーボードの取得
+         * @param {string} competitionId コンペティションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getLeaderBoard: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/competitions/{cid}/leaderboard`;
+        getLeaderBoard: async (competitionId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'competitionId' is not null or undefined
+            assertParamExists('getLeaderBoard', 'competitionId', competitionId)
+            const localVarPath = `/competitions/{cid}/leaderboard`
+                .replace(`{${"competitionId"}}`, encodeURIComponent(String(competitionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -514,11 +522,15 @@ export const CompetitionsApiAxiosParamCreator = function (configuration?: Config
         /**
          * 
          * @summary 指定のコンペティションでの自分の所属チームを取得
+         * @param {string} competitionId コンペティションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMyTeamInCompetition: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/teams/me/{cid}`;
+        getMyTeamInCompetition: async (competitionId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'competitionId' is not null or undefined
+            assertParamExists('getMyTeamInCompetition', 'competitionId', competitionId)
+            const localVarPath = `/teams/me/{cid}`
+                .replace(`{${"competitionId"}}`, encodeURIComponent(String(competitionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -544,11 +556,15 @@ export const CompetitionsApiAxiosParamCreator = function (configuration?: Config
         /**
          * 
          * @summary コンペティションへの自チームの提出一覧
+         * @param {string} competitionId コンペティションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSubmissionsByMyTeamInCompetition: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/competitions/{cid}/submissions`;
+        getSubmissionsByMyTeamInCompetition: async (competitionId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'competitionId' is not null or undefined
+            assertParamExists('getSubmissionsByMyTeamInCompetition', 'competitionId', competitionId)
+            const localVarPath = `/competitions/{cid}/submissions`
+                .replace(`{${"competitionId"}}`, encodeURIComponent(String(competitionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -574,11 +590,15 @@ export const CompetitionsApiAxiosParamCreator = function (configuration?: Config
         /**
          * 
          * @summary コンペティションに参加しているチームの一覧を取得
+         * @param {string} competitionId コンペティションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTeamsInCompetition: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/competitions/{cid}/teams`;
+        getTeamsInCompetition: async (competitionId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'competitionId' is not null or undefined
+            assertParamExists('getTeamsInCompetition', 'competitionId', competitionId)
+            const localVarPath = `/competitions/{cid}/teams`
+                .replace(`{${"competitionId"}}`, encodeURIComponent(String(competitionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -604,12 +624,16 @@ export const CompetitionsApiAxiosParamCreator = function (configuration?: Config
         /**
          * 
          * @summary コンペティションへの参加登録
+         * @param {string} competitionId コンペティションのID
          * @param {JoinCompetitionRequest} [joinCompetitionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        joinCompetition: async (joinCompetitionRequest?: JoinCompetitionRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/competitions/{cid}/teams`;
+        joinCompetition: async (competitionId: string, joinCompetitionRequest?: JoinCompetitionRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'competitionId' is not null or undefined
+            assertParamExists('joinCompetition', 'competitionId', competitionId)
+            const localVarPath = `/competitions/{cid}/teams`
+                .replace(`{${"competitionId"}}`, encodeURIComponent(String(competitionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -638,14 +662,18 @@ export const CompetitionsApiAxiosParamCreator = function (configuration?: Config
         /**
          * 
          * @summary コンペティションへの解答提出
+         * @param {string} competitionId コンペティションのID
          * @param {string} file 提出データ
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postSubmission: async (file: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        postSubmission: async (competitionId: string, file: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'competitionId' is not null or undefined
+            assertParamExists('postSubmission', 'competitionId', competitionId)
             // verify required parameter 'file' is not null or undefined
             assertParamExists('postSubmission', 'file', file)
-            const localVarPath = `/competitions/{cid}/submissions`;
+            const localVarPath = `/competitions/{cid}/submissions`
+                .replace(`{${"competitionId"}}`, encodeURIComponent(String(competitionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -689,11 +717,12 @@ export const CompetitionsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary コンペティションの詳細を取得
+         * @param {string} competitionId コンペティションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getCompetition(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Competition>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getCompetition(options);
+        async getCompetition(competitionId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Competition>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getCompetition(competitionId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -709,63 +738,69 @@ export const CompetitionsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary コンペティションのリーダーボードの取得
+         * @param {string} competitionId コンペティションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getLeaderBoard(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Leaderboard>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getLeaderBoard(options);
+        async getLeaderBoard(competitionId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Leaderboard>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getLeaderBoard(competitionId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @summary 指定のコンペティションでの自分の所属チームを取得
+         * @param {string} competitionId コンペティションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMyTeamInCompetition(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TeamCoreInfo>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getMyTeamInCompetition(options);
+        async getMyTeamInCompetition(competitionId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TeamCoreInfo>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getMyTeamInCompetition(competitionId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @summary コンペティションへの自チームの提出一覧
+         * @param {string} competitionId コンペティションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getSubmissionsByMyTeamInCompetition(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Submission>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getSubmissionsByMyTeamInCompetition(options);
+        async getSubmissionsByMyTeamInCompetition(competitionId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Submission>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSubmissionsByMyTeamInCompetition(competitionId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @summary コンペティションに参加しているチームの一覧を取得
+         * @param {string} competitionId コンペティションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getTeamsInCompetition(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TeamCoreInfo>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getTeamsInCompetition(options);
+        async getTeamsInCompetition(competitionId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TeamCoreInfo>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTeamsInCompetition(competitionId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @summary コンペティションへの参加登録
+         * @param {string} competitionId コンペティションのID
          * @param {JoinCompetitionRequest} [joinCompetitionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async joinCompetition(joinCompetitionRequest?: JoinCompetitionRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.joinCompetition(joinCompetitionRequest, options);
+        async joinCompetition(competitionId: string, joinCompetitionRequest?: JoinCompetitionRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.joinCompetition(competitionId, joinCompetitionRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @summary コンペティションへの解答提出
+         * @param {string} competitionId コンペティションのID
          * @param {string} file 提出データ
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async postSubmission(file: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.postSubmission(file, options);
+        async postSubmission(competitionId: string, file: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postSubmission(competitionId, file, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -781,11 +816,12 @@ export const CompetitionsApiFactory = function (configuration?: Configuration, b
         /**
          * 
          * @summary コンペティションの詳細を取得
+         * @param {string} competitionId コンペティションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCompetition(options?: any): AxiosPromise<Competition> {
-            return localVarFp.getCompetition(options).then((request) => request(axios, basePath));
+        getCompetition(competitionId: string, options?: any): AxiosPromise<Competition> {
+            return localVarFp.getCompetition(competitionId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -799,58 +835,64 @@ export const CompetitionsApiFactory = function (configuration?: Configuration, b
         /**
          * 
          * @summary コンペティションのリーダーボードの取得
+         * @param {string} competitionId コンペティションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getLeaderBoard(options?: any): AxiosPromise<Array<Leaderboard>> {
-            return localVarFp.getLeaderBoard(options).then((request) => request(axios, basePath));
+        getLeaderBoard(competitionId: string, options?: any): AxiosPromise<Array<Leaderboard>> {
+            return localVarFp.getLeaderBoard(competitionId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary 指定のコンペティションでの自分の所属チームを取得
+         * @param {string} competitionId コンペティションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMyTeamInCompetition(options?: any): AxiosPromise<TeamCoreInfo> {
-            return localVarFp.getMyTeamInCompetition(options).then((request) => request(axios, basePath));
+        getMyTeamInCompetition(competitionId: string, options?: any): AxiosPromise<TeamCoreInfo> {
+            return localVarFp.getMyTeamInCompetition(competitionId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary コンペティションへの自チームの提出一覧
+         * @param {string} competitionId コンペティションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSubmissionsByMyTeamInCompetition(options?: any): AxiosPromise<Array<Submission>> {
-            return localVarFp.getSubmissionsByMyTeamInCompetition(options).then((request) => request(axios, basePath));
+        getSubmissionsByMyTeamInCompetition(competitionId: string, options?: any): AxiosPromise<Array<Submission>> {
+            return localVarFp.getSubmissionsByMyTeamInCompetition(competitionId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary コンペティションに参加しているチームの一覧を取得
+         * @param {string} competitionId コンペティションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTeamsInCompetition(options?: any): AxiosPromise<Array<TeamCoreInfo>> {
-            return localVarFp.getTeamsInCompetition(options).then((request) => request(axios, basePath));
+        getTeamsInCompetition(competitionId: string, options?: any): AxiosPromise<Array<TeamCoreInfo>> {
+            return localVarFp.getTeamsInCompetition(competitionId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary コンペティションへの参加登録
+         * @param {string} competitionId コンペティションのID
          * @param {JoinCompetitionRequest} [joinCompetitionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        joinCompetition(joinCompetitionRequest?: JoinCompetitionRequest, options?: any): AxiosPromise<void> {
-            return localVarFp.joinCompetition(joinCompetitionRequest, options).then((request) => request(axios, basePath));
+        joinCompetition(competitionId: string, joinCompetitionRequest?: JoinCompetitionRequest, options?: any): AxiosPromise<void> {
+            return localVarFp.joinCompetition(competitionId, joinCompetitionRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary コンペティションへの解答提出
+         * @param {string} competitionId コンペティションのID
          * @param {string} file 提出データ
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postSubmission(file: string, options?: any): AxiosPromise<void> {
-            return localVarFp.postSubmission(file, options).then((request) => request(axios, basePath));
+        postSubmission(competitionId: string, file: string, options?: any): AxiosPromise<void> {
+            return localVarFp.postSubmission(competitionId, file, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -865,12 +907,13 @@ export class CompetitionsApi extends BaseAPI {
     /**
      * 
      * @summary コンペティションの詳細を取得
+     * @param {string} competitionId コンペティションのID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CompetitionsApi
      */
-    public getCompetition(options?: AxiosRequestConfig) {
-        return CompetitionsApiFp(this.configuration).getCompetition(options).then((request) => request(this.axios, this.basePath));
+    public getCompetition(competitionId: string, options?: AxiosRequestConfig) {
+        return CompetitionsApiFp(this.configuration).getCompetition(competitionId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -887,69 +930,75 @@ export class CompetitionsApi extends BaseAPI {
     /**
      * 
      * @summary コンペティションのリーダーボードの取得
+     * @param {string} competitionId コンペティションのID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CompetitionsApi
      */
-    public getLeaderBoard(options?: AxiosRequestConfig) {
-        return CompetitionsApiFp(this.configuration).getLeaderBoard(options).then((request) => request(this.axios, this.basePath));
+    public getLeaderBoard(competitionId: string, options?: AxiosRequestConfig) {
+        return CompetitionsApiFp(this.configuration).getLeaderBoard(competitionId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary 指定のコンペティションでの自分の所属チームを取得
+     * @param {string} competitionId コンペティションのID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CompetitionsApi
      */
-    public getMyTeamInCompetition(options?: AxiosRequestConfig) {
-        return CompetitionsApiFp(this.configuration).getMyTeamInCompetition(options).then((request) => request(this.axios, this.basePath));
+    public getMyTeamInCompetition(competitionId: string, options?: AxiosRequestConfig) {
+        return CompetitionsApiFp(this.configuration).getMyTeamInCompetition(competitionId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary コンペティションへの自チームの提出一覧
+     * @param {string} competitionId コンペティションのID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CompetitionsApi
      */
-    public getSubmissionsByMyTeamInCompetition(options?: AxiosRequestConfig) {
-        return CompetitionsApiFp(this.configuration).getSubmissionsByMyTeamInCompetition(options).then((request) => request(this.axios, this.basePath));
+    public getSubmissionsByMyTeamInCompetition(competitionId: string, options?: AxiosRequestConfig) {
+        return CompetitionsApiFp(this.configuration).getSubmissionsByMyTeamInCompetition(competitionId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary コンペティションに参加しているチームの一覧を取得
+     * @param {string} competitionId コンペティションのID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CompetitionsApi
      */
-    public getTeamsInCompetition(options?: AxiosRequestConfig) {
-        return CompetitionsApiFp(this.configuration).getTeamsInCompetition(options).then((request) => request(this.axios, this.basePath));
+    public getTeamsInCompetition(competitionId: string, options?: AxiosRequestConfig) {
+        return CompetitionsApiFp(this.configuration).getTeamsInCompetition(competitionId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary コンペティションへの参加登録
+     * @param {string} competitionId コンペティションのID
      * @param {JoinCompetitionRequest} [joinCompetitionRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CompetitionsApi
      */
-    public joinCompetition(joinCompetitionRequest?: JoinCompetitionRequest, options?: AxiosRequestConfig) {
-        return CompetitionsApiFp(this.configuration).joinCompetition(joinCompetitionRequest, options).then((request) => request(this.axios, this.basePath));
+    public joinCompetition(competitionId: string, joinCompetitionRequest?: JoinCompetitionRequest, options?: AxiosRequestConfig) {
+        return CompetitionsApiFp(this.configuration).joinCompetition(competitionId, joinCompetitionRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary コンペティションへの解答提出
+     * @param {string} competitionId コンペティションのID
      * @param {string} file 提出データ
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CompetitionsApi
      */
-    public postSubmission(file: string, options?: AxiosRequestConfig) {
-        return CompetitionsApiFp(this.configuration).postSubmission(file, options).then((request) => request(this.axios, this.basePath));
+    public postSubmission(competitionId: string, file: string, options?: AxiosRequestConfig) {
+        return CompetitionsApiFp(this.configuration).postSubmission(competitionId, file, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -1228,11 +1277,15 @@ export const SubmissionsApiAxiosParamCreator = function (configuration?: Configu
         /**
          * 
          * @summary 提出の詳細を取得
+         * @param {number} submissionId サブミッションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSubmission: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/submissions/{sid}`;
+        getSubmission: async (submissionId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'submissionId' is not null or undefined
+            assertParamExists('getSubmission', 'submissionId', submissionId)
+            const localVarPath = `/submissions/{sid}`
+                .replace(`{${"submissionId"}}`, encodeURIComponent(String(submissionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1258,11 +1311,15 @@ export const SubmissionsApiAxiosParamCreator = function (configuration?: Configu
         /**
          * 
          * @summary コンペティションへの自チームの提出一覧
+         * @param {string} competitionId コンペティションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSubmissionsByMyTeamInCompetition: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/competitions/{cid}/submissions`;
+        getSubmissionsByMyTeamInCompetition: async (competitionId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'competitionId' is not null or undefined
+            assertParamExists('getSubmissionsByMyTeamInCompetition', 'competitionId', competitionId)
+            const localVarPath = `/competitions/{cid}/submissions`
+                .replace(`{${"competitionId"}}`, encodeURIComponent(String(competitionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1288,14 +1345,18 @@ export const SubmissionsApiAxiosParamCreator = function (configuration?: Configu
         /**
          * 
          * @summary コンペティションへの解答提出
+         * @param {string} competitionId コンペティションのID
          * @param {string} file 提出データ
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postSubmission: async (file: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        postSubmission: async (competitionId: string, file: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'competitionId' is not null or undefined
+            assertParamExists('postSubmission', 'competitionId', competitionId)
             // verify required parameter 'file' is not null or undefined
             assertParamExists('postSubmission', 'file', file)
-            const localVarPath = `/competitions/{cid}/submissions`;
+            const localVarPath = `/competitions/{cid}/submissions`
+                .replace(`{${"competitionId"}}`, encodeURIComponent(String(competitionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1329,12 +1390,16 @@ export const SubmissionsApiAxiosParamCreator = function (configuration?: Configu
         /**
          * 
          * @summary 提出のコメントを変更
+         * @param {number} submissionId サブミッションのID
          * @param {UpdateSubmissionRequest} [updateSubmissionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateSubmission: async (updateSubmissionRequest?: UpdateSubmissionRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/submissions/{sid}`;
+        updateSubmission: async (submissionId: number, updateSubmissionRequest?: UpdateSubmissionRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'submissionId' is not null or undefined
+            assertParamExists('updateSubmission', 'submissionId', submissionId)
+            const localVarPath = `/submissions/{sid}`
+                .replace(`{${"submissionId"}}`, encodeURIComponent(String(submissionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1373,43 +1438,47 @@ export const SubmissionsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary 提出の詳細を取得
+         * @param {number} submissionId サブミッションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getSubmission(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Submission>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getSubmission(options);
+        async getSubmission(submissionId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Submission>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSubmission(submissionId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @summary コンペティションへの自チームの提出一覧
+         * @param {string} competitionId コンペティションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getSubmissionsByMyTeamInCompetition(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Submission>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getSubmissionsByMyTeamInCompetition(options);
+        async getSubmissionsByMyTeamInCompetition(competitionId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Submission>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSubmissionsByMyTeamInCompetition(competitionId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @summary コンペティションへの解答提出
+         * @param {string} competitionId コンペティションのID
          * @param {string} file 提出データ
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async postSubmission(file: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.postSubmission(file, options);
+        async postSubmission(competitionId: string, file: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postSubmission(competitionId, file, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @summary 提出のコメントを変更
+         * @param {number} submissionId サブミッションのID
          * @param {UpdateSubmissionRequest} [updateSubmissionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateSubmission(updateSubmissionRequest?: UpdateSubmissionRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateSubmission(updateSubmissionRequest, options);
+        async updateSubmission(submissionId: number, updateSubmissionRequest?: UpdateSubmissionRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateSubmission(submissionId, updateSubmissionRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -1425,40 +1494,44 @@ export const SubmissionsApiFactory = function (configuration?: Configuration, ba
         /**
          * 
          * @summary 提出の詳細を取得
+         * @param {number} submissionId サブミッションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSubmission(options?: any): AxiosPromise<Submission> {
-            return localVarFp.getSubmission(options).then((request) => request(axios, basePath));
+        getSubmission(submissionId: number, options?: any): AxiosPromise<Submission> {
+            return localVarFp.getSubmission(submissionId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary コンペティションへの自チームの提出一覧
+         * @param {string} competitionId コンペティションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSubmissionsByMyTeamInCompetition(options?: any): AxiosPromise<Array<Submission>> {
-            return localVarFp.getSubmissionsByMyTeamInCompetition(options).then((request) => request(axios, basePath));
+        getSubmissionsByMyTeamInCompetition(competitionId: string, options?: any): AxiosPromise<Array<Submission>> {
+            return localVarFp.getSubmissionsByMyTeamInCompetition(competitionId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary コンペティションへの解答提出
+         * @param {string} competitionId コンペティションのID
          * @param {string} file 提出データ
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postSubmission(file: string, options?: any): AxiosPromise<void> {
-            return localVarFp.postSubmission(file, options).then((request) => request(axios, basePath));
+        postSubmission(competitionId: string, file: string, options?: any): AxiosPromise<void> {
+            return localVarFp.postSubmission(competitionId, file, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary 提出のコメントを変更
+         * @param {number} submissionId サブミッションのID
          * @param {UpdateSubmissionRequest} [updateSubmissionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateSubmission(updateSubmissionRequest?: UpdateSubmissionRequest, options?: any): AxiosPromise<void> {
-            return localVarFp.updateSubmission(updateSubmissionRequest, options).then((request) => request(axios, basePath));
+        updateSubmission(submissionId: number, updateSubmissionRequest?: UpdateSubmissionRequest, options?: any): AxiosPromise<void> {
+            return localVarFp.updateSubmission(submissionId, updateSubmissionRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1473,47 +1546,51 @@ export class SubmissionsApi extends BaseAPI {
     /**
      * 
      * @summary 提出の詳細を取得
+     * @param {number} submissionId サブミッションのID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SubmissionsApi
      */
-    public getSubmission(options?: AxiosRequestConfig) {
-        return SubmissionsApiFp(this.configuration).getSubmission(options).then((request) => request(this.axios, this.basePath));
+    public getSubmission(submissionId: number, options?: AxiosRequestConfig) {
+        return SubmissionsApiFp(this.configuration).getSubmission(submissionId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary コンペティションへの自チームの提出一覧
+     * @param {string} competitionId コンペティションのID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SubmissionsApi
      */
-    public getSubmissionsByMyTeamInCompetition(options?: AxiosRequestConfig) {
-        return SubmissionsApiFp(this.configuration).getSubmissionsByMyTeamInCompetition(options).then((request) => request(this.axios, this.basePath));
+    public getSubmissionsByMyTeamInCompetition(competitionId: string, options?: AxiosRequestConfig) {
+        return SubmissionsApiFp(this.configuration).getSubmissionsByMyTeamInCompetition(competitionId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary コンペティションへの解答提出
+     * @param {string} competitionId コンペティションのID
      * @param {string} file 提出データ
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SubmissionsApi
      */
-    public postSubmission(file: string, options?: AxiosRequestConfig) {
-        return SubmissionsApiFp(this.configuration).postSubmission(file, options).then((request) => request(this.axios, this.basePath));
+    public postSubmission(competitionId: string, file: string, options?: AxiosRequestConfig) {
+        return SubmissionsApiFp(this.configuration).postSubmission(competitionId, file, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary 提出のコメントを変更
+     * @param {number} submissionId サブミッションのID
      * @param {UpdateSubmissionRequest} [updateSubmissionRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SubmissionsApi
      */
-    public updateSubmission(updateSubmissionRequest?: UpdateSubmissionRequest, options?: AxiosRequestConfig) {
-        return SubmissionsApiFp(this.configuration).updateSubmission(updateSubmissionRequest, options).then((request) => request(this.axios, this.basePath));
+    public updateSubmission(submissionId: number, updateSubmissionRequest?: UpdateSubmissionRequest, options?: AxiosRequestConfig) {
+        return SubmissionsApiFp(this.configuration).updateSubmission(submissionId, updateSubmissionRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -1527,11 +1604,15 @@ export const TeamsApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * 
          * @summary 指定のコンペティションでの自分の所属チームを取得
+         * @param {string} competitionId コンペティションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMyTeamInCompetition: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/teams/me/{cid}`;
+        getMyTeamInCompetition: async (competitionId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'competitionId' is not null or undefined
+            assertParamExists('getMyTeamInCompetition', 'competitionId', competitionId)
+            const localVarPath = `/teams/me/{cid}`
+                .replace(`{${"competitionId"}}`, encodeURIComponent(String(competitionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1587,11 +1668,15 @@ export const TeamsApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * 
          * @summary チームの詳細を取得
+         * @param {string} teamId チームのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTeam: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/teams/{tid}`;
+        getTeam: async (teamId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'teamId' is not null or undefined
+            assertParamExists('getTeam', 'teamId', teamId)
+            const localVarPath = `/teams/{tid}`
+                .replace(`{${"teamId"}}`, encodeURIComponent(String(teamId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1617,11 +1702,15 @@ export const TeamsApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * 
          * @summary チームのマージリクエスト情報を取得
+         * @param {string} teamId チームのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTeamMergingStatus: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/teams/{tid}/merge`;
+        getTeamMergingStatus: async (teamId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'teamId' is not null or undefined
+            assertParamExists('getTeamMergingStatus', 'teamId', teamId)
+            const localVarPath = `/teams/{tid}/merge`
+                .replace(`{${"teamId"}}`, encodeURIComponent(String(teamId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1647,11 +1736,15 @@ export const TeamsApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * 
          * @summary コンペティションに参加しているチームの一覧を取得
+         * @param {string} competitionId コンペティションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTeamsInCompetition: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/competitions/{cid}/teams`;
+        getTeamsInCompetition: async (competitionId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'competitionId' is not null or undefined
+            assertParamExists('getTeamsInCompetition', 'competitionId', competitionId)
+            const localVarPath = `/competitions/{cid}/teams`
+                .replace(`{${"competitionId"}}`, encodeURIComponent(String(competitionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1711,12 +1804,16 @@ export const TeamsApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * 
          * @summary チームの情報を変更
+         * @param {string} teamId チームのID
          * @param {JoinCompetitionRequest} [joinCompetitionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateTeam: async (joinCompetitionRequest?: JoinCompetitionRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/teams/{tid}`;
+        updateTeam: async (teamId: string, joinCompetitionRequest?: JoinCompetitionRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'teamId' is not null or undefined
+            assertParamExists('updateTeam', 'teamId', teamId)
+            const localVarPath = `/teams/{tid}`
+                .replace(`{${"teamId"}}`, encodeURIComponent(String(teamId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1755,11 +1852,12 @@ export const TeamsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary 指定のコンペティションでの自分の所属チームを取得
+         * @param {string} competitionId コンペティションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMyTeamInCompetition(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TeamCoreInfo>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getMyTeamInCompetition(options);
+        async getMyTeamInCompetition(competitionId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TeamCoreInfo>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getMyTeamInCompetition(competitionId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -1775,31 +1873,34 @@ export const TeamsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary チームの詳細を取得
+         * @param {string} teamId チームのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getTeam(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Team>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getTeam(options);
+        async getTeam(teamId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Team>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTeam(teamId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @summary チームのマージリクエスト情報を取得
+         * @param {string} teamId チームのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getTeamMergingStatus(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MergeRequest>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getTeamMergingStatus(options);
+        async getTeamMergingStatus(teamId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MergeRequest>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTeamMergingStatus(teamId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
          * @summary コンペティションに参加しているチームの一覧を取得
+         * @param {string} competitionId コンペティションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getTeamsInCompetition(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TeamCoreInfo>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getTeamsInCompetition(options);
+        async getTeamsInCompetition(competitionId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TeamCoreInfo>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTeamsInCompetition(competitionId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -1816,12 +1917,13 @@ export const TeamsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary チームの情報を変更
+         * @param {string} teamId チームのID
          * @param {JoinCompetitionRequest} [joinCompetitionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateTeam(joinCompetitionRequest?: JoinCompetitionRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateTeam(joinCompetitionRequest, options);
+        async updateTeam(teamId: string, joinCompetitionRequest?: JoinCompetitionRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateTeam(teamId, joinCompetitionRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -1837,11 +1939,12 @@ export const TeamsApiFactory = function (configuration?: Configuration, basePath
         /**
          * 
          * @summary 指定のコンペティションでの自分の所属チームを取得
+         * @param {string} competitionId コンペティションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMyTeamInCompetition(options?: any): AxiosPromise<TeamCoreInfo> {
-            return localVarFp.getMyTeamInCompetition(options).then((request) => request(axios, basePath));
+        getMyTeamInCompetition(competitionId: string, options?: any): AxiosPromise<TeamCoreInfo> {
+            return localVarFp.getMyTeamInCompetition(competitionId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1855,29 +1958,32 @@ export const TeamsApiFactory = function (configuration?: Configuration, basePath
         /**
          * 
          * @summary チームの詳細を取得
+         * @param {string} teamId チームのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTeam(options?: any): AxiosPromise<Team> {
-            return localVarFp.getTeam(options).then((request) => request(axios, basePath));
+        getTeam(teamId: string, options?: any): AxiosPromise<Team> {
+            return localVarFp.getTeam(teamId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary チームのマージリクエスト情報を取得
+         * @param {string} teamId チームのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTeamMergingStatus(options?: any): AxiosPromise<MergeRequest> {
-            return localVarFp.getTeamMergingStatus(options).then((request) => request(axios, basePath));
+        getTeamMergingStatus(teamId: string, options?: any): AxiosPromise<MergeRequest> {
+            return localVarFp.getTeamMergingStatus(teamId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary コンペティションに参加しているチームの一覧を取得
+         * @param {string} competitionId コンペティションのID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTeamsInCompetition(options?: any): AxiosPromise<Array<TeamCoreInfo>> {
-            return localVarFp.getTeamsInCompetition(options).then((request) => request(axios, basePath));
+        getTeamsInCompetition(competitionId: string, options?: any): AxiosPromise<Array<TeamCoreInfo>> {
+            return localVarFp.getTeamsInCompetition(competitionId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1892,12 +1998,13 @@ export const TeamsApiFactory = function (configuration?: Configuration, basePath
         /**
          * 
          * @summary チームの情報を変更
+         * @param {string} teamId チームのID
          * @param {JoinCompetitionRequest} [joinCompetitionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateTeam(joinCompetitionRequest?: JoinCompetitionRequest, options?: any): AxiosPromise<void> {
-            return localVarFp.updateTeam(joinCompetitionRequest, options).then((request) => request(axios, basePath));
+        updateTeam(teamId: string, joinCompetitionRequest?: JoinCompetitionRequest, options?: any): AxiosPromise<void> {
+            return localVarFp.updateTeam(teamId, joinCompetitionRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1912,12 +2019,13 @@ export class TeamsApi extends BaseAPI {
     /**
      * 
      * @summary 指定のコンペティションでの自分の所属チームを取得
+     * @param {string} competitionId コンペティションのID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TeamsApi
      */
-    public getMyTeamInCompetition(options?: AxiosRequestConfig) {
-        return TeamsApiFp(this.configuration).getMyTeamInCompetition(options).then((request) => request(this.axios, this.basePath));
+    public getMyTeamInCompetition(competitionId: string, options?: AxiosRequestConfig) {
+        return TeamsApiFp(this.configuration).getMyTeamInCompetition(competitionId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1934,34 +2042,37 @@ export class TeamsApi extends BaseAPI {
     /**
      * 
      * @summary チームの詳細を取得
+     * @param {string} teamId チームのID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TeamsApi
      */
-    public getTeam(options?: AxiosRequestConfig) {
-        return TeamsApiFp(this.configuration).getTeam(options).then((request) => request(this.axios, this.basePath));
+    public getTeam(teamId: string, options?: AxiosRequestConfig) {
+        return TeamsApiFp(this.configuration).getTeam(teamId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary チームのマージリクエスト情報を取得
+     * @param {string} teamId チームのID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TeamsApi
      */
-    public getTeamMergingStatus(options?: AxiosRequestConfig) {
-        return TeamsApiFp(this.configuration).getTeamMergingStatus(options).then((request) => request(this.axios, this.basePath));
+    public getTeamMergingStatus(teamId: string, options?: AxiosRequestConfig) {
+        return TeamsApiFp(this.configuration).getTeamMergingStatus(teamId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary コンペティションに参加しているチームの一覧を取得
+     * @param {string} competitionId コンペティションのID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TeamsApi
      */
-    public getTeamsInCompetition(options?: AxiosRequestConfig) {
-        return TeamsApiFp(this.configuration).getTeamsInCompetition(options).then((request) => request(this.axios, this.basePath));
+    public getTeamsInCompetition(competitionId: string, options?: AxiosRequestConfig) {
+        return TeamsApiFp(this.configuration).getTeamsInCompetition(competitionId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1979,13 +2090,14 @@ export class TeamsApi extends BaseAPI {
     /**
      * 
      * @summary チームの情報を変更
+     * @param {string} teamId チームのID
      * @param {JoinCompetitionRequest} [joinCompetitionRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TeamsApi
      */
-    public updateTeam(joinCompetitionRequest?: JoinCompetitionRequest, options?: AxiosRequestConfig) {
-        return TeamsApiFp(this.configuration).updateTeam(joinCompetitionRequest, options).then((request) => request(this.axios, this.basePath));
+    public updateTeam(teamId: string, joinCompetitionRequest?: JoinCompetitionRequest, options?: AxiosRequestConfig) {
+        return TeamsApiFp(this.configuration).updateTeam(teamId, joinCompetitionRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -2091,12 +2203,13 @@ export class Apis extends BaseAPI {
     /**
      *
      * @summary コンペティションの詳細を取得
+     * @param {string} competitionId コンペティションのID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CompetitionsApi
      */
-    public getCompetition(options?: AxiosRequestConfig) {
-        return CompetitionsApiFp(this.configuration).getCompetition(options).then((request) => request(this.axios, this.basePath));
+    public getCompetition(competitionId: string, options?: AxiosRequestConfig) {
+        return CompetitionsApiFp(this.configuration).getCompetition(competitionId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2113,69 +2226,75 @@ export class Apis extends BaseAPI {
     /**
      *
      * @summary コンペティションのリーダーボードの取得
+     * @param {string} competitionId コンペティションのID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CompetitionsApi
      */
-    public getLeaderBoard(options?: AxiosRequestConfig) {
-        return CompetitionsApiFp(this.configuration).getLeaderBoard(options).then((request) => request(this.axios, this.basePath));
+    public getLeaderBoard(competitionId: string, options?: AxiosRequestConfig) {
+        return CompetitionsApiFp(this.configuration).getLeaderBoard(competitionId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      *
      * @summary 指定のコンペティションでの自分の所属チームを取得
+     * @param {string} competitionId コンペティションのID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TeamsApi
      */
-    public getMyTeamInCompetition(options?: AxiosRequestConfig) {
-        return TeamsApiFp(this.configuration).getMyTeamInCompetition(options).then((request) => request(this.axios, this.basePath));
+    public getMyTeamInCompetition(competitionId: string, options?: AxiosRequestConfig) {
+        return TeamsApiFp(this.configuration).getMyTeamInCompetition(competitionId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      *
      * @summary コンペティションへの自チームの提出一覧
+     * @param {string} competitionId コンペティションのID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SubmissionsApi
      */
-    public getSubmissionsByMyTeamInCompetition(options?: AxiosRequestConfig) {
-        return SubmissionsApiFp(this.configuration).getSubmissionsByMyTeamInCompetition(options).then((request) => request(this.axios, this.basePath));
+    public getSubmissionsByMyTeamInCompetition(competitionId: string, options?: AxiosRequestConfig) {
+        return SubmissionsApiFp(this.configuration).getSubmissionsByMyTeamInCompetition(competitionId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      *
      * @summary コンペティションに参加しているチームの一覧を取得
+     * @param {string} competitionId コンペティションのID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TeamsApi
      */
-    public getTeamsInCompetition(options?: AxiosRequestConfig) {
-        return TeamsApiFp(this.configuration).getTeamsInCompetition(options).then((request) => request(this.axios, this.basePath));
+    public getTeamsInCompetition(competitionId: string, options?: AxiosRequestConfig) {
+        return TeamsApiFp(this.configuration).getTeamsInCompetition(competitionId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      *
      * @summary コンペティションへの参加登録
+     * @param {string} competitionId コンペティションのID
      * @param {JoinCompetitionRequest} [joinCompetitionRequest]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CompetitionsApi
      */
-    public joinCompetition(joinCompetitionRequest?: JoinCompetitionRequest, options?: AxiosRequestConfig) {
-        return CompetitionsApiFp(this.configuration).joinCompetition(joinCompetitionRequest, options).then((request) => request(this.axios, this.basePath));
+    public joinCompetition(competitionId: string, joinCompetitionRequest?: JoinCompetitionRequest, options?: AxiosRequestConfig) {
+        return CompetitionsApiFp(this.configuration).joinCompetition(competitionId, joinCompetitionRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      *
      * @summary コンペティションへの解答提出
+     * @param {string} competitionId コンペティションのID
      * @param {string} file 提出データ
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SubmissionsApi
      */
-    public postSubmission(file: string, options?: AxiosRequestConfig) {
-        return SubmissionsApiFp(this.configuration).postSubmission(file, options).then((request) => request(this.axios, this.basePath));
+    public postSubmission(competitionId: string, file: string, options?: AxiosRequestConfig) {
+        return SubmissionsApiFp(this.configuration).postSubmission(competitionId, file, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2215,24 +2334,26 @@ export class Apis extends BaseAPI {
     /**
      *
      * @summary 提出の詳細を取得
+     * @param {number} submissionId サブミッションのID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SubmissionsApi
      */
-    public getSubmission(options?: AxiosRequestConfig) {
-        return SubmissionsApiFp(this.configuration).getSubmission(options).then((request) => request(this.axios, this.basePath));
+    public getSubmission(submissionId: number, options?: AxiosRequestConfig) {
+        return SubmissionsApiFp(this.configuration).getSubmission(submissionId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      *
      * @summary 提出のコメントを変更
+     * @param {number} submissionId サブミッションのID
      * @param {UpdateSubmissionRequest} [updateSubmissionRequest]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SubmissionsApi
      */
-    public updateSubmission(updateSubmissionRequest?: UpdateSubmissionRequest, options?: AxiosRequestConfig) {
-        return SubmissionsApiFp(this.configuration).updateSubmission(updateSubmissionRequest, options).then((request) => request(this.axios, this.basePath));
+    public updateSubmission(submissionId: number, updateSubmissionRequest?: UpdateSubmissionRequest, options?: AxiosRequestConfig) {
+        return SubmissionsApiFp(this.configuration).updateSubmission(submissionId, updateSubmissionRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2249,23 +2370,25 @@ export class Apis extends BaseAPI {
     /**
      *
      * @summary チームの詳細を取得
+     * @param {string} teamId チームのID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TeamsApi
      */
-    public getTeam(options?: AxiosRequestConfig) {
-        return TeamsApiFp(this.configuration).getTeam(options).then((request) => request(this.axios, this.basePath));
+    public getTeam(teamId: string, options?: AxiosRequestConfig) {
+        return TeamsApiFp(this.configuration).getTeam(teamId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      *
      * @summary チームのマージリクエスト情報を取得
+     * @param {string} teamId チームのID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TeamsApi
      */
-    public getTeamMergingStatus(options?: AxiosRequestConfig) {
-        return TeamsApiFp(this.configuration).getTeamMergingStatus(options).then((request) => request(this.axios, this.basePath));
+    public getTeamMergingStatus(teamId: string, options?: AxiosRequestConfig) {
+        return TeamsApiFp(this.configuration).getTeamMergingStatus(teamId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2283,13 +2406,14 @@ export class Apis extends BaseAPI {
     /**
      *
      * @summary チームの情報を変更
+     * @param {string} teamId チームのID
      * @param {JoinCompetitionRequest} [joinCompetitionRequest]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TeamsApi
      */
-    public updateTeam(joinCompetitionRequest?: JoinCompetitionRequest, options?: AxiosRequestConfig) {
-        return TeamsApiFp(this.configuration).updateTeam(joinCompetitionRequest, options).then((request) => request(this.axios, this.basePath));
+    public updateTeam(teamId: string, joinCompetitionRequest?: JoinCompetitionRequest, options?: AxiosRequestConfig) {
+        return TeamsApiFp(this.configuration).updateTeam(teamId, joinCompetitionRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
