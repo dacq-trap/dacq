@@ -2,5 +2,5 @@
 
 ## openapi-generatorでのコード生成
 ```sh
-sh ./scripts/openapi-gen.sh
+cd client && npm run gen-api
 ```
