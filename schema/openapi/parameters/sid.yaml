@@ -1,0 +1,6 @@
+name: submissionId
+in: path
+required: true
+description: サブミッションのID
+schema:
+  type: integer

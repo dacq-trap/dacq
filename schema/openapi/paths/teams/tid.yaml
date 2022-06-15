@@ -1,3 +1,5 @@
+parameters:
+  - $ref: ../../parameters/tid.yaml
 get:
   summary: チームの詳細を取得
   operationId: getTeam

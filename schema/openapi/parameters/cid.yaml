@@ -1,0 +1,6 @@
+name: competitionId
+in: path
+required: true
+description: コンペティションのID
+schema:
+  type: string

@@ -1,3 +1,5 @@
+parameters:
+  - $ref: ../../parameters/cid.yaml
 get:
   summary: コンペティションのリーダーボードの取得
   operationId: getLeaderBoard
