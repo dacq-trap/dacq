@@ -2087,4 +2087,219 @@ export class UsersApi extends BaseAPI {
     }
 }
 
+export class Apis extends BaseAPI {
+    /**
+     *
+     * @summary コンペティションの詳細を取得
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CompetitionsApi
+     */
+    public getCompetition(options?: AxiosRequestConfig) {
+        return CompetitionsApiFp(this.configuration).getCompetition(options).then((request) => request(this.axios, this.basePath));
+    }
 
+    /**
+     *
+     * @summary コンペティションの一覧を取得
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CompetitionsApi
+     */
+    public getCompetitions(options?: AxiosRequestConfig) {
+        return CompetitionsApiFp(this.configuration).getCompetitions(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
+     * @summary コンペティションのリーダーボードの取得
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CompetitionsApi
+     */
+    public getLeaderBoard(options?: AxiosRequestConfig) {
+        return CompetitionsApiFp(this.configuration).getLeaderBoard(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
+     * @summary 指定のコンペティションでの自分の所属チームを取得
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TeamsApi
+     */
+    public getMyTeamInCompetition(options?: AxiosRequestConfig) {
+        return TeamsApiFp(this.configuration).getMyTeamInCompetition(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
+     * @summary コンペティションへの自チームの提出一覧
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SubmissionsApi
+     */
+    public getSubmissionsByMyTeamInCompetition(options?: AxiosRequestConfig) {
+        return SubmissionsApiFp(this.configuration).getSubmissionsByMyTeamInCompetition(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
+     * @summary コンペティションに参加しているチームの一覧を取得
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TeamsApi
+     */
+    public getTeamsInCompetition(options?: AxiosRequestConfig) {
+        return TeamsApiFp(this.configuration).getTeamsInCompetition(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
+     * @summary コンペティションへの参加登録
+     * @param {JoinCompetitionRequest} [joinCompetitionRequest]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CompetitionsApi
+     */
+    public joinCompetition(joinCompetitionRequest?: JoinCompetitionRequest, options?: AxiosRequestConfig) {
+        return CompetitionsApiFp(this.configuration).joinCompetition(joinCompetitionRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
+     * @summary コンペティションへの解答提出
+     * @param {string} file 提出データ
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SubmissionsApi
+     */
+    public postSubmission(file: string, options?: AxiosRequestConfig) {
+        return SubmissionsApiFp(this.configuration).postSubmission(file, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * pingを飛ばします。
+     * @summary pingを飛ばす
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GeneralApi
+     */
+    public getPing(options?: AxiosRequestConfig) {
+        return GeneralApiFp(this.configuration).getPing(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * OAuth認可用のコールバックURLを取得します。   ※ クッキーを利用してセッション管理を行います。 
+     * @summary OAuthのコールバックURLを取得
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OAuthApi
+     */
+    public getOauthCallback(options?: AxiosRequestConfig) {
+        return OAuthApiFp(this.configuration).getOauthCallback(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 入手したOAuthコードを送信してログインします。   送信されたコードから入手したアクセストークンはサーバーに保存されます。 
+     * @summary OAuthコードを送信してログイン
+     * @param {OauthCodeRequest} oauthCodeRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OAuthApi
+     */
+    public postOauthCode(oauthCodeRequest: OauthCodeRequest, options?: AxiosRequestConfig) {
+        return OAuthApiFp(this.configuration).postOauthCode(oauthCodeRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
+     * @summary 提出の詳細を取得
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SubmissionsApi
+     */
+    public getSubmission(options?: AxiosRequestConfig) {
+        return SubmissionsApiFp(this.configuration).getSubmission(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
+     * @summary 提出のコメントを変更
+     * @param {UpdateSubmissionRequest} [updateSubmissionRequest]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SubmissionsApi
+     */
+    public updateSubmission(updateSubmissionRequest?: UpdateSubmissionRequest, options?: AxiosRequestConfig) {
+        return SubmissionsApiFp(this.configuration).updateSubmission(updateSubmissionRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
+     * @summary 自分が所属しているチームの一覧を取得
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TeamsApi
+     */
+    public getMyTeams(options?: AxiosRequestConfig) {
+        return TeamsApiFp(this.configuration).getMyTeams(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
+     * @summary チームの詳細を取得
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TeamsApi
+     */
+    public getTeam(options?: AxiosRequestConfig) {
+        return TeamsApiFp(this.configuration).getTeam(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
+     * @summary チームのマージリクエスト情報を取得
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TeamsApi
+     */
+    public getTeamMergingStatus(options?: AxiosRequestConfig) {
+        return TeamsApiFp(this.configuration).getTeamMergingStatus(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
+     * @summary チームのマージをリクエストする
+     * @param {RequestTeamMergingRequest} [requestTeamMergingRequest]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TeamsApi
+     */
+    public requestTeamMerging(requestTeamMergingRequest?: RequestTeamMergingRequest, options?: AxiosRequestConfig) {
+        return TeamsApiFp(this.configuration).requestTeamMerging(requestTeamMergingRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     *
+     * @summary チームの情報を変更
+     * @param {JoinCompetitionRequest} [joinCompetitionRequest]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TeamsApi
+     */
+    public updateTeam(joinCompetitionRequest?: JoinCompetitionRequest, options?: AxiosRequestConfig) {
+        return TeamsApiFp(this.configuration).updateTeam(joinCompetitionRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 自分のユーザー情報の取得を行います。   ログイン確認用としても使います。 
+     * @summary 自分のユーザー情報を取得
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersApi
+     */
+    public getUsersMe(options?: AxiosRequestConfig) {
+        return UsersApiFp(this.configuration).getUsersMe(options).then((request) => request(this.axios, this.basePath));
+    }
+}
