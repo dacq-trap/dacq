@@ -43,14 +43,6 @@ post:
   responses:
     "201":
       description: Created
-    "400":
-      description: |
-        Bad Request
-        コンペティションに参加登録済みです
-      content:
-        application/json:
-          schema:
-            $ref: ../../common/error.yaml
     "401":
       description: Unauthorized
       content:
@@ -61,6 +53,14 @@ post:
       description: |
         Forbidden
         コンペティションへの参加が許可されていません
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "409":
+      description: |
+        Conflict
+        コンペティションに参加登録済みです
       content:
         application/json:
           schema:
