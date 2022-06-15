@@ -1,0 +1,63 @@
+get:
+  summary: チームの詳細を取得
+  operationId: getTeam
+  tags:
+    - Teams
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/team.yaml
+    "401":
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "500":
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+put:
+  summary: チームの情報を変更
+  operationId: updateTeam
+  tags:
+    - Teams
+  requestBody:
+    content:
+      application/json:
+        schema: 
+          type: object
+          properties:
+            name:
+              type: string
+              description: チーム名
+          required:
+            - name
+  responses:
+    "200":
+      description: OK
+    "401":
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "403":
+      description: |
+        Forbidden
+        編集を許可されていません
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "500":
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml

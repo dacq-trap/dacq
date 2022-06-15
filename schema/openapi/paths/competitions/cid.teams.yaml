@@ -1,0 +1,73 @@
+get:
+  summary: コンペティションに参加しているチームの一覧を取得
+  operationId: getTeamsInCompetition
+  tags:
+    - Competitions
+    - Teams
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../../common/teamCoreInfo.yaml
+    "401":
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "500":
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+post:
+  summary: コンペティションへの参加登録
+  operationId: joinCompetition
+  tags:
+    - Competitions
+  requestBody:
+    content:
+      application/json:
+        schema:
+          properties:
+            name:
+              type: string
+              description: チーム名
+          required:
+            - name
+  responses:
+    "201":
+      description: Created
+    "401":
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "403":
+      description: |
+        Forbidden
+        コンペティションへの参加が許可されていません
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "409":
+      description: |
+        Conflict
+        コンペティションに参加登録済みです
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "500":
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml

@@ -1,0 +1,13 @@
+type: object
+description: コンペティションの基本情報
+properties:
+  id:
+    type: string
+    description: コンペティションID
+  name:
+    type: string
+    description: コンペティション名
+    example: traQメッセージ分析コンペ
+required:
+  - id
+  - name

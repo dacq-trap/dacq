@@ -1,0 +1,12 @@
+type: object
+description: チームの基本情報
+properties:
+  id:
+    type: string
+    description: ID
+  name:
+    type: string
+    description: チーム名
+required:
+  - id
+  - name
