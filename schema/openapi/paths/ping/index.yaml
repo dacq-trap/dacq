@@ -1,9 +1,11 @@
 get:
-  description: pingを飛ばす
+  summary: pingを飛ばす
+  description: pingを飛ばします。
+  operationId: getPing
   tags:
     - General
   responses:
-    200:
+    "200":
       description: OK
       content:
         text/plain:

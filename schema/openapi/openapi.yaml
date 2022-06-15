@@ -2,13 +2,93 @@ openapi: 3.0.3
 info:
   title: DacQ API
   description: DacQ Score Server API
+  contact:
+    name: DacQ Project Repository
+    url: https://github.com/dacq-trap/dacq
   version: 1.0.0
 servers:
   - url: http://localhost:7070/api
     description: Local Dev Environment
 paths:
   /ping:
-    $ref: ./ping/index.yaml
+    $ref: ./paths/ping/index.yaml
+  /oauth/callback:
+    $ref: ./paths/oauth/callback.yaml
+  /oauth/code:
+    $ref: ./paths/oauth/code.yaml
+  /users/me:
+    $ref: ./paths/users/me.yaml
+  /competitions:
+    $ref: ./paths/competitions/index.yaml
+  /competitions/{cid}:
+    parameters:
+      - $ref: "#/components/parameters/cid"
+    $ref: ./paths/competitions/cid.yaml
+  /competitions/{cid}/leaderboard:
+    parameters:
+      - $ref: "#/components/parameters/cid"
+    $ref: ./paths/competitions/cid.leaderboard.yaml
+  /competitions/{cid}/teams:
+    parameters:
+      - $ref: "#/components/parameters/cid"
+    $ref: ./paths/competitions/cid.teams.yaml
+  /competitions/{cid}/submissions:
+    parameters:
+      - $ref: "#/components/parameters/cid"
+    $ref: ./paths/competitions/cid.submissions.yaml
+  /submissions/{sid}:
+    parameters:
+      - $ref: "#/components/parameters/sid"
+    $ref: ./paths/submissions/sid.yaml
+  /teams/{tid}:
+    parameters:
+      - $ref: "#/components/parameters/tid"
+    $ref: ./paths/teams/tid.yaml
+  /teams/me:
+    $ref: ./paths/teams/me.yaml
+  /teams/me/{cid}:
+    parameters:
+      - $ref: "#/components/parameters/cid"
+    $ref: ./paths/teams/me.cid.yaml
+  /teams/merge:
+    $ref: ./paths/teams/merge.yaml
+  /teams/{tid}/merge:
+    $ref: ./paths/teams/tid.merge.yaml
+
 tags:
-  - General
-  - OAuth
+  - name: General
+    description: General API
+  - name: OAuth
+    description: OAuth API
+  - name: Users
+    description: Users API
+  - name: Competitions
+    description: Competitions API
+  - name: Teams
+    description: Teams API
+  - name: Submissions
+    description: Submissions API
+
+components:
+  parameters:
+    cid:
+      name: competitionId
+      in: path
+      required: true
+      description: コンペティションのID
+      schema:
+        type: string
+    sid:
+      name: submissionId
+      in: path
+      required: true
+      description: サブミッションのID
+      schema:
+        type: integer
+    tid:
+      name: teamId
+      in: path
+      required: true
+      description: チームのID
+      schema:
+        type: string

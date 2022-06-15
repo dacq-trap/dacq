@@ -1,0 +1,24 @@
+type: object
+properties:
+  rank:
+    type: integer
+    description: 順位
+  teamId:
+    type: string
+    description: チームID
+  score:
+    type: number
+    description: スコア
+  totalSubmissionCount:
+    type: integer
+    description: のべ提出回数
+  submittedAt:
+    type: string
+    format: date-time
+    description: 提出日時
+required:
+  - rank
+  - teamId
+  - score
+  - totalSubmissionCount
+  - submittedAt

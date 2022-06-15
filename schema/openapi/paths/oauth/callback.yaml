@@ -1,0 +1,32 @@
+get:
+  summary: OAuthのコールバックURLを取得
+  description: |
+    OAuth認可用のコールバックURLを取得します。  
+    ※ クッキーを利用してセッション管理を行います。
+  operationId: getOauthCallback
+  tags:
+    - OAuth
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/oauthCallbackResponse"
+    "500":
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: "../../common/error.yaml"
+
+components:
+  schemas:
+    oauthCallbackResponse:
+      type: object
+      required:
+        - redirectUri
+      properties:
+        redirectUri:
+          type: string
+          example: https://q.trap.jp/api/v3/oauth2/authorize?response_type=code&client_id=abcde&code_challenge=abcde&code_challenge_method=S256

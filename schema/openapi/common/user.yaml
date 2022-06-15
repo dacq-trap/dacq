@@ -1,0 +1,13 @@
+type: object
+required:
+  - name
+  - iconUrl
+properties:
+  name:
+    type: string
+    description: ユーザー名 (traP ID)
+    example: "trapyojo"
+  iconUrl:
+    type: string
+    description: アイコンURL
+    example: https://q.trap.jp/api/v3/public/icon/trapyojo

@@ -1,0 +1,69 @@
+get:
+  summary: コンペティションへの自チームの提出一覧
+  operationId: getSubmissionsByMyTeamInCompetition
+  tags:
+    - Competitions
+    - Submissions
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../../common/submission.yaml
+    "401":
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "500":
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+post:
+  summary: コンペティションへの解答提出
+  operationId: postSubmission
+  tags:
+    - Competitions
+    - Submissions
+  requestBody:
+    content:
+      multipart/form-data:
+        schema:
+          type: object
+          format: text/csv
+          properties:
+            file:
+              type: string
+              format: text/scv
+              description: 提出データ
+          required:
+            - file
+  responses:
+    "201":
+      description: Created
+    "401":
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "403":
+      description: |
+        Forbidden
+        コンペティションへの提出が許可されていません
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "500":
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml

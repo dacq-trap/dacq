@@ -1,0 +1,27 @@
+type: object
+description: スコア判定基準
+properties:
+  id:
+    type: string
+    description: ID
+  name:
+    type: string
+    description: 判定方法の名前
+  rawScoreScript:
+    type: string
+    description: スコア計算スクリプト
+  rawModuleFile:
+    type: string
+    description: 実行時に必要なモジュール管理ファイル
+  scoreOrder:
+    type: string
+    description: スコアの順位決定順
+    example:
+      - asc
+      - desc
+required:
+  - id
+  - name
+  - rawScoreScript
+  - rawModuleFile
+  - scoreOrder
