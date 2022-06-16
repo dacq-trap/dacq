@@ -1,0 +1,98 @@
+parameters:
+  - $ref: "../../parameters/teamId.yaml"
+
+get:
+  summary: チームの詳細を取得
+  description: |
+    チームの詳細を取得します。
+  operationId: getTeam
+  security:
+    - cookieAuth: []
+  tags:
+    - Teams
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/team.yaml
+    "401":
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "404":
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "500":
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+
+patch:
+  summary: チームの情報を変更
+  description: |
+    チームの情報を変更します。
+  operationId: patchTeam
+  security:
+    - cookieAuth: []
+  tags:
+    - Teams
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/patchTeamRequest"
+  responses:
+    "204":
+      description: No Content
+    "400":
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "401":
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "403":
+      description: |
+        Forbidden
+        編集を許可されていません
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "404":
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "500":
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+
+components:
+  schemas:
+    patchTeamRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: チーム名
+      required:
+        - name

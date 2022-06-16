@@ -4,3 +4,4 @@ required: true
 description: コンペティションのID
 schema:
   type: string
+  format: uuid

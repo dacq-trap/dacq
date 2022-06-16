@@ -1,10 +1,14 @@
 parameters:
-  - $ref: ../../parameters/cid.yaml
+  - $ref: "../../parameters/teamId.yaml"
+
 get:
-  summary: 指定のコンペティションでの自分の所属チームを取得
-  operationId: getMyTeamInCompetition
+  summary: チームのマージリクエスト情報を取得
+  description: |
+    チームのマージリクエスト情報を取得します。
+  operationId: getTeamMergingStatus
+  security:
+    - cookieAuth: []
   tags:
-    - Competitions
     - Teams
   responses:
     "200":
@@ -12,17 +16,23 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../../common/teamCoreInfo.yaml
+            oneOf:
+              - $ref: ../../common/mergeRequest.yaml
+              - type: object
     "401":
       description: Unauthorized
       content:
         application/json:
           schema:
             $ref: ../../common/error.yaml
+    "403":
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
     "404":
-      description: |
-        Not Found
-        所属しているチームがありません
+      description: Not Found
       content:
         application/json:
           schema:

@@ -1,8 +1,13 @@
 parameters:
-  - $ref: ../../parameters/cid.yaml
+  - $ref: "../../parameters/competitionId.yaml"
+
 get:
   summary: コンペティションへの自チームの提出一覧
-  operationId: getSubmissionsByMyTeamInCompetition
+  description: |
+    コンペティションへの自チームの提出一覧を取得します。
+  operationId: getSubmissions
+  security:
+    - cookieAuth: []
   tags:
     - Competitions
     - Submissions
@@ -21,15 +26,26 @@ get:
         application/json:
           schema:
             $ref: ../../common/error.yaml
+    "404":
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
     "500":
       description: Internal Server Error
       content:
         application/json:
           schema:
             $ref: ../../common/error.yaml
+
 post:
   summary: コンペティションへの解答提出
-  operationId: postSubmission
+  description: |
+    コンペティションへの解答提出を行います。
+  operationId: postSubmissions
+  security:
+    - cookieAuth: []
   tags:
     - Competitions
     - Submissions
@@ -37,18 +53,20 @@ post:
     content:
       multipart/form-data:
         schema:
-          type: object
-          format: text/csv
-          properties:
-            file:
-              type: string
-              format: text/scv
-              description: 提出データ
-          required:
-            - file
+          $ref: "#/components/schemas/postSubmissionsRequest"
   responses:
     "201":
       description: Created
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/submission.yaml
+    "400":
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
     "401":
       description: Unauthorized
       content:
@@ -63,9 +81,28 @@ post:
         application/json:
           schema:
             $ref: ../../common/error.yaml
+    "404":
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
     "500":
       description: Internal Server Error
       content:
         application/json:
           schema:
             $ref: ../../common/error.yaml
+
+components:
+  schemas:
+    postSubmissionsRequest:
+      type: object
+      format: text/csv
+      properties:
+        file:
+          type: string
+          format: text/scv
+          description: 提出データ
+      required:
+        - file

@@ -1,17 +1,22 @@
 parameters:
-  - $ref: ../../parameters/tid.yaml
+  - $ref: "../../parameters/submissionId.yaml"
+
 get:
-  summary: チームの詳細を取得
-  operationId: getTeam
+  summary: 提出の詳細を取得
+  description: |
+    提出の詳細を取得します。
+  operationId: getSubmission
+  security:
+    - cookieAuth: []
   tags:
-    - Teams
+    - Submissions
   responses:
     "200":
       description: OK
       content:
         application/json:
           schema:
-            $ref: ../../common/team.yaml
+            $ref: ../../common/submission.yaml
     "401":
       description: Unauthorized
       content:
@@ -24,25 +29,24 @@ get:
         application/json:
           schema:
             $ref: ../../common/error.yaml
-put:
-  summary: チームの情報を変更
-  operationId: updateTeam
+
+patch:
+  summary: 提出のコメントを変更
+  description: |
+    提出のコメントを変更します。
+  operationId: patchSubmission
+  security:
+    - cookieAuth: []
   tags:
-    - Teams
+    - Submissions
   requestBody:
     content:
       application/json:
-        schema: 
-          type: object
-          properties:
-            name:
-              type: string
-              description: チーム名
-          required:
-            - name
+        schema:
+          $ref: "#/components/schemas/patchSubmissionRequest"
   responses:
-    "200":
-      description: OK
+    "204":
+      description: No Content
     "401":
       description: Unauthorized
       content:
@@ -63,3 +67,14 @@ put:
         application/json:
           schema:
             $ref: ../../common/error.yaml
+
+components:
+  schemas:
+    patchSubmissionRequest:
+      type: object
+      properties:
+        comment:
+          type: string
+          description: コメント
+      required:
+        - comment

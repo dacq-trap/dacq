@@ -5,6 +5,7 @@ properties:
     description: 順位
   teamId:
     type: string
+    format: uuid
     description: チームID
   score:
     type: number

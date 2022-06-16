@@ -3,6 +3,7 @@ description: コンペティション
 properties:
   id:
     type: string
+    format: uuid
     description: コンペティションID
   name:
     type: string
@@ -12,30 +13,13 @@ properties:
     description: コンペティション作成者
   rule:
     type: string
-    description:  ルール
+    description: ルール
   dataId:
     type: string
     description: 学習データファイルID
   dataDescription:
     type: string
     description: 学習データの説明
-  judgementId:
-    type: integer
-    description: スコア判定基準のID
-  publicSetting:
-    type: array
-    items:
-      type: object
-      properties:
-        answerDataSpecificId:
-          type: integer
-          # TODO: フィールド名を要検討
-        isPublic:
-          type: boolean
-    description: public/privateの区分
-  answerDataId:
-    type: string
-    description: 正解データファイルID
   teams:
     type: array
     items:
@@ -56,9 +40,6 @@ required:
   - rule
   - dataId
   - dataDescription
-  - judgementId
-  - publicSetting
-  - answerDataId
   - teams
   - startAt
   - endAt

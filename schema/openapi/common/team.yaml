@@ -3,12 +3,14 @@ description: チーム
 properties:
   id:
     type: string
+    format: uuid
     description: ID
   name:
     type: string
     description: チーム名
   contestsId:
     type: string
+    format: uuid
     description: コンテストID
   users:
     type: array

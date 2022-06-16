@@ -3,7 +3,9 @@ get:
   description: |
     自分のユーザー情報の取得を行います。  
     ログイン確認用としても使います。
-  operationId: getUsersMe
+  operationId: getMe
+  security:
+    - cookieAuth: []
   tags:
     - Users
   responses:

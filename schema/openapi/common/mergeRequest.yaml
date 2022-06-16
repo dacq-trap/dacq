@@ -2,10 +2,10 @@ type: object
 description: チームのマージリクエスト
 properties:
   from:
-    $ref: ./teamCoreInfo.yaml
+    $ref: ./team.yaml
     description: マージ元のチーム
   to:
-    $ref: ./teamCoreInfo.yaml
+    $ref: ./team.yaml
     description: マージ先のチーム
   acceptanceQueue:
     type: array

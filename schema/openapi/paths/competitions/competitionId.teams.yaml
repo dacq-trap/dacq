@@ -1,8 +1,13 @@
 parameters:
-  - $ref: ../../parameters/cid.yaml
+  - $ref: "../../parameters/competitionId.yaml"
+
 get:
   summary: コンペティションに参加しているチームの一覧を取得
-  operationId: getTeamsInCompetition
+  description: |
+    コンペティションに参加しているチームの一覧を取得します。
+  operationId: getCompetitionTeams
+  security:
+    - cookieAuth: []
   tags:
     - Competitions
     - Teams
@@ -21,30 +26,47 @@ get:
         application/json:
           schema:
             $ref: ../../common/error.yaml
+    "404":
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
     "500":
       description: Internal Server Error
       content:
         application/json:
           schema:
             $ref: ../../common/error.yaml
+
 post:
   summary: コンペティションへの参加登録
-  operationId: joinCompetition
+  description: |
+    コンペティションへの参加登録を行います。
+  operationId: postCompetitionTeams
+  security:
+    - cookieAuth: []
   tags:
     - Competitions
+    - Teams
   requestBody:
     content:
       application/json:
         schema:
-          properties:
-            name:
-              type: string
-              description: チーム名
-          required:
-            - name
+          $ref: "#/components/schemas/postCompetitionTeamsRequest"
   responses:
     "201":
       description: Created
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/team.yaml
+    "400":
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
     "401":
       description: Unauthorized
       content:
@@ -55,6 +77,12 @@ post:
       description: |
         Forbidden
         コンペティションへの参加が許可されていません
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "404":
+      description: Not Found
       content:
         application/json:
           schema:
@@ -73,3 +101,13 @@ post:
         application/json:
           schema:
             $ref: ../../common/error.yaml
+
+components:
+  schemas:
+    postCompetitionTeamsRequest:
+      properties:
+        name:
+          type: string
+          description: チーム名
+      required:
+        - name

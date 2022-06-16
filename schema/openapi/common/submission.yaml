@@ -2,7 +2,7 @@ type: object
 description: サブミッション
 properties:
   id:
-    type: string
+    type: integer
     description: ID
   contest:
     $ref: ./competitionCoreInfo.yaml
@@ -21,7 +21,9 @@ properties:
     description: 提出されたCSVファイルのID
   score:
     type: number
-    description: スコア
+    description: |
+      スコア
+      NULLの場合、まだスコア計算が終了していないことを示す
   submittedAt:
     type: string
     format: date-time
@@ -32,5 +34,4 @@ required:
   - submitter
   - comment
   - fileId
-  - score
   - submittedAt

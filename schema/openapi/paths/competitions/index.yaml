@@ -1,6 +1,10 @@
 get:
   summary: コンペティションの一覧を取得
+  description: |
+    コンペティションの一覧を取得します。
   operationId: getCompetitions
+  security:
+    - cookieAuth: []
   tags:
     - Competitions
   responses:
@@ -24,4 +28,3 @@ get:
         application/json:
           schema:
             $ref: ../../common/error.yaml
-

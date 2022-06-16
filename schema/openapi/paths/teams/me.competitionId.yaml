@@ -1,0 +1,40 @@
+parameters:
+  - $ref: "../../parameters/competitionId.yaml"
+
+get:
+  summary: 指定のコンペティションでの自分の所属チームを取得
+  description: |
+    指定のコンペティションでの自分の所属チームを取得します。
+  operationId: getMyTeamInCompetition
+  security:
+    - cookieAuth: []
+  tags:
+    - Competitions
+    - Teams
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/teamCoreInfo.yaml
+    "401":
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "404":
+      description: |
+        Not Found
+        所属しているチームがありません
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "500":
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml

@@ -20,26 +20,26 @@ paths:
     $ref: ./paths/users/me.yaml
   /competitions:
     $ref: ./paths/competitions/index.yaml
-  /competitions/{cid}:
-    $ref: ./paths/competitions/cid.yaml
-  /competitions/{cid}/leaderboard:
-    $ref: ./paths/competitions/cid.leaderboard.yaml
-  /competitions/{cid}/teams:
-    $ref: ./paths/competitions/cid.teams.yaml
-  /competitions/{cid}/submissions:
-    $ref: ./paths/competitions/cid.submissions.yaml
-  /submissions/{sid}:
-    $ref: ./paths/submissions/sid.yaml
-  /teams/{tid}:
-    $ref: ./paths/teams/tid.yaml
+  /competitions/{competitionId}:
+    $ref: ./paths/competitions/competitionId.yaml
+  /competitions/{competitionId}/leaderboard:
+    $ref: ./paths/competitions/competitionId.leaderboard.yaml
+  /competitions/{competitionId}/teams:
+    $ref: ./paths/competitions/competitionId.teams.yaml
+  /competitions/{competitionId}/submissions:
+    $ref: ./paths/competitions/competitionId.submissions.yaml
+  /submissions/{submissionId}:
+    $ref: ./paths/submissions/submissionId.yaml
+  /teams/{teamId}:
+    $ref: ./paths/teams/teamId.yaml
   /teams/me:
     $ref: ./paths/teams/me.yaml
-  /teams/me/{cid}:
-    $ref: ./paths/teams/me.cid.yaml
+  /teams/me/{competitionId}:
+    $ref: ./paths/teams/me.competitionId.yaml
   /teams/merge:
     $ref: ./paths/teams/merge.yaml
-  /teams/{tid}/merge:
-    $ref: ./paths/teams/tid.merge.yaml
+  /teams/{teamId}/merge:
+    $ref: ./paths/teams/teamId.merge.yaml
 
 tags:
   - name: General
@@ -54,3 +54,10 @@ tags:
     description: Teams API
   - name: Submissions
     description: Submissions API
+
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: dq_session
