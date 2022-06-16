@@ -28,12 +28,4 @@ const Header = () => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  return {
-    props: {
-      data: null,
-    },
-  }
-}
-
 export default Header
