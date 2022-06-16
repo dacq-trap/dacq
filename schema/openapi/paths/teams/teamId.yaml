@@ -1,5 +1,5 @@
 parameters:
-  - $ref: "../../parameters/teamId.yaml"
+  - $ref: ../../parameters/teamId.yaml
 
 get:
   summary: チームの詳細を取得

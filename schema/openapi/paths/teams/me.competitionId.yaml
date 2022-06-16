@@ -1,5 +1,5 @@
 parameters:
-  - $ref: "../../parameters/competitionId.yaml"
+  - $ref: ../../parameters/competitionId.yaml
 
 get:
   summary: 指定のコンペティションでの自分の所属チームを取得

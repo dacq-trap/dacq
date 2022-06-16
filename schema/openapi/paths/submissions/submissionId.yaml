@@ -1,5 +1,5 @@
 parameters:
-  - $ref: "../../parameters/submissionId.yaml"
+  - $ref: ../../parameters/submissionId.yaml
 
 get:
   summary: 提出の詳細を取得

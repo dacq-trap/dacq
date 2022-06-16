@@ -23,7 +23,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: "../../common/error.yaml"
+            $ref: ../../common/error.yaml
 
 components:
   schemas:

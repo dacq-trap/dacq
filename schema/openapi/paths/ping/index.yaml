@@ -11,4 +11,4 @@ get:
         text/plain:
           schema:
             type: string
-          example: "pong"
+          example: pong

@@ -1,5 +1,5 @@
 parameters:
-  - $ref: "../../parameters/competitionId.yaml"
+  - $ref: ../../parameters/competitionId.yaml
 
 get:
   summary: コンペティションの詳細を取得
