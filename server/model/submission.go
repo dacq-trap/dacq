@@ -7,7 +7,7 @@ import (
 // サブミッション
 type Submission struct {
 	ID          int                 // ID
-	Contest     CompetitionCoreInfo // コンテスト
+	Competition CompetitionCoreInfo // コンペティション
 	Team        TeamCoreInfo        // チーム
 	Submitter   User                // 提出者
 	Comment     string              // コメント

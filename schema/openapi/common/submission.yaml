@@ -4,9 +4,9 @@ properties:
   id:
     type: integer
     description: ID
-  contest:
+  competition:
     $ref: ./competitionCoreInfo.yaml
-    description: コンテスト
+    description: コンペティション
   team:
     $ref: ./teamCoreInfo.yaml
     description: チーム
@@ -29,7 +29,7 @@ properties:
     format: date-time
 required:
   - id
-  - content
+  - competition
   - team
   - submitter
   - comment

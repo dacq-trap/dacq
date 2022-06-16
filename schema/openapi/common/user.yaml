@@ -1,7 +1,4 @@
 type: object
-required:
-  - name
-  - iconUrl
 properties:
   name:
     type: string
@@ -11,3 +8,6 @@ properties:
     type: string
     description: アイコンURL
     example: https://q.trap.jp/api/v3/public/icon/trapyojo
+required:
+  - name
+  - iconUrl

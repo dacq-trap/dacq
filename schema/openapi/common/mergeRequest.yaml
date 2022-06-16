@@ -12,3 +12,7 @@ properties:
     items:
       $ref: ./user.yaml
     description: 承認待ちユーザー
+required:
+  - from
+  - to
+  - acceptanceQueue

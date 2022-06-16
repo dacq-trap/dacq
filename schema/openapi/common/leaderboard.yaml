@@ -5,6 +5,7 @@ properties:
     description: 順位
   team:
     $ref: ./team.yaml
+    description: チーム
   highestScore:
     type: number
     description: 最高スコア
