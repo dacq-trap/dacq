@@ -9,6 +9,11 @@ get:
   responses:
     "200":
       description: OK
+      headers:
+        Set-Cookie:
+          schema:
+            type: string
+            example: dq_session=ZlN2Y1ZTRkRhNDhjYQ==; Path=/; HttpOnly
       content:
         application/json:
           schema:

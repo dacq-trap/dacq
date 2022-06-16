@@ -15,6 +15,11 @@ post:
   responses:
     "201":
       description: Created
+      headers:
+        Set-Cookie:
+          schema:
+            type: string
+            example: dq_session=ZlN2Y1ZTRkRhNDhjYQ==; Path=/; HttpOnly
     "400":
       description: Bad Request
       content:
