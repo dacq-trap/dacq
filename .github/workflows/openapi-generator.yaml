@@ -6,6 +6,10 @@ on:
       - main
     paths:
       - schema/openapi/**/*
+  pull_request:
+    paths:
+      - .github/workflows/openapi-generator.yaml
+
 
 jobs:
   openapi-regen:
@@ -31,6 +35,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: Regenerate with updated OpenAPI by GitHub Actions
           branch: regenerate-openapi
           branch-suffix: timestamp
