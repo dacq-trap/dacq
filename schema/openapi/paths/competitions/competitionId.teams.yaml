@@ -2,7 +2,7 @@ parameters:
   - $ref: ../../parameters/competitionId.yaml
 
 get:
-  summary: コンペティションに参加しているチームの一覧を取得
+  summary: コンペティションの参加チームの一覧を取得
   description: |
     コンペティションに参加しているチームの一覧を取得します。
   operationId: getCompetitionTeams
