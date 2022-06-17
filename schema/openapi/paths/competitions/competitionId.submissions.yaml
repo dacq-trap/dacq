@@ -79,7 +79,7 @@ post:
             $ref: ../../common/error.yaml
     "403":
       description: |
-        Forbidden
+        Forbidden  
         コンペティションへの提出が許可されていません
       content:
         application/json:
