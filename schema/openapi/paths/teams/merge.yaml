@@ -1,7 +1,7 @@
 post:
   summary: チームのマージをリクエストする
   description: |
-    チームのマージをリクエストします。
+    チーム同士ののマージをリクエストします。
   operationId: postTeamMerge
   security:
     - cookieAuth: []
