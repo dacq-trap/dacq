@@ -9,6 +9,7 @@ info:
 servers:
   - url: http://localhost:7070/api
     description: Local Dev Environment
+
 paths:
   /ping:
     $ref: ./paths/ping/index.yaml
