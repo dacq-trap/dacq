@@ -2,7 +2,7 @@ get:
   summary: 自分のユーザー情報を取得
   description: |
     自分のユーザー情報の取得を行います。  
-    ログイン確認用としても使います。
+    ログイン済みかの確認用としても使います。
   operationId: getMe
   security:
     - cookieAuth: []
