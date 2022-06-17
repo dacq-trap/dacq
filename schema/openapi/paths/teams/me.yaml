@@ -1,7 +1,7 @@
 get:
   summary: 自分が所属しているチームの一覧を取得
   description: |
-    自分が所属しているチームの一覧を取得します。
+    全コンペティションでの自分が所属しているチームの一覧を取得します。
   operationId: getMyTeams
   security:
     - cookieAuth: []
