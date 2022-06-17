@@ -9,16 +9,16 @@ properties:
   highestScore:
     type: number
     description: 最高スコア
-  totalSubmissions:
+  submissionsCount:
     type: integer
     description: のべ提出回数
   lastSubmittedAt:
     type: string
     format: date-time
-    description: 提出日時
+    description: 最終提出日時
 required:
   - rank
   - team
-  - score
-  - totalSubmissions
+  - highestScore
+  - submissionsCount
   - lastSubmittedAt

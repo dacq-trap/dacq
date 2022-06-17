@@ -27,6 +27,7 @@ properties:
   submittedAt:
     type: string
     format: date-time
+    description: 提出日時
 required:
   - id
   - competition
