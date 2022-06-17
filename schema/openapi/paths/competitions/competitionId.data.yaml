@@ -2,7 +2,7 @@ parameters:
   - $ref: ../../parameters/competitionId.yaml
 
 put:
-  summary: コンペティションの学習データを設定
+  summary: コンペティションの学習データをアップロード
   description: |
     コンペティションの学習データをアップロードします。  
     学習データは、zip形式でアップロードしてください。  
