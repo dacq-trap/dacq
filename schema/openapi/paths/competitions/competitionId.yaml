@@ -52,8 +52,12 @@ patch:
         schema:
           $ref: "#/components/schemas/patchCompetitionRequest"
   responses:
-    "204":
-      description: No Content
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/competition.yaml
     "400":
       description: Bad Request
       content:

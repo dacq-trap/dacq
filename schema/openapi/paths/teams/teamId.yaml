@@ -51,8 +51,12 @@ patch:
         schema:
           $ref: "#/components/schemas/patchTeamRequest"
   responses:
-    "204":
-      description: No Content
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/team.yaml
     "400":
       description: Bad Request
       content:
