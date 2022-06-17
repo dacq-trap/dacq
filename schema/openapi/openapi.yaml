@@ -23,6 +23,8 @@ paths:
     $ref: ./paths/competitions/index.yaml
   /competitions/{competitionId}:
     $ref: ./paths/competitions/competitionId.yaml
+  /competitions/{competitionId}/data:
+    $ref: ./paths/competitions/competitionId.data.yaml
   /competitions/{competitionId}/leaderboard:
     $ref: ./paths/competitions/competitionId.leaderboard.yaml
   /competitions/{competitionId}/teams:
