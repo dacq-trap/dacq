@@ -12,7 +12,7 @@ const Competition = (props: Props) => {
       competitionId={props.competitionId}
       competitionPageOption='overview'
     >
-      問題概要ページ
+      コンペ概要ページ
     </CompetitionPageBase>
   )
 }
