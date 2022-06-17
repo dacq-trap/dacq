@@ -5,7 +5,7 @@ get:
   summary: コンペティションへの自チームの提出一覧
   description: |
     コンペティションへの自チームの提出一覧を取得します。
-  operationId: getSubmissions
+  operationId: getMyTeamSubmissions
   security:
     - cookieAuth: []
   tags:
