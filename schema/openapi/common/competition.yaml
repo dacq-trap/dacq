@@ -16,7 +16,9 @@ properties:
     description: ルール
   dataId:
     type: string
-    description: 学習データファイルID
+    description: |
+      学習データファイルID
+      NULLの場合、学習データがまだアップロードされていないことを示す
   dataDescription:
     type: string
     description: 学習データの説明
@@ -38,7 +40,6 @@ required:
   - name
   - author
   - rule
-  - dataId
   - dataDescription
   - teams
   - startAt
