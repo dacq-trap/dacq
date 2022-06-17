@@ -10,6 +10,9 @@ on:
     paths:
       - .github/workflows/openapi-generator.yaml
 
+permissions:
+  pull-requests: write
+  contents: write
 
 jobs:
   openapi-regen:
