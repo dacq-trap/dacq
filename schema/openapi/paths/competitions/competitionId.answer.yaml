@@ -1,0 +1,55 @@
+parameters:
+  - $ref: ../../parameters/competitionId.yaml
+
+put:
+  summary: コンペティションの回答データをアップロード
+  description: |
+    コンペティションの回答データをアップロードします。  
+    指定されたコンペティションのAuthorである必要があります。
+  operationId: putCompetitionAnswer
+  security:
+    - cookieAuth: []
+  tags:
+    - Competitions
+  requestBody:
+    content:
+      text/csv:
+        schema:
+          type: string
+          example: |
+            1, 200
+            2, 300
+            3, 400
+  responses:
+    "204":
+      description: No Content
+    "400":
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "401":
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "403":
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "404":
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "500":
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
