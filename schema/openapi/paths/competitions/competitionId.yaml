@@ -39,8 +39,8 @@ get:
 patch:
   summary: コンペティションの情報を更新
   description: |
-    コンペティションの情報を更新します。
-    更新するコンペティションのAuthorである必要があります。
+    コンペティションの情報を更新します。  
+    指定されたコンペティションのAuthorである必要があります。
   operationId: patchCompetition
   security:
     - cookieAuth: []
@@ -96,6 +96,9 @@ components:
         rule:
           type: string
           description: ルール
+        dataDescription:
+          type: string
+          description: 学習データの説明
         startAt:
           type: string
           format: date-time
