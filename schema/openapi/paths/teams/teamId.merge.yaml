@@ -5,7 +5,7 @@ get:
   summary: チームのマージリクエスト情報を取得
   description: |
     チームのマージリクエスト情報を取得します。
-  operationId: getTeamMergingStatus
+  operationId: getTeamMergeStatus
   security:
     - cookieAuth: []
   tags:
