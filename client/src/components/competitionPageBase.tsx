@@ -11,16 +11,16 @@ import { useRouter } from 'next/router'
 import Header from '@/components/header'
 
 // TODO: 追加する
-type ProblemPageOption = 'overview' | 'leaderboard'
+type CompetitionPageOption = 'overview' | 'leaderboard'
 
 type Props = {
-  problemId: string
-  problemPageOption: ProblemPageOption
+  competitionId: string
+  competitionPageOption: CompetitionPageOption
   children: React.ReactNode
 }
 
 type LinkedButtonInfo = {
-  pageOption: ProblemPageOption
+  pageOption: CompetitionPageOption
   text: string
 }
 
@@ -29,14 +29,14 @@ const linkedButtonInfos: LinkedButtonInfo[] = [
   { pageOption: 'leaderboard', text: '順位表' },
 ]
 
-const ProblemPageBase = (props: Props) => {
+const CompetitionPageBase = (props: Props) => {
   const router = useRouter()
   return (
     <>
       <Header />
       <Box padding={2}>
         <Box paddingY={1}>
-          <Link href={`/problems/${props.problemId}`} passHref>
+          <Link href={`/competitions/${props.competitionId}`} passHref>
             <Typography
               variant='h6'
               component='a'
@@ -47,7 +47,7 @@ const ProblemPageBase = (props: Props) => {
                 textDecoration: 'none',
               }}
             >
-              {props.problemId}
+              {props.competitionId}
             </Typography>
           </Link>
         </Box>
@@ -57,12 +57,12 @@ const ProblemPageBase = (props: Props) => {
               <ListItemButton
                 key={pageOption}
                 sx={{ maxWidth: 200, textAlign: 'center' }}
-                selected={pageOption === props.problemPageOption}
+                selected={pageOption === props.competitionPageOption}
                 onClick={(event) => {
                   const href =
                     pageOption === 'overview'
-                      ? `/problems/${props.problemId}`
-                      : `/problems/${props.problemId}/${pageOption}`
+                      ? `/competitions/${props.competitionId}`
+                      : `/competitions/${props.competitionId}/${pageOption}`
                   router.push(href)
                 }}
               >
@@ -77,4 +77,4 @@ const ProblemPageBase = (props: Props) => {
   )
 }
 
-export default ProblemPageBase
+export default CompetitionPageBase

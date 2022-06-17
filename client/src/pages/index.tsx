@@ -15,7 +15,7 @@ const Home = (props: Props) => {
       <Header />
       <Box padding={4}>
         ユーザー名 {props.userName}
-        <Link href='/problems/sample-problem'>サンプル問題ページ</Link>
+        <Link href='/competitions/sample-competition'>サンプル問題ページ</Link>
       </Box>
     </>
   )

@@ -1,27 +1,27 @@
 import { GetServerSideProps } from 'next'
-import ProblemPageBase from '@/components/problemPageBase'
+import CompetitionPageBase from '@/components/competitionPageBase'
 
 // 仮の構造
 type Props = {
-  problemId: string
+  competitionId: string
 }
 
 const Leaderboard = (props: Props) => {
   return (
-    <ProblemPageBase
-      problemId={props.problemId}
-      problemPageOption='leaderboard'
+    <CompetitionPageBase
+      competitionId={props.competitionId}
+      competitionPageOption='leaderboard'
     >
       順位表ページ
-    </ProblemPageBase>
+    </CompetitionPageBase>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const problemId = ctx.params?.id as string
+  const competitionId = ctx.params?.id as string
 
   const props: Props = {
-    problemId,
+    competitionId,
   }
 
   return {
