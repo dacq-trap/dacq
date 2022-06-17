@@ -6,7 +6,7 @@ properties:
   team:
     $ref: ./team.yaml
     description: チーム
-  highestScore:
+  bestScore:
     type: number
     description: 最高スコア
   submissionsCount:
@@ -19,6 +19,6 @@ properties:
 required:
   - rank
   - team
-  - highestScore
+  - bestScore
   - submissionsCount
   - lastSubmittedAt
