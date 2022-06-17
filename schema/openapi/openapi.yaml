@@ -55,6 +55,8 @@ tags:
     description: Users API
   - name: Competitions
     description: Competitions API
+  - name: Authors
+    description: Competition Authors API
   - name: Teams
     description: Teams API
   - name: Submissions

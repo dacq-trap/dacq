@@ -38,6 +38,7 @@ post:
     - cookieAuth: []
   tags:
     - Competitions
+    - Authors
   requestBody:
     content:
       application/json:

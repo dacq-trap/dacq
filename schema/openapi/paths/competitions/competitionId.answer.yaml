@@ -10,7 +10,7 @@ put:
   security:
     - cookieAuth: []
   tags:
-    - Competitions
+    - Authors
   requestBody:
     content:
       text/csv:
