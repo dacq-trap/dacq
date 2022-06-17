@@ -10,6 +10,10 @@ on:
     paths:
       - .github/workflows/openapi-generator.yaml
 
+permissions:
+  pull-requests: write
+  contents: write
+
 jobs:
   openapi-regen:
     name: Regenerate client codes with updated OpenAPI
@@ -34,7 +38,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
-          token: ${{ secrets.ACTIONS_PERSONAL_ACCESS_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           base: main
           commit-message: Regenerate with updated OpenAPI by GitHub Actions
           branch: regenerate-openapi
