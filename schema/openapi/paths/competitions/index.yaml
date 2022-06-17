@@ -28,3 +28,68 @@ get:
         application/json:
           schema:
             $ref: ../../common/error.yaml
+
+post:
+  summary: コンペティションを作成
+  description: |
+    コンペティションを作成します。
+  operationId: postCompetitions
+  security:
+    - cookieAuth: []
+  tags:
+    - Competitions
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/postCompetitionsRequest"
+  responses:
+    "201":
+      description: Created
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/competition.yaml
+    "400":
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "401":
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "500":
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+
+components:
+  schemas:
+    postCompetitionsRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: コンペティション名
+        rule:
+          type: string
+          description: ルール
+        startAt:
+          type: string
+          format: date-time
+          description: コンペティション開始日時
+        endAt:
+          type: string
+          format: date-time
+          description: コンペティション終了日時
+      required:
+        - name
+        - rule
+        - startAt
+        - endAt
