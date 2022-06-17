@@ -1,8 +1,13 @@
 parameters:
-  - $ref: ../../parameters/tid.yaml
+  - $ref: ../../parameters/teamId.yaml
+
 get:
   summary: チームの詳細を取得
+  description: |
+    チームの詳細を取得します。
   operationId: getTeam
+  security:
+    - cookieAuth: []
   tags:
     - Teams
   responses:
@@ -18,31 +23,42 @@ get:
         application/json:
           schema:
             $ref: ../../common/error.yaml
+    "404":
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
     "500":
       description: Internal Server Error
       content:
         application/json:
           schema:
             $ref: ../../common/error.yaml
-put:
+
+patch:
   summary: チームの情報を変更
-  operationId: updateTeam
+  description: |
+    チームの情報を変更します。
+  operationId: patchTeam
+  security:
+    - cookieAuth: []
   tags:
     - Teams
   requestBody:
     content:
       application/json:
-        schema: 
-          type: object
-          properties:
-            name:
-              type: string
-              description: チーム名
-          required:
-            - name
+        schema:
+          $ref: "#/components/schemas/patchTeamRequest"
   responses:
-    "200":
-      description: OK
+    "204":
+      description: No Content
+    "400":
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
     "401":
       description: Unauthorized
       content:
@@ -57,9 +73,26 @@ put:
         application/json:
           schema:
             $ref: ../../common/error.yaml
+    "404":
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
     "500":
       description: Internal Server Error
       content:
         application/json:
           schema:
             $ref: ../../common/error.yaml
+
+components:
+  schemas:
+    patchTeamRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: チーム名
+      required:
+        - name

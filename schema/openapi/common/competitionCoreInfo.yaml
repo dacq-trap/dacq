@@ -3,11 +3,22 @@ description: コンペティションの基本情報
 properties:
   id:
     type: string
+    format: uuid
     description: コンペティションID
   name:
     type: string
     description: コンペティション名
     example: traQメッセージ分析コンペ
+  startAt:
+    type: string
+    format: date-time
+    description: コンペティション開始日時
+  endAt:
+    type: string
+    format: date-time
+    description: コンペティション終了日時
 required:
   - id
   - name
+  - startAt
+  - endAt

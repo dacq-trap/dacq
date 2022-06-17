@@ -1,8 +1,9 @@
 type: object
-required:
-  - message
+description: 汎用エラーメッセージ
 properties:
   message:
     type: string
     description: エラーメッセージ
-    example: "error occurred"
+    example: error occurred
+required:
+  - message

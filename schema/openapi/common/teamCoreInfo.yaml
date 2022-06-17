@@ -3,6 +3,7 @@ description: チームの基本情報
 properties:
   id:
     type: string
+    format: uuid
     description: ID
   name:
     type: string

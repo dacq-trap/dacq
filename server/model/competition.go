@@ -8,8 +8,10 @@ import (
 
 // コンペティションの基本情報
 type CompetitionCoreInfo struct {
-	ID   uuid.UUID // ID
-	Name string    // コンペティション名
+	ID      uuid.UUID // ID
+	Name    string    // コンペティション名
+	StartAt time.Time // コンペティション開始日時
+	EndAt   time.Time // コンペティション終了日時
 }
 
 // コンペティション
@@ -23,6 +25,4 @@ type Competition struct {
 	PublicSetting   map[int]bool   // public / private区分の設定
 	AnswerDataID    string         // 正解データファイルID
 	Teams           []TeamCoreInfo // 参加チーム
-	StartAt         time.Time      // コンペティション開始日時
-	EndAt           time.Time      // コンペティション終了日時
 }

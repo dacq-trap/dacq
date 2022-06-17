@@ -1,0 +1,45 @@
+parameters:
+  - $ref: ../../parameters/teamId.yaml
+
+get:
+  summary: チームのマージリクエスト情報を取得
+  description: |
+    チームのマージリクエスト情報を取得します。
+  operationId: getTeamMergeStatus
+  security:
+    - cookieAuth: []
+  tags:
+    - Teams
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            oneOf:
+              - $ref: ../../common/mergeRequest.yaml
+              - type: object
+    "401":
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "403":
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "404":
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "500":
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml

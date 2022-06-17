@@ -3,7 +3,9 @@ get:
   description: |
     自分のユーザー情報の取得を行います。  
     ログイン確認用としても使います。
-  operationId: getUsersMe
+  operationId: getMe
+  security:
+    - cookieAuth: []
   tags:
     - Users
   responses:
@@ -12,16 +14,16 @@ get:
       content:
         application/json:
           schema:
-            $ref: "../../common/user.yaml"
+            $ref: ../../common/user.yaml
     "401":
       description: Unauthorized
       content:
         application/json:
           schema:
-            $ref: "../../common/error.yaml"
+            $ref: ../../common/error.yaml
     "500":
       description: Internal Server Error
       content:
         application/json:
           schema:
-            $ref: "../../common/error.yaml"
+            $ref: ../../common/error.yaml

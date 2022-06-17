@@ -1,8 +1,13 @@
 parameters:
-  - $ref: ../../parameters/cid.yaml
+  - $ref: ../../parameters/competitionId.yaml
+
 get:
   summary: コンペティションの詳細を取得
+  description: |
+    コンペティションの詳細を取得します。
   operationId: getCompetition
+  security:
+    - cookieAuth: []
   tags:
     - Competitions
   responses:
@@ -14,6 +19,12 @@ get:
             $ref: ../../common/competition.yaml
     "401":
       description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "404":
+      description: Not Found
       content:
         application/json:
           schema:

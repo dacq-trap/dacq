@@ -3,13 +3,14 @@ description: チーム
 properties:
   id:
     type: string
+    format: uuid
     description: ID
   name:
     type: string
     description: チーム名
-  contestsId:
-    type: string
-    description: コンテストID
+  competition:
+    $ref: ./competitionCoreInfo.yaml
+    description: コンペティション
   users:
     type: array
     items:
@@ -17,10 +18,10 @@ properties:
     description: 所属ユーザー
   isMerging:
     type: boolean
-    description: チームのマージ中かどうか
+    description: チームがマージ中かどうか
 required:
   - id
   - name
-  - contestsId
+  - competition
   - users
   - isMerging

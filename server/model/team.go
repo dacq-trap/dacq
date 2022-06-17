@@ -13,7 +13,7 @@ type TeamCoreInfo struct {
 // チーム
 type Team struct {
 	TeamCoreInfo
-	ContestID    uuid.UUID // コンテストID
-	Users        []User    // 所属ユーザー
-	IsMerging    bool      // マージ中かどうか(マージ中はできない処理を設けるため)
+	Competition CompetitionCoreInfo // コンペティション
+	Users       []User              // 所属ユーザー
+	IsMerging   bool                // マージ中かどうか(マージ中はできない処理を設けるため)
 }

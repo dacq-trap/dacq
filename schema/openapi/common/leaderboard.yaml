@@ -3,22 +3,22 @@ properties:
   rank:
     type: integer
     description: 順位
-  teamId:
-    type: string
-    description: チームID
-  score:
+  team:
+    $ref: ./team.yaml
+    description: チーム
+  highestScore:
     type: number
-    description: スコア
-  totalSubmissionCount:
+    description: 最高スコア
+  submissionsCount:
     type: integer
     description: のべ提出回数
-  submittedAt:
+  lastSubmittedAt:
     type: string
     format: date-time
-    description: 提出日時
+    description: 最終提出日時
 required:
   - rank
-  - teamId
-  - score
-  - totalSubmissionCount
-  - submittedAt
+  - team
+  - highestScore
+  - submissionsCount
+  - lastSubmittedAt

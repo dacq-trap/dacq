@@ -1,8 +1,13 @@
 parameters:
-  - $ref: ../../parameters/cid.yaml
+  - $ref: ../../parameters/competitionId.yaml
+
 get:
   summary: コンペティションのリーダーボードの取得
+  description: |
+    コンペティションのリーダーボードを取得します。
   operationId: getLeaderBoard
+  security:
+    - cookieAuth: []
   tags:
     - Competitions
   responses:
@@ -16,6 +21,12 @@ get:
               $ref: ../../common/leaderboard.yaml
     "401":
       description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "404":
+      description: Not Found
       content:
         application/json:
           schema:

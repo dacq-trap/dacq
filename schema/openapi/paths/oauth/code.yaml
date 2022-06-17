@@ -4,6 +4,8 @@ post:
     入手したOAuthコードを送信してログインします。  
     送信されたコードから入手したアクセストークンはサーバーに保存されます。
   operationId: postOauthCode
+  security:
+    - cookieAuth: []
   tags:
     - OAuth
   requestBody:
@@ -13,26 +15,31 @@ post:
         schema:
           $ref: "#/components/schemas/oauthCodeRequest"
   responses:
-    "204":
-      description: No Content
+    "201":
+      description: Created
+      headers:
+        Set-Cookie:
+          schema:
+            type: string
+            example: dq_session=ZlN2Y1ZTRkRhNDhjYQ==; Path=/; HttpOnly
     "400":
       description: Bad Request
       content:
         application/json:
           schema:
-            $ref: "../../common/error.yaml"
+            $ref: ../../common/error.yaml
     "403":
       description: Forbidden
       content:
         application/json:
           schema:
-            $ref: "../../common/error.yaml"
+            $ref: ../../common/error.yaml
     "500":
       description: Internal Server Error
       content:
         application/json:
           schema:
-            $ref: "../../common/error.yaml"
+            $ref: ../../common/error.yaml
 
 components:
   schemas:

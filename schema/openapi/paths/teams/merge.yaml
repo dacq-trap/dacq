@@ -1,26 +1,24 @@
 post:
   summary: チームのマージをリクエストする
-  operationId: requestTeamMerging
+  description: |
+    チームのマージをリクエストします。
+  operationId: postTeamMerge
+  security:
+    - cookieAuth: []
   tags:
     - Teams
   requestBody:
     content:
       application/json:
-        schema: 
-          type: object
-          properties:
-            from:
-              type: string
-              description: マージ元のチームID
-            to:
-              type: string
-              description: マージ先のチームID
-          required:
-            - from
-            - to
+        schema:
+          $ref: "#/components/schemas/postTeamMergeRequest"
   responses:
     "201":
       description: Created
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/mergeRequest.yaml
     "400":
       description: |
         Bad Request
@@ -43,9 +41,32 @@ post:
         application/json:
           schema:
             $ref: ../../common/error.yaml
+    "404":
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
     "500":
       description: Internal Server Error
       content:
         application/json:
           schema:
             $ref: ../../common/error.yaml
+
+components:
+  schemas:
+    postTeamMergeRequest:
+      type: object
+      properties:
+        from:
+          type: string
+          format: uuid
+          description: マージ元のチームID
+        to:
+          type: string
+          format: uuid
+          description: マージ先のチームID
+      required:
+        - from
+        - to

@@ -2,11 +2,11 @@ type: object
 description: サブミッション
 properties:
   id:
-    type: string
+    type: integer
     description: ID
-  contest:
+  competition:
     $ref: ./competitionCoreInfo.yaml
-    description: コンテスト
+    description: コンペティション
   team:
     $ref: ./teamCoreInfo.yaml
     description: チーム
@@ -21,16 +21,18 @@ properties:
     description: 提出されたCSVファイルのID
   score:
     type: number
-    description: スコア
+    description: |
+      スコア
+      NULLの場合、まだスコア計算が終了していないことを示す
   submittedAt:
     type: string
     format: date-time
+    description: 提出日時
 required:
   - id
-  - content
+  - competition
   - team
   - submitter
   - comment
   - fileId
-  - score
   - submittedAt
