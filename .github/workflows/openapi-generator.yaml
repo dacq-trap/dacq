@@ -1,0 +1,41 @@
+name: openapi-generator
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - schema/openapi/**/*
+
+jobs:
+  openapi-regen:
+    name: Regenerate client codes with updated OpenAPI
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: client
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          cache: npm
+          cache-dependency-path: client/package-lock.json
+      - name: Run npm ci
+        run: npm ci
+      - name: Regenerate with OpenAPI
+        run: npm run gen-api
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          commit-message: Regenerate with updated OpenAPI by GitHub Actions
+          branch: regenerate-openapi-
+          branch-suffix: timestamp
+          delete-branch: true
+          title: Regenerate client codes with updated OpenAPI
+          labels: |
+            client
+          reviewers: oribe1115
+
+          
