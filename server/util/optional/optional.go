@@ -9,26 +9,26 @@ type optionalType interface {
 	string | float64
 }
 
-type Optional[T optionalType] struct {
+type Of[T optionalType] struct {
 	Value T
 	Valid bool
 }
 
-func New[T optionalType](value T, valid bool) Optional[T] {
-	return Optional[T]{
+func New[T optionalType](value T, valid bool) Of[T] {
+	return Of[T]{
 		Value: value,
 		Valid: valid,
 	}
 }
 
-func NewWithValue[T optionalType](value T) Optional[T] {
-	return Optional[T]{
+func NewWithValue[T optionalType](value T) Of[T] {
+	return Of[T]{
 		Value: value,
 		Valid: true,
 	}
 }
 
-func (o Optional[T]) ValueOrZero() T {
+func (o Of[T]) ValueOrZero() T {
 	if o.Valid {
 		return o.Value
 	}
@@ -36,7 +36,7 @@ func (o Optional[T]) ValueOrZero() T {
 	return defaultValue[T]()
 }
 
-func (o Optional[T]) UnmarshalJSON(data []byte) error {
+func (o Of[T]) UnmarshalJSON(data []byte) error {
 	if bytes.Equal(data, []byte("null")) {
 		o.Value = defaultValue[T]()
 		o.Valid = false
@@ -52,7 +52,7 @@ func (o Optional[T]) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o Optional[T]) MarshalJSON() ([]byte, error) {
+func (o Of[T]) MarshalJSON() ([]byte, error) {
 	if o.Valid {
 		return json.Marshal(o.Value)
 	}
