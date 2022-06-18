@@ -4,8 +4,6 @@ post:
     入手したOAuthコードを送信してログインします。  
     送信されたコードから入手したアクセストークンはサーバーに保存されます。
   operationId: postOauthCode
-  security:
-    - cookieAuth: []
   tags:
     - OAuth
   requestBody:
