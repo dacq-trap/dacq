@@ -10,10 +10,6 @@ on:
     paths:
       - .github/workflows/openapi-generator.yaml
 
-permissions:
-  pull-requests: write
-  contents: write
-
 jobs:
   openapi-regen:
     name: Regenerate client codes with updated OpenAPI
@@ -24,8 +20,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          ssh-key: ${{ secrets.ACTIONS_SSH_PRIVATE_KEY }}
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
@@ -47,6 +41,7 @@ jobs:
           title: Regenerate client codes with updated OpenAPI
           labels: |
             client
-          reviewers: oribe1115
+          reviewers: |
+            oribe1115
 
           
