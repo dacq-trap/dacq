@@ -43,7 +43,7 @@ func (o Of[T]) HasValue() bool {
 	return o.valid
 }
 
-func (o Of[T]) UnmarshalJSON(data []byte) error {
+func (o *Of[T]) UnmarshalJSON(data []byte) error {
 	if bytes.Equal(data, []byte("null")) {
 		o.value = defaultValue[T]()
 		o.valid = false
