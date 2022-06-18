@@ -24,6 +24,6 @@ type Competition struct {
 	DataDescription string              // 学習データの説明
 	JudgementID     int                 // スコア判定基準のID
 	PublicSetting   map[int]bool        // public / private区分の設定
-	AnswerDataID    string              // 正解データファイルID
+	AnswerDataID    optional.Of[string] // 正解データファイルID
 	Teams           []TeamCoreInfo      // 参加チーム
 }
