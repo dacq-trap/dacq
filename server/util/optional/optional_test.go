@@ -1,30 +1,32 @@
-package optional
+package optional_test
 
 import (
 	"encoding/json"
-	"github.com/DATA-DOG/go-sqlmock"
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/DATA-DOG/go-sqlmock"
+	"github.com/dacq-trap/dacq/server/util/optional"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestOf_MarshalJSON(t *testing.T) {
-	type S[T optionalType] struct {
-		Foo Of[T] `json:"foo"`
+	type S[T optional.OptionalType] struct {
+		Foo optional.Of[T] `json:"foo"`
 	}
 
 	stringTests := []struct {
 		name     string
-		foo      Of[string]
+		foo      optional.Of[string]
 		expected string
 	}{
 		{
 			name:     "ValidString",
-			foo:      NewWithValue("bar"),
+			foo:      optional.NewWithValue("bar"),
 			expected: `{"foo":"bar"}`,
 		},
 		{
 			name:     "NullString",
-			foo:      New("", false),
+			foo:      optional.New("", false),
 			expected: `{"foo":null}`,
 		},
 	}
@@ -43,17 +45,17 @@ func TestOf_MarshalJSON(t *testing.T) {
 
 	floatTests := []struct {
 		name     string
-		foo      Of[float64]
+		foo      optional.Of[float64]
 		expected string
 	}{
 		{
 			name:     "ValidFloat",
-			foo:      NewWithValue(1.05),
+			foo:      optional.NewWithValue(1.05),
 			expected: `{"foo":1.05}`,
 		},
 		{
 			name:     "NullFloat",
-			foo:      New(0.0, false),
+			foo:      optional.New(0.0, false),
 			expected: `{"foo":null}`,
 		},
 	}
@@ -73,24 +75,24 @@ func TestOf_MarshalJSON(t *testing.T) {
 }
 
 func TestOf_UnmarshalJSON(t *testing.T) {
-	type S[T optionalType] struct {
-		Foo Of[T] `json:"foo"`
+	type S[T optional.OptionalType] struct {
+		Foo optional.Of[T] `json:"foo"`
 	}
 
 	stringTests := []struct {
 		name        string
 		rawJson     string
-		expectedFoo Of[string]
+		expectedFoo optional.Of[string]
 	}{
 		{
 			name:        "ValidString",
 			rawJson:     `{"foo":"bar"}`,
-			expectedFoo: NewWithValue("bar"),
+			expectedFoo: optional.NewWithValue("bar"),
 		},
 		{
 			name:        "NullString",
 			rawJson:     `{"foo":null}`,
-			expectedFoo: New("", false),
+			expectedFoo: optional.New("", false),
 		},
 	}
 
@@ -110,17 +112,17 @@ func TestOf_UnmarshalJSON(t *testing.T) {
 	floatTests := []struct {
 		name        string
 		rawJson     string
-		expectedFoo Of[float64]
+		expectedFoo optional.Of[float64]
 	}{
 		{
 			name:        "ValidFloat",
 			rawJson:     `{"foo":1.05}`,
-			expectedFoo: NewWithValue(1.05),
+			expectedFoo: optional.NewWithValue(1.05),
 		},
 		{
 			name:        "NullFloat",
 			rawJson:     `{"foo":null}`,
-			expectedFoo: New(0.0, false),
+			expectedFoo: optional.New(0.0, false),
 		},
 	}
 
@@ -142,17 +144,17 @@ func TestOf_Scan(t *testing.T) {
 	stringTests := []struct {
 		name     string
 		fooInDb  any
-		expected Of[string]
+		expected optional.Of[string]
 	}{
 		{
 			name:     "ValidString",
 			fooInDb:  "bar",
-			expected: NewWithValue("bar"),
+			expected: optional.NewWithValue("bar"),
 		},
 		{
 			name:     "NullString",
 			fooInDb:  nil,
-			expected: New("", false),
+			expected: optional.New("", false),
 		},
 	}
 
@@ -172,7 +174,7 @@ func TestOf_Scan(t *testing.T) {
 			defer rs.Close()
 
 			for rs.Next() {
-				var foo Of[string]
+				var foo optional.Of[string]
 				rs.Scan(&foo)
 				assert.Equal(t, tt.expected, foo)
 			}
@@ -182,17 +184,17 @@ func TestOf_Scan(t *testing.T) {
 	floatTests := []struct {
 		name     string
 		fooInDb  any
-		expected Of[float64]
+		expected optional.Of[float64]
 	}{
 		{
 			name:     "ValidFloat",
 			fooInDb:  1.05,
-			expected: NewWithValue(1.05),
+			expected: optional.NewWithValue(1.05),
 		},
 		{
 			name:     "NullFloat",
 			fooInDb:  nil,
-			expected: New(0.0, false),
+			expected: optional.New(0.0, false),
 		},
 	}
 
@@ -212,7 +214,7 @@ func TestOf_Scan(t *testing.T) {
 			defer rs.Close()
 
 			for rs.Next() {
-				var foo Of[float64]
+				var foo optional.Of[float64]
 				rs.Scan(&foo)
 				assert.Equal(t, tt.expected, foo)
 			}

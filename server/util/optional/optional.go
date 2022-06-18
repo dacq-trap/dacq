@@ -8,23 +8,23 @@ import (
 	"fmt"
 )
 
-type optionalType interface {
+type OptionalType interface {
 	string | float64
 }
 
-type Of[T optionalType] struct {
+type Of[T OptionalType] struct {
 	value T
 	valid bool
 }
 
-func New[T optionalType](value T, valid bool) Of[T] {
+func New[T OptionalType](value T, valid bool) Of[T] {
 	return Of[T]{
 		value: value,
 		valid: valid,
 	}
 }
 
-func NewWithValue[T optionalType](value T) Of[T] {
+func NewWithValue[T OptionalType](value T) Of[T] {
 	return Of[T]{
 		value: value,
 		valid: true,
@@ -102,7 +102,7 @@ func (o Of[T]) Value() (driver.Value, error) {
 	return o.value, nil
 }
 
-func defaultValue[T optionalType]() T {
+func defaultValue[T OptionalType]() T {
 	v := new(T)
 	return *v
 }
