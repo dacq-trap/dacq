@@ -1,6 +1,6 @@
 import { AppBar, Container, Toolbar, Typography } from '@mui/material'
-import { GetServerSideProps } from 'next'
 import Link from 'next/link'
+import DevLogin from './devLoginButton'
 
 const Header = () => {
   return (
@@ -22,6 +22,7 @@ const Header = () => {
               DacQ
             </Typography>
           </Link>
+          <DevLogin />
         </Toolbar>
       </Container>
     </AppBar>

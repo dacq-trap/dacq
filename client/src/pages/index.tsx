@@ -3,6 +3,7 @@ import { AxiosError } from 'axios'
 import type { GetServerSideProps, NextPage } from 'next'
 import Link from 'next/link'
 import api from '@/api'
+import { requestOption } from '@/api/requestOption'
 import Header from '@/components/header'
 
 type Props = {
@@ -26,7 +27,7 @@ const Home = (props: Props) => {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   let userName = ''
   try {
-    const { data } = await api.getMe()
+    const { data } = await api.getMe(requestOption(ctx))
     userName = data.name
   } catch (error) {
     const err = error as AxiosError
