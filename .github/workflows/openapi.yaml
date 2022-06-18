@@ -1,0 +1,31 @@
+name: openapi
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - schema/openapi/**
+      - .github/workflows/openapi.yaml
+  pull_request:
+    paths:
+      - schema/openapi/**
+      - .github/workflows/openapi.yaml
+
+jobs:
+  openapi-lint:
+    name: Lint OpenAPI
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: schema/openapi
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Run Spectral
+        uses: stoplightio/spectral-action@latest
+        with:
+          file_glob: openapi.yaml
+          spectral_ruleset: .spectral.yaml
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          event_name: Lint with Spectral
