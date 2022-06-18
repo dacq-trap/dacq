@@ -68,7 +68,7 @@ func (o Of[T]) MarshalJSON() ([]byte, error) {
 }
 
 // Scan sql.Scannerを満たすためのメソッド
-func (o Of[T]) Scan(value any) error {
+func (o *Of[T]) Scan(value any) error {
 	switch ((any)(o.value)).(type) {
 	case string:
 		nullString := sql.NullString{}
