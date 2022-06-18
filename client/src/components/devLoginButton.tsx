@@ -1,6 +1,5 @@
 import { Button } from '@mui/material'
-import { AxiosError } from 'axios'
-import api from '@/api'
+import { setCookie } from 'nookies'
 
 const DevLogin = () => {
   return (
@@ -16,12 +15,10 @@ const DevLogin = () => {
 }
 
 const onClickDevLogin = async () => {
-  try {
-    const { data } = await api.postOauthCode({ code: 'code-for-dev-login' })
-  } catch (error) {
-    const err = error as AxiosError
-    console.log(err)
-  }
+  setCookie(null, 'dq_session', 'session-code-for-dev-login', {
+    maxAge: 30 * 24 * 60 * 60,
+    path: '/',
+  })
 }
 
 export default DevLogin
