@@ -24,7 +24,7 @@ const Home = (props: Props) => {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   let userName = ''
   try {
-    const { data } = await api.getUsersMe()
+    const { data } = await api.getMe()
     userName = data.name
   } catch (error) {
     const err = error as AxiosError
