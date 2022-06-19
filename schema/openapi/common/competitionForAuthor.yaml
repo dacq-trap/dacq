@@ -1,0 +1,67 @@
+type: object
+description: コンペティション
+properties:
+  id:
+    type: string
+    format: uuid
+    description: コンペティションID
+  name:
+    type: string
+    description: コンペティション名
+  author:
+    $ref: ./user.yaml
+    description: コンペティション作成者
+  rule:
+    type: string
+    description: ルール
+  dataId:
+    type: string
+    description: |
+      学習データファイルID  
+      NULLの場合、まだアップロードされていないことを示す
+  dataDescription:
+    type: string
+    description: 学習データの説明
+  judgementId:
+    type: integer
+    description: スコア判定基準のID
+  publicSetting:
+    type: array
+    items:
+      type: object
+      properties:
+        answerDataSpecificId:
+          type: integer
+          # TODO: フィールド名を要検討
+        isPublic:
+          type: boolean
+    description: public/privateの区分
+  answerDataId:
+    type: string
+    description: |
+      正解データファイルID  
+      NULLの場合、まだアップロードされていないことを示す
+  teams:
+    type: array
+    items:
+      $ref: ./teamCoreInfo.yaml
+    description: 参加チーム
+  startAt:
+    type: string
+    format: date-time
+    description: コンペティション開始日時
+  endAt:
+    type: string
+    format: date-time
+    description: コンペティション終了日時
+required:
+  - id
+  - name
+  - author
+  - rule
+  - dataDescription
+  - judgementId
+  - publicSetting
+  - teams
+  - startAt
+  - endAt
