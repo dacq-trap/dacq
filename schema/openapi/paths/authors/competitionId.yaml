@@ -1,0 +1,114 @@
+parameters:
+  - $ref: ../../parameters/competitionId.yaml
+
+get:
+  summary: 自分がAuthorとなっているコンペティションの詳細を取得
+  description: |
+    コンペティションの詳細を取得します。
+    指定されたコンペティションのAuthorである必要があります。
+  operationId: getAuthorsCompetition
+  security:
+    - cookieAuth: []
+  tags:
+    - Authors
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/competitionForAuthor.yaml
+    "401":
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "404":
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "500":
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+
+patch:
+  summary: コンペティションの情報を更新
+  description: |
+    コンペティションの情報を更新します。  
+    指定されたコンペティションのAuthorである必要があります。
+  operationId: patchAuthorsCompetition
+  security:
+    - cookieAuth: []
+  tags:
+    - Authors
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/patchCompetitionRequest"
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/competition.yaml
+    "400":
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "401":
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "403":
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "404":
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "500":
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+
+components:
+  schemas:
+    patchCompetitionRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: コンペティション名
+        rule:
+          type: string
+          description: ルール
+        dataDescription:
+          type: string
+          description: 学習データの説明
+        startAt:
+          type: string
+          format: date-time
+          description: コンペティション開始日時
+        endAt:
+          type: string
+          format: date-time
+          description: コンペティション終了日時

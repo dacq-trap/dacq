@@ -6,7 +6,7 @@ put:
   description: |
     コンペティションの回答データをアップロードします。  
     指定されたコンペティションのAuthorである必要があります。
-  operationId: putCompetitionAnswer
+  operationId: putAuthorsCompetitionAnswer
   security:
     - cookieAuth: []
   tags:

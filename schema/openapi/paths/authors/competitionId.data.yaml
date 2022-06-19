@@ -7,7 +7,7 @@ put:
     コンペティションの学習データをアップロードします。  
     学習データは、zip形式でアップロードしてください。  
     指定されたコンペティションのAuthorである必要があります。
-  operationId: putCompetitionData
+  operationId: putAuthorsCompetitionData
   security:
     - cookieAuth: []
   tags:
