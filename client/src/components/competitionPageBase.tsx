@@ -15,6 +15,7 @@ type CompetitionPageOption = 'overview' | 'leaderboard'
 
 type Props = {
   competitionId: string
+  competitionName: string
   competitionPageOption: CompetitionPageOption
   children: React.ReactNode
 }
@@ -47,7 +48,7 @@ const CompetitionPageBase = (props: Props) => {
                 textDecoration: 'none',
               }}
             >
-              {props.competitionId}
+              {props.competitionName}
             </Typography>
           </Link>
         </Box>
