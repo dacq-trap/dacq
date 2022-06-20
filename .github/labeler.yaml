@@ -1,0 +1,8 @@
+client:
+  - client/**
+server:
+  - server/**
+schema:
+  - schema/**
+actions:
+  - .github/workflows/**
