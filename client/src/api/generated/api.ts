@@ -142,7 +142,7 @@ export interface Leaderboard {
      * @type {number}
      * @memberof Leaderboard
      */
-    'highestScore': number;
+    'bestScore': number;
     /**
      * のべ提出回数
      * @type {number}
