@@ -9,34 +9,32 @@ import {
 import { AxiosError } from 'axios'
 import { GetServerSideProps } from 'next'
 import api from '@/api'
+import { User } from '@/api'
 import { requestOption } from '@/api/requestOption'
 import CompetitionPageBase from '@/components/competitionPageBase'
 import { MarkDown } from '@/components/markdown'
 
-type DateProps = {
+type DatePaperProps = {
   startAt: string
   endAt: string
 }
 
-type AuthorProps = {
-  name: string
-  iconUrl: string
-}
+type AuthorPaperProps = User
 
-type RuleProps = {
+type RulePaperProps = {
   rule: string
 }
 
 type Props = {
   id: string
   name: string
-  dateProps: DateProps
-  authorProps: AuthorProps
-  ruleProps: RuleProps
+  datePaperProps: DatePaperProps
+  authorPaperProps: AuthorPaperProps
+  rulePaperProps: RulePaperProps
 }
 
 // 開催期間
-const DatePaper = (props: DateProps) => {
+const DatePaper = (props: DatePaperProps) => {
   let startStr = new Date(props.startAt).toLocaleString()
   let endStr = new Date(props.startAt).toLocaleString()
   return (
@@ -53,7 +51,7 @@ const DatePaper = (props: DateProps) => {
       </Typography>
       <Stack direction='row' spacing={2} alignItems='center'>
         <Typography>
-          {startStr} &gt; {endStr}
+          {startStr} ~ {endStr}
         </Typography>
       </Stack>
     </Paper>
@@ -61,7 +59,7 @@ const DatePaper = (props: DateProps) => {
 }
 
 // 著者情報
-const AuthorPaper = (props: AuthorProps) => {
+const AuthorPaper = (props: AuthorPaperProps) => {
   return (
     <Paper
       sx={{
@@ -83,7 +81,7 @@ const AuthorPaper = (props: AuthorProps) => {
 }
 
 // ルール説明
-const RulePaper = (props: RuleProps) => {
+const RulePaper = (props: RulePaperProps) => {
   return (
     <Paper
       sx={{
@@ -111,15 +109,15 @@ const Competition = (props: Props) => {
         <Grid container spacing={2}>
           {/* 開催期間 */}
           <Grid item xs={12} md={8}>
-            <DatePaper {...props.dateProps}></DatePaper>
+            <DatePaper {...props.datePaperProps}></DatePaper>
           </Grid>
           {/* 作問者 */}
           <Grid item xs={12} md={4}>
-            <AuthorPaper {...props.authorProps}></AuthorPaper>
+            <AuthorPaper {...props.authorPaperProps}></AuthorPaper>
           </Grid>
           {/* ルール */}
           <Grid item xs={12} md={12}>
-            <RulePaper {...props.ruleProps}></RulePaper>
+            <RulePaper {...props.rulePaperProps}></RulePaper>
           </Grid>
         </Grid>
       </Container>
@@ -129,35 +127,34 @@ const Competition = (props: Props) => {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const competitionId = ctx.params?.id as string
-  let authorProps: AuthorProps = {
+  let authorPaperProps: AuthorPaperProps = {
     name: '',
     iconUrl: '',
   }
-  let dateProps: DateProps = {
+  let datePaperProps: DatePaperProps = {
     startAt: '',
     endAt: '',
   }
   let propData: Props = {
     id: competitionId,
     name: '',
-    authorProps: authorProps,
-    ruleProps: {
+    authorPaperProps: authorPaperProps,
+    rulePaperProps: {
       rule: '',
     },
-    dateProps: dateProps,
+    datePaperProps: datePaperProps,
   }
   try {
     const { data } = await api.getCompetition(competitionId, requestOption(ctx))
     propData.id = data.id
     propData.name = data.name
     // 開催期間
-    propData.dateProps.startAt = data.startAt
-    propData.dateProps.endAt = data.endAt
+    propData.datePaperProps.startAt = data.startAt
+    propData.datePaperProps.endAt = data.endAt
     // 作問者
-    propData.authorProps.name = data.author.name
-    propData.authorProps.iconUrl = data.author.iconUrl
+    propData.authorPaperProps = data.author
     // ルール
-    propData.ruleProps.rule = data.rule
+    propData.rulePaperProps.rule = data.rule
   } catch (error) {
     const err = error as AxiosError
     console.log(err)
