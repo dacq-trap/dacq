@@ -30,13 +30,13 @@ paths:
   /competitions/{competitionId}/submissions:
     $ref: ./paths/competitions/competitionId.submissions.yaml
   /authors/competitions:
-    $ref: ./paths/authors/index.yaml
+    $ref: ./paths/authors-competitions/index.yaml
   /authors/competitions/{competitionId}:
-    $ref: ./paths/authors/competitionId.yaml
+    $ref: ./paths/authors-competitions/competitionId.yaml
   /authors/competitions/{competitionId}/data:
-    $ref: ./paths/authors/competitionId.data.yaml
+    $ref: ./paths/authors-competitions/competitionId.data.yaml
   /authors/competitions/{competitionId}/answer:
-    $ref: ./paths/authors/competitionId.answer.yaml
+    $ref: ./paths/authors-competitions/competitionId.answer.yaml
   /submissions/{submissionId}:
     $ref: ./paths/submissions/submissionId.yaml
   /teams/{teamId}:
