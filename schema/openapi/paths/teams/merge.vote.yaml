@@ -49,6 +49,6 @@ components:
     postMergeVoteRequest:
       type: object
       properties:
-        ifAccept:
+        accept:
           type: boolean
           description: 承認するかどうか
