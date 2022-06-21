@@ -1,30 +1,23 @@
-parameters:
-  - $ref: ../../parameters/teamId.yaml
-
 get:
-  summary: チームの詳細を取得
+  summary: 自分がAuthorとなっているコンペティションの一覧を取得
   description: |
-    チームの詳細を取得します。
-  operationId: getTeam
+    自分がAuthorとなっているコンペティションの一覧を取得します。
+  operationId: getAuthorsCompetitions
   security:
     - cookieAuth: []
   tags:
-    - Teams
+    - Authors
   responses:
     "200":
       description: OK
       content:
         application/json:
           schema:
-            $ref: ../../common/team.yaml
+            type: array
+            items:
+              $ref: ../../common/competitionCoreInfo.yaml
     "401":
       description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: ../../common/error.yaml
-    "404":
-      description: Not Found
       content:
         application/json:
           schema:
@@ -36,27 +29,27 @@ get:
           schema:
             $ref: ../../common/error.yaml
 
-patch:
-  summary: チームの情報を変更
+post:
+  summary: コンペティションを作成
   description: |
-    チームの情報を変更します。
-  operationId: patchTeam
+    コンペティションを作成します。
+  operationId: postAuthorsCompetitions
   security:
     - cookieAuth: []
   tags:
-    - Teams
+    - Authors
   requestBody:
     content:
       application/json:
         schema:
-          $ref: "#/components/schemas/patchTeamRequest"
+          $ref: "#/components/schemas/postCompetitionsRequest"
   responses:
-    "200":
-      description: OK
+    "201":
+      description: Created
       content:
         application/json:
           schema:
-            $ref: ../../common/team.yaml
+            $ref: ../../common/competition.yaml
     "400":
       description: Bad Request
       content:
@@ -65,20 +58,6 @@ patch:
             $ref: ../../common/error.yaml
     "401":
       description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: ../../common/error.yaml
-    "403":
-      description: |
-        Forbidden
-        編集を許可されていません
-      content:
-        application/json:
-          schema:
-            $ref: ../../common/error.yaml
-    "404":
-      description: Not Found
       content:
         application/json:
           schema:
@@ -92,11 +71,25 @@ patch:
 
 components:
   schemas:
-    patchTeamRequest:
+    postCompetitionsRequest:
       type: object
       properties:
         name:
           type: string
-          description: チーム名
+          description: コンペティション名
+        rule:
+          type: string
+          description: ルール
+        startAt:
+          type: string
+          format: date-time
+          description: コンペティション開始日時
+        endAt:
+          type: string
+          format: date-time
+          description: コンペティション終了日時
       required:
         - name
+        - rule
+        - startAt
+        - endAt

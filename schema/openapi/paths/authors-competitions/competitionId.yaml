@@ -1,22 +1,23 @@
 parameters:
-  - $ref: ../../parameters/teamId.yaml
+  - $ref: ../../parameters/competitionId.yaml
 
 get:
-  summary: チームの詳細を取得
+  summary: 自分がAuthorとなっているコンペティションの詳細を取得
   description: |
-    チームの詳細を取得します。
-  operationId: getTeam
+    コンペティションの詳細を取得します。
+    指定されたコンペティションのAuthorである必要があります。
+  operationId: getAuthorsCompetition
   security:
     - cookieAuth: []
   tags:
-    - Teams
+    - Authors
   responses:
     "200":
       description: OK
       content:
         application/json:
           schema:
-            $ref: ../../common/team.yaml
+            $ref: ../../common/competitionForAuthor.yaml
     "401":
       description: Unauthorized
       content:
@@ -37,26 +38,27 @@ get:
             $ref: ../../common/error.yaml
 
 patch:
-  summary: チームの情報を変更
+  summary: コンペティションの情報を更新
   description: |
-    チームの情報を変更します。
-  operationId: patchTeam
+    コンペティションの情報を更新します。  
+    指定されたコンペティションのAuthorである必要があります。
+  operationId: patchAuthorsCompetition
   security:
     - cookieAuth: []
   tags:
-    - Teams
+    - Authors
   requestBody:
     content:
       application/json:
         schema:
-          $ref: "#/components/schemas/patchTeamRequest"
+          $ref: "#/components/schemas/patchCompetitionRequest"
   responses:
     "200":
       description: OK
       content:
         application/json:
           schema:
-            $ref: ../../common/team.yaml
+            $ref: ../../common/competition.yaml
     "400":
       description: Bad Request
       content:
@@ -70,9 +72,7 @@ patch:
           schema:
             $ref: ../../common/error.yaml
     "403":
-      description: |
-        Forbidden
-        編集を許可されていません
+      description: Forbidden
       content:
         application/json:
           schema:
@@ -92,11 +92,23 @@ patch:
 
 components:
   schemas:
-    patchTeamRequest:
+    patchCompetitionRequest:
       type: object
       properties:
         name:
           type: string
-          description: チーム名
-      required:
-        - name
+          description: コンペティション名
+        rule:
+          type: string
+          description: ルール
+        dataDescription:
+          type: string
+          description: 学習データの説明
+        startAt:
+          type: string
+          format: date-time
+          description: コンペティション開始日時
+        endAt:
+          type: string
+          format: date-time
+          description: コンペティション終了日時

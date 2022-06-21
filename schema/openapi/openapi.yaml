@@ -9,6 +9,7 @@ info:
 servers:
   - url: http://localhost:7070/api
     description: Local Dev Environment
+
 paths:
   /ping:
     $ref: ./paths/ping/index.yaml
@@ -28,6 +29,14 @@ paths:
     $ref: ./paths/competitions/competitionId.teams.yaml
   /competitions/{competitionId}/submissions:
     $ref: ./paths/competitions/competitionId.submissions.yaml
+  /authors/competitions:
+    $ref: ./paths/authors-competitions/index.yaml
+  /authors/competitions/{competitionId}:
+    $ref: ./paths/authors-competitions/competitionId.yaml
+  /authors/competitions/{competitionId}/data:
+    $ref: ./paths/authors-competitions/competitionId.data.yaml
+  /authors/competitions/{competitionId}/answer:
+    $ref: ./paths/authors-competitions/competitionId.answer.yaml
   /submissions/{submissionId}:
     $ref: ./paths/submissions/submissionId.yaml
   /teams/{teamId}:
@@ -38,6 +47,8 @@ paths:
     $ref: ./paths/teams/me.competitionId.yaml
   /teams/merge:
     $ref: ./paths/teams/merge.yaml
+  /teams/{teamId}/merge/vote:
+    $ref: ./paths/teams/merge.vote.yaml
   /teams/{teamId}/merge:
     $ref: ./paths/teams/teamId.merge.yaml
 
@@ -50,6 +61,8 @@ tags:
     description: Users API
   - name: Competitions
     description: Competitions API
+  - name: Authors
+    description: Competition Authors API
   - name: Teams
     description: Teams API
   - name: Submissions

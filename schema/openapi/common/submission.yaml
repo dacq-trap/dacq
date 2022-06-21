@@ -22,8 +22,8 @@ properties:
   score:
     type: number
     description: |
-      スコア
-      NULLの場合、まだスコア計算が終了していないことを示す
+      スコア  
+      NULLの場合、まだ計算が終了していないことを示す
   submittedAt:
     type: string
     format: date-time

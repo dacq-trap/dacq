@@ -1,0 +1,53 @@
+parameters:
+  - $ref: ../../parameters/competitionId.yaml
+
+put:
+  summary: コンペティションの学習データをアップロード
+  description: |
+    コンペティションの学習データをアップロードします。  
+    学習データは、zip形式でアップロードしてください。  
+    指定されたコンペティションのAuthorである必要があります。
+  operationId: putAuthorsCompetitionData
+  security:
+    - cookieAuth: []
+  tags:
+    - Authors
+  requestBody:
+    content:
+      application/zip:
+        schema:
+          type: string
+          format: binary
+  responses:
+    "204":
+      description: No Content
+    "400":
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "401":
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "403":
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "404":
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "500":
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml

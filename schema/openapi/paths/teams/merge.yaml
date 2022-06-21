@@ -1,7 +1,8 @@
 post:
   summary: チームのマージをリクエストする
   description: |
-    チーム同士ののマージをリクエストします。
+    チーム同士のマージをリクエストします。  
+    fromかto、どちらかのチームに所属している必要があります。
   operationId: postTeamMerge
   security:
     - cookieAuth: []

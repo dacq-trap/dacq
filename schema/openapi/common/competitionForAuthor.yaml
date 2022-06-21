@@ -17,11 +17,30 @@ properties:
   dataId:
     type: string
     description: |
-      学習データファイルID
-      NULLの場合、学習データがまだアップロードされていないことを示す
+      学習データファイルID  
+      NULLの場合、まだアップロードされていないことを示す
   dataDescription:
     type: string
     description: 学習データの説明
+  judgementId:
+    type: integer
+    description: スコア判定基準のID
+  publicSetting:
+    type: array
+    items:
+      type: object
+      properties:
+        answerDataSpecificId:
+          type: integer
+          # TODO: フィールド名を要検討
+        isPublic:
+          type: boolean
+    description: public/privateの区分
+  answerDataId:
+    type: string
+    description: |
+      正解データファイルID  
+      NULLの場合、まだアップロードされていないことを示す
   teams:
     type: array
     items:
@@ -41,6 +60,8 @@ required:
   - author
   - rule
   - dataDescription
+  - judgementId
+  - publicSetting
   - teams
   - startAt
   - endAt

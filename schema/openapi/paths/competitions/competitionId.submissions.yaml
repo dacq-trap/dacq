@@ -51,9 +51,9 @@ post:
     - Submissions
   requestBody:
     content:
-      multipart/form-data:
+      text/csv:
         schema:
-          $ref: "#/components/schemas/postSubmissionsRequest"
+          type: string
   responses:
     "201":
       description: Created
@@ -75,7 +75,7 @@ post:
             $ref: ../../common/error.yaml
     "403":
       description: |
-        Forbidden
+        Forbidden  
         コンペティションへの提出が許可されていません
       content:
         application/json:
@@ -93,16 +93,3 @@ post:
         application/json:
           schema:
             $ref: ../../common/error.yaml
-
-components:
-  schemas:
-    postSubmissionsRequest:
-      type: object
-      format: text/csv
-      properties:
-        file:
-          type: string
-          format: text/scv
-          description: 提出データ
-      required:
-        - file
