@@ -1,15 +1,16 @@
-import ReactMarkdown from 'react-markdown'
-import rehypeKatex from 'rehype-katex'
-import remarkMath from 'remark-math'
-import 'katex/dist/katex.min.css'
+import MarkdownIt from 'markdown-it'
+import markdownItPrism from 'markdown-it-prism'
 
 type Props = {
   content: string
 }
 export const MarkDown = (props: Props) => {
-  return (
-    <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
-      {props.content}
-    </ReactMarkdown>
-  )
+  const testText = '*test* text'
+
+  const md = new MarkdownIt()
+  md.use(markdownItPrism)
+
+  const renderedMd = md.render(testText)
+
+  return <div dangerouslySetInnerHTML={{ __html: renderedMd }} />
 }
