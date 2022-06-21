@@ -54,10 +54,6 @@ post:
       text/csv:
         schema:
           type: string
-          example: |
-            1, 200
-            2, 300
-            3, 400
   responses:
     "201":
       description: Created
