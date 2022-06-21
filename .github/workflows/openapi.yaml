@@ -23,12 +23,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Run Spectral
-        uses: stoplightio/spectral-action@latest
+        uses: stoplightio/spectral-action@v0.8.8
         with:
           file_glob: openapi.yaml
           spectral_ruleset: .spectral.yaml
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          event_name: Lint with Spectral
+          event_name: ${{ github.event_name }}
   generate-check:
     name: Check if it's OK to generate client code
     runs-on: ubuntu-latest
