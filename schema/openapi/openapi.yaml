@@ -47,7 +47,7 @@ paths:
     $ref: ./paths/teams/me.competitionId.yaml
   /teams/merge:
     $ref: ./paths/teams/merge.yaml
-  /teams/merge/vote:
+  /teams/{teamId}/merge/vote:
     $ref: ./paths/teams/merge.vote.yaml
   /teams/{teamId}/merge:
     $ref: ./paths/teams/teamId.merge.yaml

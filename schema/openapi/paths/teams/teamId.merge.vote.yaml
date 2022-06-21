@@ -1,3 +1,6 @@
+parameters:
+  - $ref: ../../parameters/teamId.yaml
+
 post:
   summary: マージリクエストを承認 / 拒否
   description: |
