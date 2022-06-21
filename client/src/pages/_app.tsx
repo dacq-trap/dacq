@@ -5,6 +5,7 @@ import Head from 'next/head'
 import createEmotionCache from '@/common/createEmotionCache'
 import theme from '@/styles/theme'
 
+import prism from 'markdown-it-prism'
 const clientSiideEmotionCache = createEmotionCache()
 
 interface MyAppProps extends AppProps {
@@ -30,3 +31,5 @@ function MyApp(props: MyAppProps) {
 }
 
 export default MyApp
+
+prism
