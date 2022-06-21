@@ -25,7 +25,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
       - name: Install spectral
-        run: npm install -g @stoplight/spectral-cli
+        run: npm install --location=global @stoplight/spectral-cli
       - name: Run spectral
         run: spectral lint openapi.yaml --ruleset .spectral.yaml 
   generate-check:
