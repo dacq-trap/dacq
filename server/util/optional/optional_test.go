@@ -175,7 +175,7 @@ func TestOf_Scan(t *testing.T) {
 
 			for rs.Next() {
 				var foo optional.Of[string]
-				rs.Scan(&foo)
+				_ = rs.Scan(&foo)
 				assert.Equal(t, tt.expected, foo)
 			}
 		})
@@ -215,7 +215,7 @@ func TestOf_Scan(t *testing.T) {
 
 			for rs.Next() {
 				var foo optional.Of[float64]
-				rs.Scan(&foo)
+				_ = rs.Scan(&foo)
 				assert.Equal(t, tt.expected, foo)
 			}
 		})

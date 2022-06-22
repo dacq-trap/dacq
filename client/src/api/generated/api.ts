@@ -52,11 +52,11 @@ export interface Competition {
      */
     'rule': string;
     /**
-     * 学習データファイルID
+     * 学習データファイルID NULLの場合、学習データがまだアップロードされていないことを示す 
      * @type {string}
      * @memberof Competition
      */
-    'dataId': string;
+    'dataId'?: string;
     /**
      * 学習データの説明
      * @type {string}
@@ -114,6 +114,104 @@ export interface CompetitionCoreInfo {
     'endAt': string;
 }
 /**
+ * コンペティション
+ * @export
+ * @interface CompetitionForAuthor
+ */
+export interface CompetitionForAuthor {
+    /**
+     * コンペティションID
+     * @type {string}
+     * @memberof CompetitionForAuthor
+     */
+    'id': string;
+    /**
+     * コンペティション名
+     * @type {string}
+     * @memberof CompetitionForAuthor
+     */
+    'name': string;
+    /**
+     * 
+     * @type {User}
+     * @memberof CompetitionForAuthor
+     */
+    'author': User;
+    /**
+     * ルール
+     * @type {string}
+     * @memberof CompetitionForAuthor
+     */
+    'rule': string;
+    /**
+     * 学習データファイルID   NULLの場合、まだアップロードされていないことを示す 
+     * @type {string}
+     * @memberof CompetitionForAuthor
+     */
+    'dataId'?: string;
+    /**
+     * 学習データの説明
+     * @type {string}
+     * @memberof CompetitionForAuthor
+     */
+    'dataDescription': string;
+    /**
+     * スコア判定基準のID
+     * @type {number}
+     * @memberof CompetitionForAuthor
+     */
+    'judgementId': number;
+    /**
+     * public/privateの区分
+     * @type {Array<CompetitionForAuthorPublicSettingInner>}
+     * @memberof CompetitionForAuthor
+     */
+    'publicSetting': Array<CompetitionForAuthorPublicSettingInner>;
+    /**
+     * 正解データファイルID   NULLの場合、まだアップロードされていないことを示す 
+     * @type {string}
+     * @memberof CompetitionForAuthor
+     */
+    'answerDataId'?: string;
+    /**
+     * 参加チーム
+     * @type {Array<TeamCoreInfo>}
+     * @memberof CompetitionForAuthor
+     */
+    'teams': Array<TeamCoreInfo>;
+    /**
+     * コンペティション開始日時
+     * @type {string}
+     * @memberof CompetitionForAuthor
+     */
+    'startAt': string;
+    /**
+     * コンペティション終了日時
+     * @type {string}
+     * @memberof CompetitionForAuthor
+     */
+    'endAt': string;
+}
+/**
+ * 
+ * @export
+ * @interface CompetitionForAuthorPublicSettingInner
+ */
+export interface CompetitionForAuthorPublicSettingInner {
+    /**
+     * 
+     * @type {number}
+     * @memberof CompetitionForAuthorPublicSettingInner
+     */
+    'answerDataSpecificId'?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CompetitionForAuthorPublicSettingInner
+     */
+    'isPublic'?: boolean;
+}
+/**
  * @type GetTeamMergeStatus200Response
  * @export
  */
@@ -142,7 +240,7 @@ export interface Leaderboard {
      * @type {number}
      * @memberof Leaderboard
      */
-    'highestScore': number;
+    'bestScore': number;
     /**
      * のべ提出回数
      * @type {number}
@@ -164,16 +262,16 @@ export interface Leaderboard {
 export interface MergeRequest {
     /**
      * 
-     * @type {Team}
+     * @type {TeamCoreInfo}
      * @memberof MergeRequest
      */
-    'from': Team;
+    'from': TeamCoreInfo;
     /**
      * 
-     * @type {Team}
+     * @type {TeamCoreInfo}
      * @memberof MergeRequest
      */
-    'to': Team;
+    'to': TeamCoreInfo;
     /**
      * 承認待ちユーザー
      * @type {Array<User>}
@@ -223,6 +321,43 @@ export interface OauthCodeRequest {
 /**
  * 
  * @export
+ * @interface PatchCompetitionRequest
+ */
+export interface PatchCompetitionRequest {
+    /**
+     * コンペティション名
+     * @type {string}
+     * @memberof PatchCompetitionRequest
+     */
+    'name'?: string;
+    /**
+     * ルール
+     * @type {string}
+     * @memberof PatchCompetitionRequest
+     */
+    'rule'?: string;
+    /**
+     * 学習データの説明
+     * @type {string}
+     * @memberof PatchCompetitionRequest
+     */
+    'dataDescription'?: string;
+    /**
+     * コンペティション開始日時
+     * @type {string}
+     * @memberof PatchCompetitionRequest
+     */
+    'startAt'?: string;
+    /**
+     * コンペティション終了日時
+     * @type {string}
+     * @memberof PatchCompetitionRequest
+     */
+    'endAt'?: string;
+}
+/**
+ * 
+ * @export
  * @interface PatchSubmissionRequest
  */
 export interface PatchSubmissionRequest {
@@ -258,6 +393,50 @@ export interface PostCompetitionTeamsRequest {
      * @memberof PostCompetitionTeamsRequest
      */
     'name': string;
+}
+/**
+ * 
+ * @export
+ * @interface PostCompetitionsRequest
+ */
+export interface PostCompetitionsRequest {
+    /**
+     * コンペティション名
+     * @type {string}
+     * @memberof PostCompetitionsRequest
+     */
+    'name': string;
+    /**
+     * ルール
+     * @type {string}
+     * @memberof PostCompetitionsRequest
+     */
+    'rule': string;
+    /**
+     * コンペティション開始日時
+     * @type {string}
+     * @memberof PostCompetitionsRequest
+     */
+    'startAt': string;
+    /**
+     * コンペティション終了日時
+     * @type {string}
+     * @memberof PostCompetitionsRequest
+     */
+    'endAt': string;
+}
+/**
+ * 
+ * @export
+ * @interface PostMergeVoteRequest
+ */
+export interface PostMergeVoteRequest {
+    /**
+     * 承認するかどうか
+     * @type {boolean}
+     * @memberof PostMergeVoteRequest
+     */
+    'accept'?: boolean;
 }
 /**
  * 
@@ -321,7 +500,7 @@ export interface Submission {
      */
     'fileId': string;
     /**
-     * スコア NULLの場合、まだスコア計算が終了していないことを示す 
+     * スコア   NULLの場合、まだ計算が終了していないことを示す 
      * @type {number}
      * @memberof Submission
      */
@@ -408,6 +587,472 @@ export interface User {
      */
     'iconUrl': string;
 }
+
+/**
+ * AuthorsApi - axios parameter creator
+ * @export
+ */
+export const AuthorsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * コンペティションの詳細を取得します。 指定されたコンペティションのAuthorである必要があります。 
+         * @summary 自分がAuthorとなっているコンペティションの詳細を取得
+         * @param {string} competitionId コンペティションのID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAuthorsCompetition: async (competitionId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'competitionId' is not null or undefined
+            assertParamExists('getAuthorsCompetition', 'competitionId', competitionId)
+            const localVarPath = `/authors/competitions/{competitionId}`
+                .replace(`{${"competitionId"}}`, encodeURIComponent(String(competitionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 自分がAuthorとなっているコンペティションの一覧を取得します。 
+         * @summary 自分がAuthorとなっているコンペティションの一覧を取得
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAuthorsCompetitions: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/authors/competitions`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * コンペティションの情報を更新します。   指定されたコンペティションのAuthorである必要があります。 
+         * @summary コンペティションの情報を更新
+         * @param {string} competitionId コンペティションのID
+         * @param {PatchCompetitionRequest} [patchCompetitionRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        patchAuthorsCompetition: async (competitionId: string, patchCompetitionRequest?: PatchCompetitionRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'competitionId' is not null or undefined
+            assertParamExists('patchAuthorsCompetition', 'competitionId', competitionId)
+            const localVarPath = `/authors/competitions/{competitionId}`
+                .replace(`{${"competitionId"}}`, encodeURIComponent(String(competitionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(patchCompetitionRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * コンペティションを作成します。 
+         * @summary コンペティションを作成
+         * @param {PostCompetitionsRequest} [postCompetitionsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postAuthorsCompetitions: async (postCompetitionsRequest?: PostCompetitionsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/authors/competitions`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(postCompetitionsRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * コンペティションの回答データをアップロードします。   指定されたコンペティションのAuthorである必要があります。 
+         * @summary コンペティションの回答データをアップロード
+         * @param {string} competitionId コンペティションのID
+         * @param {string} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        putAuthorsCompetitionAnswer: async (competitionId: string, body?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'competitionId' is not null or undefined
+            assertParamExists('putAuthorsCompetitionAnswer', 'competitionId', competitionId)
+            const localVarPath = `/authors/competitions/{competitionId}/answer`
+                .replace(`{${"competitionId"}}`, encodeURIComponent(String(competitionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'text/csv';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * コンペティションの学習データをアップロードします。   学習データは、zip形式でアップロードしてください。   指定されたコンペティションのAuthorである必要があります。 
+         * @summary コンペティションの学習データをアップロード
+         * @param {string} competitionId コンペティションのID
+         * @param {any} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        putAuthorsCompetitionData: async (competitionId: string, body?: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'competitionId' is not null or undefined
+            assertParamExists('putAuthorsCompetitionData', 'competitionId', competitionId)
+            const localVarPath = `/authors/competitions/{competitionId}/data`
+                .replace(`{${"competitionId"}}`, encodeURIComponent(String(competitionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/zip';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * AuthorsApi - functional programming interface
+ * @export
+ */
+export const AuthorsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = AuthorsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * コンペティションの詳細を取得します。 指定されたコンペティションのAuthorである必要があります。 
+         * @summary 自分がAuthorとなっているコンペティションの詳細を取得
+         * @param {string} competitionId コンペティションのID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getAuthorsCompetition(competitionId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CompetitionForAuthor>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAuthorsCompetition(competitionId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 自分がAuthorとなっているコンペティションの一覧を取得します。 
+         * @summary 自分がAuthorとなっているコンペティションの一覧を取得
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getAuthorsCompetitions(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<CompetitionCoreInfo>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAuthorsCompetitions(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * コンペティションの情報を更新します。   指定されたコンペティションのAuthorである必要があります。 
+         * @summary コンペティションの情報を更新
+         * @param {string} competitionId コンペティションのID
+         * @param {PatchCompetitionRequest} [patchCompetitionRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async patchAuthorsCompetition(competitionId: string, patchCompetitionRequest?: PatchCompetitionRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Competition>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.patchAuthorsCompetition(competitionId, patchCompetitionRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * コンペティションを作成します。 
+         * @summary コンペティションを作成
+         * @param {PostCompetitionsRequest} [postCompetitionsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async postAuthorsCompetitions(postCompetitionsRequest?: PostCompetitionsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Competition>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postAuthorsCompetitions(postCompetitionsRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * コンペティションの回答データをアップロードします。   指定されたコンペティションのAuthorである必要があります。 
+         * @summary コンペティションの回答データをアップロード
+         * @param {string} competitionId コンペティションのID
+         * @param {string} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async putAuthorsCompetitionAnswer(competitionId: string, body?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.putAuthorsCompetitionAnswer(competitionId, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * コンペティションの学習データをアップロードします。   学習データは、zip形式でアップロードしてください。   指定されたコンペティションのAuthorである必要があります。 
+         * @summary コンペティションの学習データをアップロード
+         * @param {string} competitionId コンペティションのID
+         * @param {any} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async putAuthorsCompetitionData(competitionId: string, body?: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.putAuthorsCompetitionData(competitionId, body, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * AuthorsApi - factory interface
+ * @export
+ */
+export const AuthorsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = AuthorsApiFp(configuration)
+    return {
+        /**
+         * コンペティションの詳細を取得します。 指定されたコンペティションのAuthorである必要があります。 
+         * @summary 自分がAuthorとなっているコンペティションの詳細を取得
+         * @param {string} competitionId コンペティションのID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAuthorsCompetition(competitionId: string, options?: any): AxiosPromise<CompetitionForAuthor> {
+            return localVarFp.getAuthorsCompetition(competitionId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 自分がAuthorとなっているコンペティションの一覧を取得します。 
+         * @summary 自分がAuthorとなっているコンペティションの一覧を取得
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAuthorsCompetitions(options?: any): AxiosPromise<Array<CompetitionCoreInfo>> {
+            return localVarFp.getAuthorsCompetitions(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * コンペティションの情報を更新します。   指定されたコンペティションのAuthorである必要があります。 
+         * @summary コンペティションの情報を更新
+         * @param {string} competitionId コンペティションのID
+         * @param {PatchCompetitionRequest} [patchCompetitionRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        patchAuthorsCompetition(competitionId: string, patchCompetitionRequest?: PatchCompetitionRequest, options?: any): AxiosPromise<Competition> {
+            return localVarFp.patchAuthorsCompetition(competitionId, patchCompetitionRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * コンペティションを作成します。 
+         * @summary コンペティションを作成
+         * @param {PostCompetitionsRequest} [postCompetitionsRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postAuthorsCompetitions(postCompetitionsRequest?: PostCompetitionsRequest, options?: any): AxiosPromise<Competition> {
+            return localVarFp.postAuthorsCompetitions(postCompetitionsRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * コンペティションの回答データをアップロードします。   指定されたコンペティションのAuthorである必要があります。 
+         * @summary コンペティションの回答データをアップロード
+         * @param {string} competitionId コンペティションのID
+         * @param {string} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        putAuthorsCompetitionAnswer(competitionId: string, body?: string, options?: any): AxiosPromise<void> {
+            return localVarFp.putAuthorsCompetitionAnswer(competitionId, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * コンペティションの学習データをアップロードします。   学習データは、zip形式でアップロードしてください。   指定されたコンペティションのAuthorである必要があります。 
+         * @summary コンペティションの学習データをアップロード
+         * @param {string} competitionId コンペティションのID
+         * @param {any} [body] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        putAuthorsCompetitionData(competitionId: string, body?: any, options?: any): AxiosPromise<void> {
+            return localVarFp.putAuthorsCompetitionData(competitionId, body, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * AuthorsApi - object-oriented interface
+ * @export
+ * @class AuthorsApi
+ * @extends {BaseAPI}
+ */
+export class AuthorsApi extends BaseAPI {
+    /**
+     * コンペティションの詳細を取得します。 指定されたコンペティションのAuthorである必要があります。 
+     * @summary 自分がAuthorとなっているコンペティションの詳細を取得
+     * @param {string} competitionId コンペティションのID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthorsApi
+     */
+    public getAuthorsCompetition(competitionId: string, options?: AxiosRequestConfig) {
+        return AuthorsApiFp(this.configuration).getAuthorsCompetition(competitionId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 自分がAuthorとなっているコンペティションの一覧を取得します。 
+     * @summary 自分がAuthorとなっているコンペティションの一覧を取得
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthorsApi
+     */
+    public getAuthorsCompetitions(options?: AxiosRequestConfig) {
+        return AuthorsApiFp(this.configuration).getAuthorsCompetitions(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * コンペティションの情報を更新します。   指定されたコンペティションのAuthorである必要があります。 
+     * @summary コンペティションの情報を更新
+     * @param {string} competitionId コンペティションのID
+     * @param {PatchCompetitionRequest} [patchCompetitionRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthorsApi
+     */
+    public patchAuthorsCompetition(competitionId: string, patchCompetitionRequest?: PatchCompetitionRequest, options?: AxiosRequestConfig) {
+        return AuthorsApiFp(this.configuration).patchAuthorsCompetition(competitionId, patchCompetitionRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * コンペティションを作成します。 
+     * @summary コンペティションを作成
+     * @param {PostCompetitionsRequest} [postCompetitionsRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthorsApi
+     */
+    public postAuthorsCompetitions(postCompetitionsRequest?: PostCompetitionsRequest, options?: AxiosRequestConfig) {
+        return AuthorsApiFp(this.configuration).postAuthorsCompetitions(postCompetitionsRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * コンペティションの回答データをアップロードします。   指定されたコンペティションのAuthorである必要があります。 
+     * @summary コンペティションの回答データをアップロード
+     * @param {string} competitionId コンペティションのID
+     * @param {string} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthorsApi
+     */
+    public putAuthorsCompetitionAnswer(competitionId: string, body?: string, options?: AxiosRequestConfig) {
+        return AuthorsApiFp(this.configuration).putAuthorsCompetitionAnswer(competitionId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * コンペティションの学習データをアップロードします。   学習データは、zip形式でアップロードしてください。   指定されたコンペティションのAuthorである必要があります。 
+     * @summary コンペティションの学習データをアップロード
+     * @param {string} competitionId コンペティションのID
+     * @param {any} [body] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthorsApi
+     */
+    public putAuthorsCompetitionData(competitionId: string, body?: any, options?: AxiosRequestConfig) {
+        return AuthorsApiFp(this.configuration).putAuthorsCompetitionData(competitionId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
 
 /**
  * CompetitionsApi - axios parameter creator
@@ -671,15 +1316,13 @@ export const CompetitionsApiAxiosParamCreator = function (configuration?: Config
          * コンペティションへの解答提出を行います。 
          * @summary コンペティションへの解答提出
          * @param {string} competitionId コンペティションのID
-         * @param {string} file 提出データ
+         * @param {string} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postSubmissions: async (competitionId: string, file: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        postSubmissions: async (competitionId: string, body?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'competitionId' is not null or undefined
             assertParamExists('postSubmissions', 'competitionId', competitionId)
-            // verify required parameter 'file' is not null or undefined
-            assertParamExists('postSubmissions', 'file', file)
             const localVarPath = `/competitions/{competitionId}/submissions`
                 .replace(`{${"competitionId"}}`, encodeURIComponent(String(competitionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -692,22 +1335,17 @@ export const CompetitionsApiAxiosParamCreator = function (configuration?: Config
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
 
             // authentication cookieAuth required
 
 
-            if (file !== undefined) { 
-                localVarFormParams.append('file', file as any);
-            }
     
-    
-            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-    
+            localVarHeaderParameter['Content-Type'] = 'text/csv';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams;
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -805,12 +1443,12 @@ export const CompetitionsApiFp = function(configuration?: Configuration) {
          * コンペティションへの解答提出を行います。 
          * @summary コンペティションへの解答提出
          * @param {string} competitionId コンペティションのID
-         * @param {string} file 提出データ
+         * @param {string} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async postSubmissions(competitionId: string, file: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Submission>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.postSubmissions(competitionId, file, options);
+        async postSubmissions(competitionId: string, body?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Submission>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postSubmissions(competitionId, body, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -897,12 +1535,12 @@ export const CompetitionsApiFactory = function (configuration?: Configuration, b
          * コンペティションへの解答提出を行います。 
          * @summary コンペティションへの解答提出
          * @param {string} competitionId コンペティションのID
-         * @param {string} file 提出データ
+         * @param {string} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postSubmissions(competitionId: string, file: string, options?: any): AxiosPromise<Submission> {
-            return localVarFp.postSubmissions(competitionId, file, options).then((request) => request(axios, basePath));
+        postSubmissions(competitionId: string, body?: string, options?: any): AxiosPromise<Submission> {
+            return localVarFp.postSubmissions(competitionId, body, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1002,13 +1640,13 @@ export class CompetitionsApi extends BaseAPI {
      * コンペティションへの解答提出を行います。 
      * @summary コンペティションへの解答提出
      * @param {string} competitionId コンペティションのID
-     * @param {string} file 提出データ
+     * @param {string} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CompetitionsApi
      */
-    public postSubmissions(competitionId: string, file: string, options?: AxiosRequestConfig) {
-        return CompetitionsApiFp(this.configuration).postSubmissions(competitionId, file, options).then((request) => request(this.axios, this.basePath));
+    public postSubmissions(competitionId: string, body?: string, options?: AxiosRequestConfig) {
+        return CompetitionsApiFp(this.configuration).postSubmissions(competitionId, body, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -1402,15 +2040,13 @@ export const SubmissionsApiAxiosParamCreator = function (configuration?: Configu
          * コンペティションへの解答提出を行います。 
          * @summary コンペティションへの解答提出
          * @param {string} competitionId コンペティションのID
-         * @param {string} file 提出データ
+         * @param {string} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postSubmissions: async (competitionId: string, file: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        postSubmissions: async (competitionId: string, body?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'competitionId' is not null or undefined
             assertParamExists('postSubmissions', 'competitionId', competitionId)
-            // verify required parameter 'file' is not null or undefined
-            assertParamExists('postSubmissions', 'file', file)
             const localVarPath = `/competitions/{competitionId}/submissions`
                 .replace(`{${"competitionId"}}`, encodeURIComponent(String(competitionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -1423,22 +2059,17 @@ export const SubmissionsApiAxiosParamCreator = function (configuration?: Configu
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-            const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
 
             // authentication cookieAuth required
 
 
-            if (file !== undefined) { 
-                localVarFormParams.append('file', file as any);
-            }
     
-    
-            localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-    
+            localVarHeaderParameter['Content-Type'] = 'text/csv';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = localVarFormParams;
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -1493,12 +2124,12 @@ export const SubmissionsApiFp = function(configuration?: Configuration) {
          * コンペティションへの解答提出を行います。 
          * @summary コンペティションへの解答提出
          * @param {string} competitionId コンペティションのID
-         * @param {string} file 提出データ
+         * @param {string} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async postSubmissions(competitionId: string, file: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Submission>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.postSubmissions(competitionId, file, options);
+        async postSubmissions(competitionId: string, body?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Submission>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postSubmissions(competitionId, body, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -1546,12 +2177,12 @@ export const SubmissionsApiFactory = function (configuration?: Configuration, ba
          * コンペティションへの解答提出を行います。 
          * @summary コンペティションへの解答提出
          * @param {string} competitionId コンペティションのID
-         * @param {string} file 提出データ
+         * @param {string} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postSubmissions(competitionId: string, file: string, options?: any): AxiosPromise<Submission> {
-            return localVarFp.postSubmissions(competitionId, file, options).then((request) => request(axios, basePath));
+        postSubmissions(competitionId: string, body?: string, options?: any): AxiosPromise<Submission> {
+            return localVarFp.postSubmissions(competitionId, body, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1604,13 +2235,13 @@ export class SubmissionsApi extends BaseAPI {
      * コンペティションへの解答提出を行います。 
      * @summary コンペティションへの解答提出
      * @param {string} competitionId コンペティションのID
-     * @param {string} file 提出データ
+     * @param {string} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SubmissionsApi
      */
-    public postSubmissions(competitionId: string, file: string, options?: AxiosRequestConfig) {
-        return SubmissionsApiFp(this.configuration).postSubmissions(competitionId, file, options).then((request) => request(this.axios, this.basePath));
+    public postSubmissions(competitionId: string, body?: string, options?: AxiosRequestConfig) {
+        return SubmissionsApiFp(this.configuration).postSubmissions(competitionId, body, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -1878,7 +2509,47 @@ export const TeamsApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
-         * チーム同士ののマージをリクエストします。 
+         * 自分のチームに来ているマージリクエストを承認 / 拒否します。 
+         * @summary マージリクエストを承認 / 拒否
+         * @param {string} teamId チームのID
+         * @param {PostMergeVoteRequest} [postMergeVoteRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postMergeVote: async (teamId: string, postMergeVoteRequest?: PostMergeVoteRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'teamId' is not null or undefined
+            assertParamExists('postMergeVote', 'teamId', teamId)
+            const localVarPath = `/teams/{teamId}/merge/vote`
+                .replace(`{${"teamId"}}`, encodeURIComponent(String(teamId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication cookieAuth required
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(postMergeVoteRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * チーム同士のマージをリクエストします。   fromかto、どちらかのチームに所属している必要があります。 
          * @summary チームのマージをリクエストする
          * @param {PostTeamMergeRequest} [postTeamMergeRequest] 
          * @param {*} [options] Override http request option.
@@ -1985,7 +2656,7 @@ export const TeamsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async patchTeam(teamId: string, patchTeamRequest?: PatchTeamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async patchTeam(teamId: string, patchTeamRequest?: PatchTeamRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Team>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.patchTeam(teamId, patchTeamRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -2002,7 +2673,19 @@ export const TeamsApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * チーム同士ののマージをリクエストします。 
+         * 自分のチームに来ているマージリクエストを承認 / 拒否します。 
+         * @summary マージリクエストを承認 / 拒否
+         * @param {string} teamId チームのID
+         * @param {PostMergeVoteRequest} [postMergeVoteRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async postMergeVote(teamId: string, postMergeVoteRequest?: PostMergeVoteRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MergeRequest>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postMergeVote(teamId, postMergeVoteRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * チーム同士のマージをリクエストします。   fromかto、どちらかのチームに所属している必要があります。 
          * @summary チームのマージをリクエストする
          * @param {PostTeamMergeRequest} [postTeamMergeRequest] 
          * @param {*} [options] Override http request option.
@@ -2079,7 +2762,7 @@ export const TeamsApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        patchTeam(teamId: string, patchTeamRequest?: PatchTeamRequest, options?: any): AxiosPromise<void> {
+        patchTeam(teamId: string, patchTeamRequest?: PatchTeamRequest, options?: any): AxiosPromise<Team> {
             return localVarFp.patchTeam(teamId, patchTeamRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -2094,7 +2777,18 @@ export const TeamsApiFactory = function (configuration?: Configuration, basePath
             return localVarFp.postCompetitionTeams(competitionId, postCompetitionTeamsRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * チーム同士ののマージをリクエストします。 
+         * 自分のチームに来ているマージリクエストを承認 / 拒否します。 
+         * @summary マージリクエストを承認 / 拒否
+         * @param {string} teamId チームのID
+         * @param {PostMergeVoteRequest} [postMergeVoteRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postMergeVote(teamId: string, postMergeVoteRequest?: PostMergeVoteRequest, options?: any): AxiosPromise<MergeRequest> {
+            return localVarFp.postMergeVote(teamId, postMergeVoteRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * チーム同士のマージをリクエストします。   fromかto、どちらかのチームに所属している必要があります。 
          * @summary チームのマージをリクエストする
          * @param {PostTeamMergeRequest} [postTeamMergeRequest] 
          * @param {*} [options] Override http request option.
@@ -2199,7 +2893,20 @@ export class TeamsApi extends BaseAPI {
     }
 
     /**
-     * チーム同士ののマージをリクエストします。 
+     * 自分のチームに来ているマージリクエストを承認 / 拒否します。 
+     * @summary マージリクエストを承認 / 拒否
+     * @param {string} teamId チームのID
+     * @param {PostMergeVoteRequest} [postMergeVoteRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TeamsApi
+     */
+    public postMergeVote(teamId: string, postMergeVoteRequest?: PostMergeVoteRequest, options?: AxiosRequestConfig) {
+        return TeamsApiFp(this.configuration).postMergeVote(teamId, postMergeVoteRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * チーム同士のマージをリクエストします。   fromかto、どちらかのチームに所属している必要があります。 
      * @summary チームのマージをリクエストする
      * @param {PostTeamMergeRequest} [postTeamMergeRequest] 
      * @param {*} [options] Override http request option.
@@ -2313,6 +3020,80 @@ export class UsersApi extends BaseAPI {
 
 export class Apis extends BaseAPI {
     /**
+     * コンペティションの詳細を取得します。 指定されたコンペティションのAuthorである必要があります。 
+     * @summary 自分がAuthorとなっているコンペティションの詳細を取得
+     * @param {string} competitionId コンペティションのID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthorsApi
+     */
+    public getAuthorsCompetition(competitionId: string, options?: AxiosRequestConfig) {
+        return AuthorsApiFp(this.configuration).getAuthorsCompetition(competitionId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 自分がAuthorとなっているコンペティションの一覧を取得します。 
+     * @summary 自分がAuthorとなっているコンペティションの一覧を取得
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthorsApi
+     */
+    public getAuthorsCompetitions(options?: AxiosRequestConfig) {
+        return AuthorsApiFp(this.configuration).getAuthorsCompetitions(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * コンペティションの情報を更新します。   指定されたコンペティションのAuthorである必要があります。 
+     * @summary コンペティションの情報を更新
+     * @param {string} competitionId コンペティションのID
+     * @param {PatchCompetitionRequest} [patchCompetitionRequest]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthorsApi
+     */
+    public patchAuthorsCompetition(competitionId: string, patchCompetitionRequest?: PatchCompetitionRequest, options?: AxiosRequestConfig) {
+        return AuthorsApiFp(this.configuration).patchAuthorsCompetition(competitionId, patchCompetitionRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * コンペティションを作成します。 
+     * @summary コンペティションを作成
+     * @param {PostCompetitionsRequest} [postCompetitionsRequest]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthorsApi
+     */
+    public postAuthorsCompetitions(postCompetitionsRequest?: PostCompetitionsRequest, options?: AxiosRequestConfig) {
+        return AuthorsApiFp(this.configuration).postAuthorsCompetitions(postCompetitionsRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * コンペティションの回答データをアップロードします。   指定されたコンペティションのAuthorである必要があります。 
+     * @summary コンペティションの回答データをアップロード
+     * @param {string} competitionId コンペティションのID
+     * @param {string} [body]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthorsApi
+     */
+    public putAuthorsCompetitionAnswer(competitionId: string, body?: string, options?: AxiosRequestConfig) {
+        return AuthorsApiFp(this.configuration).putAuthorsCompetitionAnswer(competitionId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * コンペティションの学習データをアップロードします。   学習データは、zip形式でアップロードしてください。   指定されたコンペティションのAuthorである必要があります。 
+     * @summary コンペティションの学習データをアップロード
+     * @param {string} competitionId コンペティションのID
+     * @param {any} [body]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthorsApi
+     */
+    public putAuthorsCompetitionData(competitionId: string, body?: any, options?: AxiosRequestConfig) {
+        return AuthorsApiFp(this.configuration).putAuthorsCompetitionData(competitionId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * コンペティションの詳細を取得します。 
      * @summary コンペティションの詳細を取得
      * @param {string} competitionId コンペティションのID
@@ -2400,13 +3181,13 @@ export class Apis extends BaseAPI {
      * コンペティションへの解答提出を行います。 
      * @summary コンペティションへの解答提出
      * @param {string} competitionId コンペティションのID
-     * @param {string} file 提出データ
+     * @param {string} [body]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SubmissionsApi
      */
-    public postSubmissions(competitionId: string, file: string, options?: AxiosRequestConfig) {
-        return SubmissionsApiFp(this.configuration).postSubmissions(competitionId, file, options).then((request) => request(this.axios, this.basePath));
+    public postSubmissions(competitionId: string, body?: string, options?: AxiosRequestConfig) {
+        return SubmissionsApiFp(this.configuration).postSubmissions(competitionId, body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2517,7 +3298,20 @@ export class Apis extends BaseAPI {
     }
 
     /**
-     * チーム同士ののマージをリクエストします。 
+     * 自分のチームに来ているマージリクエストを承認 / 拒否します。 
+     * @summary マージリクエストを承認 / 拒否
+     * @param {string} teamId チームのID
+     * @param {PostMergeVoteRequest} [postMergeVoteRequest]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TeamsApi
+     */
+    public postMergeVote(teamId: string, postMergeVoteRequest?: PostMergeVoteRequest, options?: AxiosRequestConfig) {
+        return TeamsApiFp(this.configuration).postMergeVote(teamId, postMergeVoteRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * チーム同士のマージをリクエストします。   fromかto、どちらかのチームに所属している必要があります。 
      * @summary チームのマージをリクエストする
      * @param {PostTeamMergeRequest} [postTeamMergeRequest]
      * @param {*} [options] Override http request option.

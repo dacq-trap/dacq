@@ -75,7 +75,7 @@ post:
             $ref: ../../common/error.yaml
     "403":
       description: |
-        Forbidden
+        Forbidden  
         コンペティションへの参加が許可されていません
       content:
         application/json:
@@ -89,7 +89,7 @@ post:
             $ref: ../../common/error.yaml
     "409":
       description: |
-        Conflict
+        Conflict  
         コンペティションに参加登録済みです
       content:
         application/json:

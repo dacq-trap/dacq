@@ -1,0 +1,57 @@
+parameters:
+  - $ref: ../../parameters/teamId.yaml
+
+post:
+  summary: マージリクエストを承認 / 拒否
+  description: |
+    自分のチームに来ているマージリクエストを承認 / 拒否します。
+  operationId: postMergeVote
+  security:
+    - cookieAuth: []
+  tags:
+    - Teams
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "#/components/schemas/postMergeVoteRequest"
+  responses:
+    "200":
+      description: |
+        OK  
+        承認を受け付けました
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/mergeRequest.yaml
+    "204":
+      description: |
+        No Content  
+        拒否を受け付け、マージリクエストが削除されました
+    "401":
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "404":
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "500":
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+
+components:
+  schemas:
+    postMergeVoteRequest:
+      type: object
+      properties:
+        accept:
+          type: boolean
+          description: 承認するかどうか
