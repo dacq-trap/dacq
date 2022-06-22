@@ -1,5 +1,5 @@
-import MarkdownIt from 'markdown-it'
 import katex from '@traptitech/markdown-it-katex'
+import MarkdownIt from 'markdown-it'
 import markdownItPrism from 'markdown-it-prism'
 
 import 'prismjs/themes/prism-okaidia.css'
@@ -31,7 +31,7 @@ export const MarkDown = (props: Props) => {
     return from
   }
 
-  const renderedMd = md.render(props.content)
+  const renderedMd = md.render('$f(x)$')
 
   return <div dangerouslySetInnerHTML={{ __html: renderedMd }} />
 }
