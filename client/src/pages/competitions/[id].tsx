@@ -8,11 +8,10 @@ import {
 } from '@mui/material'
 import { AxiosError } from 'axios'
 import { GetServerSideProps } from 'next'
-import api from '@/api'
-import { User } from '@/api'
+import api, { User } from '@/api'
 import { requestOption } from '@/api/requestOption'
 import CompetitionPageBase from '@/components/competitionPageBase'
-// import { MarkDown } from '@/components/markdown'
+import { MarkDown } from '@/components/markdown'
 
 type DatePaperProps = {
   startAt: string
@@ -93,7 +92,7 @@ const RulePaper = (props: RulePaperProps) => {
       <Typography variant='h6' color='primary' gutterBottom>
         ルール説明
       </Typography>
-      {/* <MarkDown content={props.rule}></MarkDown> */}
+      <MarkDown content={props.rule}></MarkDown>
     </Paper>
   )
 }
