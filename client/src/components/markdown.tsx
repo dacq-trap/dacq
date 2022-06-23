@@ -31,7 +31,7 @@ export const MarkDown = (props: Props) => {
     return from
   }
 
-  const renderedMd = md.render('$f(x)$')
+  const renderedMd = md.render(props.content)
 
   return <div dangerouslySetInnerHTML={{ __html: renderedMd }} />
 }
