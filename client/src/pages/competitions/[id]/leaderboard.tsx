@@ -12,6 +12,7 @@ const Leaderboard = (props: Props) => {
     <CompetitionPageBase
       competitionId={props.competitionId}
       competitionName={props.competitionName}
+      competitionRegisterd={true}
       competitionPageOption='leaderboard'
     >
       順位表ページ
