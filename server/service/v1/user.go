@@ -6,20 +6,20 @@ import (
 	"github.com/dacq-trap/dacq/server/service"
 )
 
-type userService struct {
-	repo repository.UserRepository
+type usersService struct {
+	repo repository.UsersRepository
 }
 
-func NewUserService(repo repository.UserRepository) service.UserService {
-	return &userService{
+func NewUsersService(repo repository.UsersRepository) service.UsersService {
+	return &usersService{
 		repo: repo,
 	}
 }
 
-func (s *userService) ReadUserByName(name string) (*model.User, error) {
+func (s *usersService) ReadUserByName(name string) (*model.User, error) {
 	return nil, nil
 }
 
-func (s *userService) CreateUser(name string) (*model.User, error) {
+func (s *usersService) CreateUser(name string) (*model.User, error) {
 	return nil, nil
 }

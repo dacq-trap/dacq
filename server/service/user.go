@@ -2,7 +2,7 @@ package service
 
 import "github.com/dacq-trap/dacq/server/model"
 
-type UserService interface {
+type UsersService interface {
 	// ユーザーをNameで取得
 	//
 	// 存在しなければ、model.ErrNotFoundを返す

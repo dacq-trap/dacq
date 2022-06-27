@@ -2,7 +2,7 @@ package repository
 
 import "github.com/dacq-trap/dacq/server/model"
 
-type UserRepository interface {
+type UsersRepository interface {
 	// ユーザーをNameで取得
 	//
 	// 存在しなければ、model.ErrNotFoundを返す
