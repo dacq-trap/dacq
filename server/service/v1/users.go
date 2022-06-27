@@ -17,18 +17,18 @@ func NewUsersService(repo repository.UsersRepository) service.UsersService {
 }
 
 func (s *usersService) ReadUserByName(name string) (*model.User, error) {
-	return s.SelectUserByName(name)
+	return s.repo.SelectUserByName(name)
 }
 
 func (s *usersService) CreateUser(name string) (*model.User, error) {
-	// TODO IconURL
 	url := "https://q.trap.jp/api/v3/public/icon/" + name
-	err = s.CreateUser({
-		Name: name,
+	user := model.User{
+		Name:    name,
 		IconURL: url,
-	})
+	}
+	err := s.repo.CreateUser(user)
 	if err != nil {
 		return nil, err
 	}
-	return ReadUserByName(name)
+	return &user, nil
 }
