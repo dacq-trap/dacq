@@ -22,13 +22,16 @@ func (s *usersService) ReadUserByName(name string) (*model.User, error) {
 
 func (s *usersService) CreateUser(name string) (*model.User, error) {
 	url := "https://q.trap.jp/api/v3/public/icon/" + name
+
 	user := model.User{
 		Name:    name,
 		IconURL: url,
 	}
+
 	err := s.repo.CreateUser(user)
 	if err != nil {
 		return nil, err
 	}
+
 	return &user, nil
 }
