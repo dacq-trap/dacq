@@ -1,36 +1,20 @@
 package users
 
 import (
+	"github.com/dacq-trap/dacq/server/model"
 	"github.com/labstack/echo/v4"
 	"net/http"
 )
 
-/*
-type: object
-properties:
-  name:
-    type: string
-    description: ユーザー名 (traP ID)
-    example: "trapyojo"
-  iconUrl:
-    type: string
-    description: アイコンURL
-    example: https://q.trap.jp/api/v3/public/icon/trapyojo
-required:
-  - name
-  - iconUrl
-*/
-
-type user struct {
-	Name    string `json:"name"`
-	IconUrl string `json:"iconUrl"`
-}
-
 func (h *UsersHandler) GetMe(c echo.Context) error {
-	name := c.Param("UserName")
-	user := user{
-		Name:    name,
-		IconUrl: "https://q.trap.jp/api/v3/public/icon/" + name,
+	name := c.Request().Context().Value(session.UserNameKey).(string)
+	user, err := h.service.ReadUserByName(name)
+	if err == model.ErrNotFound {
+		return echo.NewHTTPError(http.StatusNotFound)
+	} else if err == model.ErrForbidden {
+		return echo.NewHTTPError(http.StatusForbidden)
+	} else if err != nil {
+		return echo.NewHTTPError(http.StatusInternalServerError)
 	}
 	return c.JSON(http.StatusOK, user)
 }
