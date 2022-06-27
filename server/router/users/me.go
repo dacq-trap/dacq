@@ -15,9 +15,9 @@ func (h *UsersHandler) GetMe(c echo.Context) error {
 	user, err := h.service.ReadUserByName(name)
 	if err != nil {
 		if errors.Is(err, model.ErrNotFound) {
-			return echo.NewHTTPError(http.StatusNotFound)
+			return echo.NewHTTPError(http.StatusNotFound, err)
 		}
-		return echo.NewHTTPError(http.StatusInternalServerError)
+		return echo.NewHTTPError(http.StatusInternalServerError, err)
 	}
 
 	return c.JSON(http.StatusOK, user)
