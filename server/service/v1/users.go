@@ -1,6 +1,8 @@
 package v1
 
 import (
+	"context"
+
 	"github.com/dacq-trap/dacq/server/model"
 	"github.com/dacq-trap/dacq/server/repository"
 	"github.com/dacq-trap/dacq/server/service"
@@ -16,11 +18,11 @@ func NewUsersService(repo repository.UsersRepository) service.UsersService {
 	}
 }
 
-func (s *usersService) ReadUserByName(name string) (*model.User, error) {
-	return s.repo.SelectUserByName(name)
+func (s *usersService) ReadUserByName(ctx context.Context, name string) (*model.User, error) {
+	return s.repo.SelectUserByName(ctx, name)
 }
 
-func (s *usersService) CreateUser(name string) (*model.User, error) {
+func (s *usersService) CreateUser(ctx context.Context, name string) (*model.User, error) {
 	url := "https://q.trap.jp/api/v3/public/icon/" + name
 
 	user := model.User{
@@ -28,7 +30,7 @@ func (s *usersService) CreateUser(name string) (*model.User, error) {
 		IconURL: url,
 	}
 
-	err := s.repo.CreateUser(user)
+	err := s.repo.CreateUser(ctx, user)
 	if err != nil {
 		return nil, err
 	}

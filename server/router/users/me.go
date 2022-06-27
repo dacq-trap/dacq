@@ -17,7 +17,7 @@ type GetMeResponse struct {
 func (h *UsersHandler) GetMe(c echo.Context) error {
 	name := c.Request().Context().Value(session.UserNameKey).(string)
 
-	user, err := h.service.ReadUserByName(name)
+	user, err := h.service.ReadUserByName(c.Request().Context(), name)
 	if err != nil {
 		if errors.Is(err, model.ErrNotFound) {
 			return echo.NewHTTPError(http.StatusNotFound, err)

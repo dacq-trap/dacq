@@ -1,13 +1,17 @@
 package repository
 
-import "github.com/dacq-trap/dacq/server/model"
+import (
+	"context"
+
+	"github.com/dacq-trap/dacq/server/model"
+)
 
 type UsersRepository interface {
 	// ユーザーをNameで取得
 	//
 	// 存在しなければ、model.ErrNotFoundを返す
-	SelectUserByName(name string) (*model.User, error)
+	SelectUserByName(ctx context.Context, name string) (user *model.User, err error)
 
 	// ユーザーを作成
-	CreateUser(model.User) error
+	CreateUser(ctx context.Context, user model.User) (err error)
 }

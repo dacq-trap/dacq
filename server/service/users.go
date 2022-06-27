@@ -1,13 +1,17 @@
 package service
 
-import "github.com/dacq-trap/dacq/server/model"
+import (
+	"context"
+
+	"github.com/dacq-trap/dacq/server/model"
+)
 
 type UsersService interface {
 	// ユーザーをNameで取得
 	//
 	// 存在しなければ、model.ErrNotFoundを返す
-	ReadUserByName(name string) (*model.User, error)
+	ReadUserByName(ctx context.Context, name string) (user *model.User, err error)
 
 	// ユーザーを作成
-	CreateUser(name string) (*model.User, error)
+	CreateUser(ctx context.Context, name string) (user *model.User, err error)
 }
