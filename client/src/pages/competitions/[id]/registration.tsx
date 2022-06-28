@@ -1,27 +1,44 @@
 import {
   Typography,
-  Grid,
   Container,
   TextField,
   Box,
   Button,
+  Paper,
+  useThemeProps,
 } from '@mui/material'
 import { AxiosError } from 'axios'
 import { GetServerSideProps } from 'next'
 import React, { useState } from 'react'
-import api, { PostCompetitionTeamsRequest } from '@/api'
+import api, { PostCompetitionTeamsRequest, User } from '@/api'
 import { requestOption } from '@/api/requestOption'
 import CompetitionPageBase from '@/components/competitionPageBase'
+import MemberList from '@/components/memberList'
 
-// 仮の構造
+type RegistrantProps = User
+
 type Props = {
   competitionId: string
   competitionName: string
-  myName: string
+  competitionRegisterd: boolean
+  registrantProps: RegistrantProps
+}
+
+const RegisteredComponent = () => {
+  return (
+    <Typography
+      variant='h4'
+      color='error'
+      display='flex'
+      justifyContent='center'
+    >
+      既に参加登録しています
+    </Typography>
+  )
 }
 
 const Registration = (props: Props) => {
-  const [teamName, setTeamName] = useState(props.myName)
+  const [teamName, setTeamName] = useState(props.registrantProps.name)
 
   const handleSubmit = async (event: any) => {
     event.preventDefault()
@@ -34,9 +51,11 @@ const Registration = (props: Props) => {
         props.competitionId,
         postCompetitionTeamsRequest
       )
+      console.log('hoge?')
     } catch (error) {
       const err = error as AxiosError
       console.log(err)
+      console.log('huga?')
     }
   }
 
@@ -47,55 +66,82 @@ const Registration = (props: Props) => {
       competitionRegisterd={true}
       competitionPageOption='registration'
     >
-      <Container maxWidth='lg' sx={{ mt: 4, mb: 4 }}>
-        <Typography variant='h6' color='primary' gutterBottom>
-          参加登録
-        </Typography>
-        <Grid container spacing={2}>
-          {/* チーム名入力フォーム */}
-          <Grid item xs={12} md={12}>
-            <TextField
-              id='teamName'
-              name='teamNameForm'
-              defaultValue={props.myName}
-              label='チーム名'
-              fullWidth
-              variant='standard'
-              onChange={(event) => setTeamName(event.target.value)}
-              error={teamName.length < 1}
-              helperText={teamName.length < 1 && '1文字以上入力してください'}
-            />
-          </Grid>
-          {/* メンバーリスト（ユーザのみ） */}
-          {/* 未実装 */}
-          {/* 参加登録ボタン */}
-          <Grid item xs={12} md={12}>
-            <Box paddingY={2}>
-              <form onClick={handleSubmit}>
-                <Button
-                  size='large'
-                  variant='contained'
-                  disabled={teamName.length < 1}
-                  sx={{ maxWidth: 200, textAlign: 'center' }}
-                >
-                  参加登録する
-                </Button>
-              </form>
+      {/* 参加登録されてなければページを表示 */}
+      {props.competitionRegisterd ? (
+        <RegisteredComponent />
+      ) : (
+        <Paper
+          sx={{
+            p: 2,
+            mt: 4,
+            mb: 4,
+          }}
+        >
+          <Typography
+            variant='h6'
+            color='primary'
+            gutterBottom
+            sx={{
+              p: 1,
+            }}
+          >
+            参加登録
+          </Typography>
+          <Container maxWidth='xl' sx={{ mt: 4, mb: 4 }}>
+            <Box>
+              {/* チーム名入力フォーム */}
+              <TextField
+                id='teamName'
+                name='teamNameForm'
+                defaultValue={props.registrantProps.name}
+                label='チーム名'
+                fullWidth
+                variant='standard'
+                onChange={(event) => setTeamName(event.target.value)}
+                error={teamName.length < 1}
+                helperText={teamName.length < 1 && '1文字以上入力してください'}
+              />
+              {/* メンバーリスト（ユーザのみ） */}
+              <MemberList memberList={[props.registrantProps]} />
+              {/* 参加登録ボタン */}
+              <Box paddingY={2} display='flex' justifyContent='center'>
+                <form onClick={handleSubmit}>
+                  <Button
+                    size='large'
+                    variant='contained'
+                    disabled={teamName.length < 1}
+                  >
+                    参加登録する
+                  </Button>
+                </form>
+              </Box>
             </Box>
-          </Grid>
-        </Grid>
-      </Container>
+          </Container>
+        </Paper>
+      )}
     </CompetitionPageBase>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const competitionId = ctx.params?.id as string
-
   let propData: Props = {
     competitionId: competitionId,
     competitionName: '',
-    myName: '',
+    competitionRegisterd: false,
+    registrantProps: { name: '', iconUrl: '' },
+  }
+
+  // 既に参加登録しているか
+  try {
+    await api.getMyTeamInCompetition(competitionId, requestOption(ctx))
+  } catch (error) {
+    const err = error as AxiosError
+    if (err.response && err.response.status === 404) {
+      propData.competitionRegisterd = true
+    } else {
+      console.log(err)
+    }
   }
 
   // getCompetition
@@ -111,7 +157,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   // getMe
   try {
     const { data } = await api.getMe(requestOption(ctx))
-    propData.myName = data.name
+    propData.registrantProps = data
   } catch (error) {
     const err = error as AxiosError
     console.log(err)
