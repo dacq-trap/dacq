@@ -15,7 +15,7 @@ type GetMeResponse struct {
 }
 
 func (h *UsersHandler) GetMe(c echo.Context) error {
-	name := c.Request().Context().Value(session.UserNameKey).(string)
+	name := c.Get(session.UserNameKey).(string)
 
 	user, err := h.service.ReadUserByName(c.Request().Context(), name)
 	if err != nil {
