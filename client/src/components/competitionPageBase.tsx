@@ -16,7 +16,7 @@ type CompetitionPageOption = 'overview' | 'leaderboard' | 'registration'
 type Props = {
   competitionId: string
   competitionName: string
-  competitionRegisterd: boolean
+  isCompetitionRegistered: boolean
   competitionPageOption: CompetitionPageOption
   children: React.ReactNode
 }
@@ -75,7 +75,7 @@ const CompetitionPageBase = (props: Props) => {
             </List>
           </Box>
           {props.competitionPageOption !== 'registration' &&
-            props.competitionRegisterd && (
+            props.isCompetitionRegistered && (
               <Box paddingY={3} sx={{ display: 'flex' }}>
                 <Button
                   size='large'

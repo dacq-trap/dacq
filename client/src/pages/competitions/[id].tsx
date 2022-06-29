@@ -102,7 +102,7 @@ const Competition = (props: Props) => {
     <CompetitionPageBase
       competitionId={props.id}
       competitionName={props.name}
-      competitionRegisterd={true}
+      isCompetitionRegistered={true}
       competitionPageOption='overview'
     >
       <Container maxWidth='lg' sx={{ mt: 4, mb: 4 }}>

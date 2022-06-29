@@ -20,7 +20,7 @@ type RegistrantProps = User
 type Props = {
   competitionId: string
   competitionName: string
-  competitionRegisterd: boolean
+  isCompetitionRegistered: boolean
   registrantProps: RegistrantProps
 }
 
@@ -63,11 +63,11 @@ const Registration = (props: Props) => {
     <CompetitionPageBase
       competitionId={props.competitionId}
       competitionName={props.competitionName}
-      competitionRegisterd={true}
+      isCompetitionRegistered={true}
       competitionPageOption='registration'
     >
       {/* 参加登録されてなければページを表示 */}
-      {props.competitionRegisterd ? (
+      {props.isCompetitionRegistered ? (
         <RegisteredComponent />
       ) : (
         <Paper
@@ -128,7 +128,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   let propData: Props = {
     competitionId: competitionId,
     competitionName: '',
-    competitionRegisterd: false,
+    isCompetitionRegistered: false,
     registrantProps: { name: '', iconUrl: '' },
   }
 
@@ -138,7 +138,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   } catch (error) {
     const err = error as AxiosError
     if (err.response && err.response.status === 404) {
-      propData.competitionRegisterd = true
+      propData.isCompetitionRegistered = true
     } else {
       console.log(err)
     }
