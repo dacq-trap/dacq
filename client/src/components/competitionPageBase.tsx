@@ -13,6 +13,7 @@ import Header from '@/components/header'
 // TODO: 追加する
 type CompetitionPageOption = 'overview' | 'leaderboard' | 'registration'
 
+// TODO: コンテキスト情報の整理
 type Props = {
   competitionId: string
   competitionName: string

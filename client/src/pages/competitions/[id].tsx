@@ -100,6 +100,7 @@ const RulePaper = (props: RulePaperProps) => {
 const Competition = (props: Props) => {
   return (
     <CompetitionPageBase
+      // TODO: コンテキスト情報の整理
       competitionId={props.id}
       competitionName={props.name}
       isCompetitionRegistered={true}

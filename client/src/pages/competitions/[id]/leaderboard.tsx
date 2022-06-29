@@ -10,6 +10,7 @@ type Props = {
 const Leaderboard = (props: Props) => {
   return (
     <CompetitionPageBase
+      // TODO: コンテキスト情報の整理
       competitionId={props.competitionId}
       competitionName={props.competitionName}
       isCompetitionRegistered={true}

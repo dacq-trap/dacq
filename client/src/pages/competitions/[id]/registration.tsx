@@ -61,6 +61,7 @@ const Registration = (props: Props) => {
 
   return (
     <CompetitionPageBase
+      // TODO: コンテキスト情報の整理
       competitionId={props.competitionId}
       competitionName={props.competitionName}
       isCompetitionRegistered={true}
@@ -125,10 +126,10 @@ const Registration = (props: Props) => {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const competitionId = ctx.params?.id as string
-  let propData: Props = {
+  const propData: Props = {
     competitionId: competitionId,
     competitionName: '',
-    isCompetitionRegistered: false,
+    isCompetitionRegistered: true,
     registrantProps: { name: '', iconUrl: '' },
   }
 
@@ -138,7 +139,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   } catch (error) {
     const err = error as AxiosError
     if (err.response && err.response.status === 404) {
-      propData.isCompetitionRegistered = true
+      propData.isCompetitionRegistered = false
     } else {
       console.log(err)
     }
