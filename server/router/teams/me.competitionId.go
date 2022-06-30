@@ -20,6 +20,7 @@ func (h *TeamsHandler) GetMyTeamInCompetition(c echo.Context) error {
 	}
 
 	username := c.Get(session.UserNameKey).(string)
+
 	team, err := h.service.ReadTeamByUserNameAndCompetitionID(c.Request().Context(), username, competitionId)
 	if err != nil {
 		if errors.Is(err, model.ErrUnauthorized) {
@@ -30,6 +31,7 @@ func (h *TeamsHandler) GetMyTeamInCompetition(c echo.Context) error {
 		}
 		return echo.NewHTTPError(http.StatusInternalServerError, err)
 	}
+
 	res := TeamCoreInfo{
 		ID:   team.ID,
 		Name: team.Name,
