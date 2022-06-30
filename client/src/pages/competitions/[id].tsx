@@ -100,8 +100,10 @@ const RulePaper = (props: RulePaperProps) => {
 const Competition = (props: Props) => {
   return (
     <CompetitionPageBase
+      // TODO: コンテキスト情報の整理
       competitionId={props.id}
       competitionName={props.name}
+      isCompetitionRegistered={true}
       competitionPageOption='overview'
     >
       <Container maxWidth='lg' sx={{ mt: 4, mb: 4 }}>
