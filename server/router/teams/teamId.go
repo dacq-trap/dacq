@@ -33,6 +33,7 @@ type GetTeamResponse struct {
 	IsMerging   bool                `json:"isMerging"`
 }
 
+// チームIDからチームの詳細を取得する
 func (h *TeamsHandler) GetTeam(c echo.Context) error {
 	teamId, err := uuid.Parse(c.Param("teamId"))
 	if err != nil {
@@ -72,4 +73,10 @@ func (h *TeamsHandler) GetTeam(c echo.Context) error {
 		}
 	}
 	return c.JSON(http.StatusOK, res)
+}
+
+// チームの情報を変更する
+func (h *TeamsHandler) PatchTeam(c echo.Context) error {
+	// serviceの実装待ち
+	return nil
 }

@@ -13,6 +13,7 @@ type GetMyTeamsResponse struct {
 	TeamCoreInfos []TeamCoreInfo `json:"teams"`
 }
 
+// GetMyTeamsはユーザが所属する全てのチームを取得する.
 func (h *TeamsHandler) GetMyTeams(c echo.Context) error {
 	username := c.Get(session.UserNameKey).(string)
 

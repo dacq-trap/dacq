@@ -10,6 +10,7 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+// GetMyTeamInCompetitionはcompetition IDから，ユーザの所属するチームを取得する
 func (h *TeamsHandler) GetMyTeamInCompetition(c echo.Context) error {
 	competitionId, err := uuid.Parse(c.Param("competitionId"))
 	if err != nil {
