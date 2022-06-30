@@ -27,8 +27,6 @@ paths:
     $ref: ./paths/competitions/competitionId.leaderboard.yaml
   /competitions/{competitionId}/teams:
     $ref: ./paths/competitions/competitionId.teams.yaml
-  /competitions/{competitionId}/submissions:
-    $ref: ./paths/competitions/competitionId.submissions.yaml
   /authors/competitions:
     $ref: ./paths/authors-competitions/index.yaml
   /authors/competitions/{competitionId}:
@@ -41,6 +39,8 @@ paths:
     $ref: ./paths/submissions/submissionId.yaml
   /teams/{teamId}:
     $ref: ./paths/teams/teamId.yaml
+  /teams/{teamId}/submissions:
+    $ref: ./paths/teams/teamId.submissions.yaml
   /teams/me:
     $ref: ./paths/teams/me.yaml
   /teams/me/{competitionId}:

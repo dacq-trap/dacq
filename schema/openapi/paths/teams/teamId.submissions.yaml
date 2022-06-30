@@ -1,0 +1,40 @@
+parameters:
+  - $ref: ../../parameters/teamId.yaml
+
+get:
+  summary: チームの提出一覧
+  description: |
+    チームの提出一覧を取得します。
+  operationId: getTeamSubmissions
+  security:
+    - cookieAuth: []
+  tags:
+    - Teams
+    - Submissions
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../../common/submission.yaml
+    "401":
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "404":
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
+    "500":
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../../common/error.yaml
