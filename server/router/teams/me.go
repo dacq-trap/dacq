@@ -6,30 +6,8 @@ import (
 
 	"github.com/dacq-trap/dacq/server/model"
 	"github.com/dacq-trap/dacq/server/router/session"
-	"github.com/google/uuid"
 	"github.com/labstack/echo/v4"
 )
-
-/*
-type: object
-description: チームの基本情報
-properties:
-  id:
-    type: string
-    format: uuid
-    description: ID
-  name:
-    type: string
-    description: チーム名
-required:
-  - id
-  - name
-*/
-
-type TeamCoreInfo struct {
-	ID   uuid.UUID `json:"id"`
-	Name string    `json:"name"`
-}
 
 type GetMyTeamsResponse struct {
 	TeamCoreInfos []TeamCoreInfo `json:"teams"`
