@@ -2,20 +2,23 @@ import { Box } from '@mui/material'
 import { AxiosError } from 'axios'
 import type { GetServerSideProps, NextPage } from 'next'
 import Link from 'next/link'
+import { useRecoilValue } from 'recoil'
 import api from '@/api'
 import { requestOption } from '@/api/requestOption'
 import Header from '@/components/header'
+import { meState } from '@/store/domain/me'
 
 type Props = {
   userName: string
 }
 
 const Home = (props: Props) => {
+  const me = useRecoilValue(meState)
   return (
     <>
       <Header />
       <Box padding={4}>
-        ユーザー名 {props.userName}
+        ユーザー名 {me.name}
         <Link href='/competitions/9e2b5722-e1b8-c7de-44db-1af41a7f6c12'>
           サンプルコンペページ
         </Link>
