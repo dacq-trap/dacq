@@ -29,7 +29,8 @@
     "nookies": "^2.5.2",
     "prismjs": "^1.28.0",
     "react": "18.1.0",
-    "react-dom": "18.1.0"
+    "react-dom": "18.1.0",
+    "recoil": "^0.7.4"
   },
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.5.1",
