@@ -2,7 +2,7 @@ import { CacheProvider, type EmotionCache } from '@emotion/react'
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import { RecoilRoot } from 'recoil'
+import { RecoilRoot, useSetRecoilState } from 'recoil'
 import createEmotionCache from '@/common/createEmotionCache'
 import theme from '@/styles/theme'
 

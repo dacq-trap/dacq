@@ -1,15 +1,16 @@
 import { Button } from '@mui/material'
 import { setCookie } from 'nookies'
-import { useMeDispatch } from '@/store/domain/me'
+import { useSetRecoilState } from 'recoil'
+import { fetchMe, meState } from '@/store/domain/me'
 
 const DevLogin = () => {
-  const { fetchMe } = useMeDispatch()
+  const setMe = useSetRecoilState(meState)
   return (
     <Button
       variant='contained'
       onClick={async () => {
         onClickDevLogin()
-        await fetchMe()
+        await fetchMe(setMe)
       }}
     >
       Dev Login

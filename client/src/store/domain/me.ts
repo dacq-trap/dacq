@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios'
-import { atom, useRecoilCallback } from 'recoil'
+import { atom, type SetterOrUpdater, useRecoilCallback } from 'recoil'
 import api from '@/api'
 
 interface Me {
@@ -19,22 +19,16 @@ export const meState = atom<Me>({
   default: defaultData,
 })
 
-export const useMeDispatch = () => {
-  const fetchMe = useRecoilCallback(({ set }) => async () => {
-    try {
-      const { data } = await api.getMe()
-      const me: Me = {
-        ...data,
-        isLogin: true,
-      }
-      set(meState, me)
-    } catch (error) {
-      const err = error as AxiosError
-      console.log(err)
+export const fetchMe = async (setMe: SetterOrUpdater<Me>) => {
+  try {
+    const { data } = await api.getMe()
+    const me: Me = {
+      ...data,
+      isLogin: true,
     }
-  })
-
-  return {
-    fetchMe,
+    setMe(me)
+  } catch (error) {
+    const err = error as AxiosError
+    console.log(err)
   }
 }
