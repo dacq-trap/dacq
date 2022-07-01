@@ -9,6 +9,8 @@ import (
 
 type TeamsService interface {
 	// コンペティションIDでチームを取得
+	//
+	// コンペティションが存在しない・開催前の場合は、model.ErrNotFoundを返す
 	ReadTeamsByCompetitionID(ctx context.Context, competitionID uuid.UUID) ([]*model.Team, error)
 
 	// ユーザーネームでチームを取得
@@ -16,7 +18,7 @@ type TeamsService interface {
 
 	// ユーザーネームとコンペティションIDでチームを取得
 	//
-	// 存在しなければ、model.ErrNotFoundを返す
+	// コンペティションが存在しない・開催前 / チームが存在しない場合は、model.ErrNotFoundを返す
 	ReadTeamByUserNameAndCompetitionID(ctx context.Context, userName string, competitionID uuid.UUID) (*model.Team, error)
 
 	// IDでチームを取得
